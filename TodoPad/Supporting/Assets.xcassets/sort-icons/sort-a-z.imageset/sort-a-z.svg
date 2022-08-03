@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="8.4999971mm"
+   height="8.9700451mm"
+   viewBox="0 0 8.4999972 8.9700451"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c4e8f9e, 2021-05-24)"
+   sodipodi:docname="sort-a-z.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.67081229"
+     inkscape:cx="84.226245"
+     inkscape:cy="213.91975"
+     inkscape:window-width="1312"
+     inkscape:window-height="1027"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-82.575543,-93.027241)">
+    <g
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="g1167"
+       transform="matrix(0.01752578,0,0,0.01752578,82.575537,93.027241)">
+      <path
+         fill-rule="nonzero"
+         d="M 276.55,208.92 V 179.49 L 291.2,177.35 353.48,0 h 54.5 l 62.41,177.35 14.61,2.14 v 29.43 h -78.04 v -29.43 l 13.67,-2.56 -6.32,-22.64 h -67.15 l -6.02,22.64 13.62,2.56 v 29.43 z M 173.77,124.47 H 132.3 v 380.26 c 0,3.54 -3.5,7.09 -7.09,7.09 H 64.3 c -3.64,0 -7.18,-3.17 -7.18,-7.09 V 124.47 H 15.69 c -3.64,0 -7.31,-1.24 -10.26,-3.84 -6.57,-5.68 -7.26,-15.64 -1.62,-22.17 L 84.93,5.38 c 6.45,-7.13 17.68,-7.22 23.96,0.3 l 76.55,92.48 c 2.56,2.82 4.05,6.58 4.05,10.59 0,8.76 -7,15.72 -15.72,15.72 z m 184.02,-5.51 h 45.75 L 383.17,55.7 380.86,48.4 h -0.85 l -2.44,8.03 z M 300.77,511.65 V 480.21 L 398.46,341.3 h -52.71 l -3.72,26.56 h -37.72 l 2.7,-65.14 h 154.71 v 30.33 L 363.73,473.2 h 62.66 l 4.02,-24.82 h 37.63 l -4.14,63.27 z"
+         id="path1158" />
+    </g>
+  </g>
+</svg>
