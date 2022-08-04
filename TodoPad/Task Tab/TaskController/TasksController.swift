@@ -10,7 +10,7 @@ import UIKit
 class TasksController: UIViewController {
     
     // MARK: - UI Components
-    
+    let dateScroller: DateScroller = DateScroller()
     
     // MARK: - Lifecycle
     init() {
@@ -31,5 +31,17 @@ class TasksController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .dynamicColorOne
         
+        view.addSubview(dateScroller)
+        
+        dateScroller.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            dateScroller.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            dateScroller.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            dateScroller.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            dateScroller.heightAnchor.constraint(equalToConstant: 88),
+            
+        ])
     }
+    
 }

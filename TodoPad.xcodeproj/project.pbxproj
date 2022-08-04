@@ -22,6 +22,16 @@
 		8E7FAFC1289A18A700E0CF58 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFC0289A18A700E0CF58 /* UIColor+Extensions.swift */; };
 		8E7FAFC3289A1BF300E0CF58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFC2289A1BF300E0CF58 /* Constants.swift */; };
 		8E7FAFC5289A311300E0CF58 /* TasksControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFC4289A311300E0CF58 /* TasksControllerViewModel.swift */; };
+		8E7FAFC9289A330C00E0CF58 /* DateScrollerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFC8289A330C00E0CF58 /* DateScrollerViewModelTests.swift */; };
+		8E7FAFCB289A334700E0CF58 /* DateScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFCA289A334700E0CF58 /* DateScroller.swift */; };
+		8E7FAFCD289A34D700E0CF58 /* DateScrollerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFCC289A34D700E0CF58 /* DateScrollerViewModel.swift */; };
+		8E7FAFD0289A356900E0CF58 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFCF289A356900E0CF58 /* DateHelper.swift */; };
+		8E7FAFD2289A39B000E0CF58 /* DateScrollerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD1289A39AF00E0CF58 /* DateScrollerCell.swift */; };
+		8E7FAFD4289A3D2300E0CF58 /* DateScrollCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD3289A3D2300E0CF58 /* DateScrollCellTests.swift */; };
+		8E7FAFD6289A3D9700E0CF58 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD5289A3D9700E0CF58 /* UIView+Extensions.swift */; };
+		8E7FAFDA289A3EB500E0CF58 /* DateScrollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */; };
+		8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */; };
+		8EB96058289B577100D63477 /* MockDateScrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +71,16 @@
 		8E7FAFC0289A18A700E0CF58 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		8E7FAFC2289A1BF300E0CF58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8E7FAFC4289A311300E0CF58 /* TasksControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksControllerViewModel.swift; sourceTree = "<group>"; };
+		8E7FAFC8289A330C00E0CF58 /* DateScrollerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerViewModelTests.swift; sourceTree = "<group>"; };
+		8E7FAFCA289A334700E0CF58 /* DateScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScroller.swift; sourceTree = "<group>"; };
+		8E7FAFCC289A34D700E0CF58 /* DateScrollerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerViewModel.swift; sourceTree = "<group>"; };
+		8E7FAFCF289A356900E0CF58 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		8E7FAFD1289A39AF00E0CF58 /* DateScrollerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerCell.swift; sourceTree = "<group>"; };
+		8E7FAFD3289A3D2300E0CF58 /* DateScrollCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollCellTests.swift; sourceTree = "<group>"; };
+		8E7FAFD5289A3D9700E0CF58 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerTests.swift; sourceTree = "<group>"; };
+		8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateScrollerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +134,7 @@
 				8E7FAFBB289A176700E0CF58 /* TabBarController.swift */,
 				8E7FAFAE289A122B00E0CF58 /* Task Tab */,
 				8E7FAFB0289A128600E0CF58 /* Stats Tab */,
+				8E7FAFCE289A355C00E0CF58 /* Helpers */,
 				8E7FAFB1289A128F00E0CF58 /* Models */,
 				8E7FAFC6289A312700E0CF58 /* DateScroller */,
 				8E7FAFAF289A123700E0CF58 /* Supporting */,
@@ -127,6 +148,7 @@
 			children = (
 				8E2AA0CE289A09A8009F2C53 /* TodoPadTests.swift */,
 				8E7FAFB8289A15E500E0CF58 /* Controllers */,
+				8E7FAFC7289A32CB00E0CF58 /* DateScroller */,
 			);
 			path = TodoPadTests;
 			sourceTree = "<group>";
@@ -206,6 +228,8 @@
 			children = (
 				8E7FAFBE289A184700E0CF58 /* UINavigationController+Extensions.swift */,
 				8E7FAFC0289A18A700E0CF58 /* UIColor+Extensions.swift */,
+				8E7FAFD5289A3D9700E0CF58 /* UIView+Extensions.swift */,
+				8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,8 +237,38 @@
 		8E7FAFC6289A312700E0CF58 /* DateScroller */ = {
 			isa = PBXGroup;
 			children = (
+				8E7FAFCA289A334700E0CF58 /* DateScroller.swift */,
+				8E7FAFCC289A34D700E0CF58 /* DateScrollerViewModel.swift */,
+				8E7FAFD1289A39AF00E0CF58 /* DateScrollerCell.swift */,
 			);
 			path = DateScroller;
+			sourceTree = "<group>";
+		};
+		8E7FAFC7289A32CB00E0CF58 /* DateScroller */ = {
+			isa = PBXGroup;
+			children = (
+				8EB96056289B56CE00D63477 /* Mocks */,
+				8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */,
+				8E7FAFC8289A330C00E0CF58 /* DateScrollerViewModelTests.swift */,
+				8E7FAFD3289A3D2300E0CF58 /* DateScrollCellTests.swift */,
+			);
+			path = DateScroller;
+			sourceTree = "<group>";
+		};
+		8E7FAFCE289A355C00E0CF58 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8E7FAFCF289A356900E0CF58 /* DateHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8EB96056289B56CE00D63477 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,14 +402,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7FAFB7289A131500E0CF58 /* StatsController.swift in Sources */,
+				8E7FAFD2289A39B000E0CF58 /* DateScrollerCell.swift in Sources */,
 				8E7FAFB4289A12EB00E0CF58 /* TasksController.swift in Sources */,
 				8E2AA0B5289A09A6009F2C53 /* AppDelegate.swift in Sources */,
 				8E7FAFC1289A18A700E0CF58 /* UIColor+Extensions.swift in Sources */,
 				8E7FAFBC289A176700E0CF58 /* TabBarController.swift in Sources */,
 				8E2AA0B7289A09A6009F2C53 /* SceneDelegate.swift in Sources */,
 				8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */,
+				8E7FAFCB289A334700E0CF58 /* DateScroller.swift in Sources */,
+				8E7FAFD0289A356900E0CF58 /* DateHelper.swift in Sources */,
 				8E7FAFC5289A311300E0CF58 /* TasksControllerViewModel.swift in Sources */,
 				8E7FAFBF289A184700E0CF58 /* UINavigationController+Extensions.swift in Sources */,
+				8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */,
+				8E7FAFD6289A3D9700E0CF58 /* UIView+Extensions.swift in Sources */,
+				8E7FAFCD289A34D700E0CF58 /* DateScrollerViewModel.swift in Sources */,
 				8E7FAFC3289A1BF300E0CF58 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,8 +424,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E7FAFD4289A3D2300E0CF58 /* DateScrollCellTests.swift in Sources */,
+				8E7FAFC9289A330C00E0CF58 /* DateScrollerViewModelTests.swift in Sources */,
+				8EB96058289B577100D63477 /* MockDateScrollerDelegate.swift in Sources */,
 				8E2AA0CF289A09A8009F2C53 /* TodoPadTests.swift in Sources */,
 				8E7FAFBA289A16BB00E0CF58 /* TabBarControllerTests.swift in Sources */,
+				8E7FAFDA289A3EB500E0CF58 /* DateScrollerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
