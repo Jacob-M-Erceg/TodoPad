@@ -15,4 +15,6 @@ func devPrint(_ items: Any...) {
 
 class Constants {
     static let inDevelopment = true
+    
+    static let weekdaysArray: [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 }
