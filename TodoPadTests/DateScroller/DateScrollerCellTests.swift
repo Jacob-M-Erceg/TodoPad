@@ -1,5 +1,5 @@
 //
-//  DateScrollCellTests.swift
+//  DateScrollerCellTests.swift
 //  TodoPadTests
 //
 //  Created by John Lee on 2022-08-02.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import TodoPad
 
-class DateScrollCellTests: XCTestCase {
+class DateScrollerCellTests: XCTestCase {
     
     var sut: DateScrollerCell!
 

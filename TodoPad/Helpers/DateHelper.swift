@@ -19,6 +19,7 @@ class DateHelper {
         }
     }
     
+    
     /// Adds or removes days from a given date
     /// - Parameters:
     ///   - date: The given date you want to add or remove days from
@@ -27,6 +28,7 @@ class DateHelper {
         let offset: Double = Double(offset)
         return date.addingTimeInterval(24*60*60*offset)
     }
+    
     
     /// Returns the past sunday for any given date
     public static func getSunday(for date: Date) -> Date {
@@ -40,6 +42,7 @@ class DateHelper {
         
         return date
     }
+    
     
     /// Checks if a given date is today
     public static func isToday(_ date: Date) -> Bool {
@@ -62,5 +65,12 @@ class DateHelper {
             return true
         }
         return false
+    }
+    
+    
+    public static func getMonthAndDayString(for date: Date) -> String {
+        let df = DateFormatter()
+        df.dateFormat = "MMMM d, yyyy"
+        return df.string(from: date)
     }
 }
