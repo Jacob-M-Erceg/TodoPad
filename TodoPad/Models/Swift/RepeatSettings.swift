@@ -11,7 +11,7 @@ import Foundation
 /// - weekly, biweekly [Int]: Sun = 0, Mon = 1, Tues = 2, etc.
 
 // TODO - make sure Sun = 0, Mon = 1, Tues = 2 still.... might be Sun = 1, etc
-enum RepeatSettings {
+enum RepeatSettings: Equatable {
     case daily
     case weekly([Int])
     case monthly

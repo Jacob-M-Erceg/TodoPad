@@ -31,6 +31,18 @@
 		8E2B2BDA289DD77400DC1D4D /* PersistentTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BD9289DD77400DC1D4D /* PersistentTaskTests.swift */; };
 		8E2B2BDC289E373100DC1D4D /* TaskFormModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BDB289E373100DC1D4D /* TaskFormModelTests.swift */; };
 		8E4A9F5428A0A0440092B6AB /* TaskFormCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5328A0A0440092B6AB /* TaskFormCellModel.swift */; };
+		8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */; };
+		8E4A9F5A28A12D4F0092B6AB /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */; };
+		8E4A9F5C28A1CDC60092B6AB /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5B28A1CDC60092B6AB /* Date+Extensions.swift */; };
+		8E4A9F5F28A210AE0092B6AB /* TaskFormTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5E28A210AE0092B6AB /* TaskFormTextFieldCell.swift */; };
+		8E4A9F6128A212450092B6AB /* TaskFormTextFieldCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F6028A212450092B6AB /* TaskFormTextFieldCellTests.swift */; };
+		8E4A9F6428A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F6328A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift */; };
+		8E4A9F6628A21E6C0092B6AB /* BaseTaskFormDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F6528A21E6C0092B6AB /* BaseTaskFormDropDownCell.swift */; };
+		8E4A9F6828A21F190092B6AB /* BaseTaskFormDropDownCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F6728A21F190092B6AB /* BaseTaskFormDropDownCellTests.swift */; };
+		8E4A9F6A28A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F6928A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift */; };
+		8E4A9F7128A22A790092B6AB /* TaskFormDatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F7028A22A790092B6AB /* TaskFormDatePickerCell.swift */; };
+		8E4A9F7328A2449B0092B6AB /* TaskFormDatePickerCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F7228A2449B0092B6AB /* TaskFormDatePickerCellTests.swift */; };
+		8E4A9F7528A261470092B6AB /* MockTaskFormDatePickerCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F7428A261470092B6AB /* MockTaskFormDatePickerCellDelegate.swift */; };
 		8E7FAFB4289A12EB00E0CF58 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFB3289A12EB00E0CF58 /* TasksController.swift */; };
 		8E7FAFB7289A131500E0CF58 /* StatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFB6289A131500E0CF58 /* StatsController.swift */; };
 		8E7FAFBA289A16BB00E0CF58 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFB9289A16BB00E0CF58 /* TabBarControllerTests.swift */; };
@@ -102,6 +114,18 @@
 		8E2B2BD9289DD77400DC1D4D /* PersistentTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentTaskTests.swift; sourceTree = "<group>"; };
 		8E2B2BDB289E373100DC1D4D /* TaskFormModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormModelTests.swift; sourceTree = "<group>"; };
 		8E4A9F5328A0A0440092B6AB /* TaskFormCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormCellModel.swift; sourceTree = "<group>"; };
+		8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormCellModelTests.swift; sourceTree = "<group>"; };
+		8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		8E4A9F5B28A1CDC60092B6AB /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		8E4A9F5E28A210AE0092B6AB /* TaskFormTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormTextFieldCell.swift; sourceTree = "<group>"; };
+		8E4A9F6028A212450092B6AB /* TaskFormTextFieldCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormTextFieldCellTests.swift; sourceTree = "<group>"; };
+		8E4A9F6328A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTaskFormTextFieldCellDelegate.swift; sourceTree = "<group>"; };
+		8E4A9F6528A21E6C0092B6AB /* BaseTaskFormDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTaskFormDropDownCell.swift; sourceTree = "<group>"; };
+		8E4A9F6728A21F190092B6AB /* BaseTaskFormDropDownCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTaskFormDropDownCellTests.swift; sourceTree = "<group>"; };
+		8E4A9F6928A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBaseTaskFormDropDownCellDelegate.swift; sourceTree = "<group>"; };
+		8E4A9F7028A22A790092B6AB /* TaskFormDatePickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormDatePickerCell.swift; sourceTree = "<group>"; };
+		8E4A9F7228A2449B0092B6AB /* TaskFormDatePickerCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormDatePickerCellTests.swift; sourceTree = "<group>"; };
+		8E4A9F7428A261470092B6AB /* MockTaskFormDatePickerCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTaskFormDatePickerCellDelegate.swift; sourceTree = "<group>"; };
 		8E7FAFB3289A12EB00E0CF58 /* TasksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksController.swift; sourceTree = "<group>"; };
 		8E7FAFB6289A131500E0CF58 /* StatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsController.swift; sourceTree = "<group>"; };
 		8E7FAFB9289A16BB00E0CF58 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
@@ -224,7 +248,8 @@
 			children = (
 				8E2B2BBA289CCE5100DC1D4D /* TaskFormControllerTests.swift */,
 				8E2B2BBC289CCE8E00DC1D4D /* TaskFormControllerViewModelTests.swift */,
-				8E2B2BDB289E373100DC1D4D /* TaskFormModelTests.swift */,
+				8E4A9F5528A0A22A0092B6AB /* Models */,
+				8E4A9F5D28A2100A0092B6AB /* Views */,
 			);
 			path = TaskFormController;
 			sourceTree = "<group>";
@@ -232,6 +257,9 @@
 		8E2B2BB8289CCA7D00DC1D4D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E4A9F5E28A210AE0092B6AB /* TaskFormTextFieldCell.swift */,
+				8E4A9F6528A21E6C0092B6AB /* BaseTaskFormDropDownCell.swift */,
+				8E4A9F6F28A22A6A0092B6AB /* DropDownCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +302,52 @@
 				8E2B2BD7289DC36400DC1D4D /* RepeatSettingsTests.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8E4A9F5528A0A22A0092B6AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E2B2BDB289E373100DC1D4D /* TaskFormModelTests.swift */,
+				8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8E4A9F5D28A2100A0092B6AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E4A9F6228A219F40092B6AB /* Mocks */,
+				8E4A9F6028A212450092B6AB /* TaskFormTextFieldCellTests.swift */,
+				8E4A9F6728A21F190092B6AB /* BaseTaskFormDropDownCellTests.swift */,
+				8E4A9F6E28A22A430092B6AB /* DropDownCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8E4A9F6228A219F40092B6AB /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8E4A9F6328A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift */,
+				8E4A9F6928A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift */,
+				8E4A9F7428A261470092B6AB /* MockTaskFormDatePickerCellDelegate.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		8E4A9F6E28A22A430092B6AB /* DropDownCells */ = {
+			isa = PBXGroup;
+			children = (
+				8E4A9F7228A2449B0092B6AB /* TaskFormDatePickerCellTests.swift */,
+			);
+			path = DropDownCells;
+			sourceTree = "<group>";
+		};
+		8E4A9F6F28A22A6A0092B6AB /* DropDownCells */ = {
+			isa = PBXGroup;
+			children = (
+				8E4A9F7028A22A790092B6AB /* TaskFormDatePickerCell.swift */,
+			);
+			path = DropDownCells;
 			sourceTree = "<group>";
 		};
 		8E7FAFAE289A122B00E0CF58 /* Task Tab */ = {
@@ -341,6 +415,8 @@
 				8E7FAFC0289A18A700E0CF58 /* UIColor+Extensions.swift */,
 				8E7FAFD5289A3D9700E0CF58 /* UIView+Extensions.swift */,
 				8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */,
+				8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */,
+				8E4A9F5B28A1CDC60092B6AB /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -535,9 +611,12 @@
 				8E2B2BB2289C554D00DC1D4D /* TaskFormController.swift in Sources */,
 				8E7FAFB7289A131500E0CF58 /* StatsController.swift in Sources */,
 				8E2B2BCD289D8E4000DC1D4D /* PersistentTask.swift in Sources */,
+				8E4A9F5A28A12D4F0092B6AB /* Collection+Extensions.swift in Sources */,
 				8E2B2BCF289D8E4B00DC1D4D /* RepeatingTask.swift in Sources */,
 				8E7FAFD2289A39B000E0CF58 /* DateScrollerCell.swift in Sources */,
+				8E4A9F7128A22A790092B6AB /* TaskFormDatePickerCell.swift in Sources */,
 				8E4A9F5428A0A0440092B6AB /* TaskFormCellModel.swift in Sources */,
+				8E4A9F6628A21E6C0092B6AB /* BaseTaskFormDropDownCell.swift in Sources */,
 				8E2B2BC9289D8E2600DC1D4D /* Task.swift in Sources */,
 				8E7FAFB4289A12EB00E0CF58 /* TasksController.swift in Sources */,
 				8E2AA0B5289A09A6009F2C53 /* AppDelegate.swift in Sources */,
@@ -553,6 +632,8 @@
 				8E2B2BBF289CCEC300DC1D4D /* TaskFormModel.swift in Sources */,
 				8E7FAFBF289A184700E0CF58 /* UINavigationController+Extensions.swift in Sources */,
 				8E2B2BCB289D8E2E00DC1D4D /* TaskVariant.swift in Sources */,
+				8E4A9F5F28A210AE0092B6AB /* TaskFormTextFieldCell.swift in Sources */,
+				8E4A9F5C28A1CDC60092B6AB /* Date+Extensions.swift in Sources */,
 				8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */,
 				8E2B2BD1289D8E5400DC1D4D /* NonRepeatingTask.swift in Sources */,
 				8E7FAFD6289A3D9700E0CF58 /* UIView+Extensions.swift in Sources */,
@@ -567,16 +648,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2B2BBB289CCE5100DC1D4D /* TaskFormControllerTests.swift in Sources */,
+				8E4A9F6428A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift in Sources */,
 				8EB9605F289B7F4B00D63477 /* TasksControllerViewModelTests.swift in Sources */,
+				8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */,
 				8E7FAFD4289A3D2300E0CF58 /* DateScrollerCellTests.swift in Sources */,
+				8E4A9F6A28A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift in Sources */,
+				8E4A9F7328A2449B0092B6AB /* TaskFormDatePickerCellTests.swift in Sources */,
 				8E2B2BBD289CCE8E00DC1D4D /* TaskFormControllerViewModelTests.swift in Sources */,
 				8E2B2BD4289DC2AA00DC1D4D /* TaskTests.swift in Sources */,
 				8E7FAFC9289A330C00E0CF58 /* DateScrollerViewModelTests.swift in Sources */,
 				8EB96058289B577100D63477 /* MockDateScrollerDelegate.swift in Sources */,
 				8E2B2BD8289DC36400DC1D4D /* RepeatSettingsTests.swift in Sources */,
 				8EB9605A289B79DF00D63477 /* TasksControllerTests.swift in Sources */,
+				8E4A9F6128A212450092B6AB /* TaskFormTextFieldCellTests.swift in Sources */,
+				8E4A9F6828A21F190092B6AB /* BaseTaskFormDropDownCellTests.swift in Sources */,
 				8E7FAFBA289A16BB00E0CF58 /* TabBarControllerTests.swift in Sources */,
 				8E7FAFDA289A3EB500E0CF58 /* DateScrollerTests.swift in Sources */,
+				8E4A9F7528A261470092B6AB /* MockTaskFormDatePickerCellDelegate.swift in Sources */,
 				8E2B2BDA289DD77400DC1D4D /* PersistentTaskTests.swift in Sources */,
 				8EB96064289B984D00D63477 /* MockTasksTableViewHeaderDelegate.swift in Sources */,
 				8E2B2BB4289CB02F00DC1D4D /* SpyNavigationController.swift in Sources */,

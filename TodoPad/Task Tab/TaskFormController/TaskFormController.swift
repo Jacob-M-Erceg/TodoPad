@@ -14,7 +14,16 @@ class TaskFormController: UIViewController {
     
     
     // MARK: - UI Components
-    
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+//        tableView.register(TaskFormTextFieldCell.self, forCellReuseIdentifier: TaskFormTextFieldCell.identifier)
+//        tableView.register(TaskFormDatePickerCell.self, forCellReuseIdentifier: TaskFormDatePickerCell.identifier)
+//        tableView.register(TaskFormRepeatingCell.self, forCellReuseIdentifier: TaskFormRepeatingCell.identifier)
+//        tableView.register(TaskFormNotificationCell.self, forCellReuseIdentifier: TaskFormNotificationCell.identifier)
+        tableView.allowsSelection = true
+        tableView.backgroundColor = .dynamicColorOne
+        return tableView
+    }()
 
     // MARK: - Lifecycle
     init(_ viewModel: TaskFormControllerViewModel) {

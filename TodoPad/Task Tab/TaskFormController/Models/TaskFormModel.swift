@@ -9,7 +9,7 @@ import Foundation
 
 /// The model for a task that is new (un-saved) or being edited.
 /// This is updated as a user fills out the title, description, etc and converted into a Task when it is saved.
-struct TaskFormModel {
+struct TaskFormModel: Equatable {
     var title: String?
     var description: String?
     
@@ -21,8 +21,26 @@ struct TaskFormModel {
     
     var notificationsEnabled: Bool = false
     
-    init() {
-        
+    init() {}
+    
+    init(
+        title: String? = nil,
+        description: String? = nil,
+        startDate: Date? = nil,
+        time: Date? = nil,
+        repeatSettings: RepeatSettings? = nil,
+        endDate: Date? = nil,
+        uuid: UUID = UUID(),
+        notificationsEnabled: Bool = false
+    ) {
+        self.title = title
+        self.description = description
+        self.startDate = startDate
+        self.time = time
+        self.repeatSettings = repeatSettings
+        self.endDate = endDate
+        self.uuid = uuid
+        self.notificationsEnabled = notificationsEnabled
     }
     
     init(for persistentTask: PersistentTask) {
@@ -110,3 +128,12 @@ extension TaskFormModel {
         return returnValue
     }
 }
+
+// MARK: - MOCKS (FOR DEVELOPMENT ONLY)
+extension TaskFormModel {
+    
+    
+    
+    
+}
+
