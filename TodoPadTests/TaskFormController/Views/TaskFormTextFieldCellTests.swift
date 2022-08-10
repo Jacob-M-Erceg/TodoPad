@@ -63,6 +63,7 @@ class TaskFormTextFieldCellTests: XCTestCase {
         self.sut.textField.insertText("Some_text")
         
         // Assert
+        XCTAssertEqual("Some_textMy Title", self.sut.textField.text, "The TextField Text is not the same as the String inserted.")
         XCTAssertEqual(self.sut.textField.text, mockDelegate.string, "Textfield String is not the same as the String passed back through delegate.")
         waitForExpectations(timeout: 1)
     }
