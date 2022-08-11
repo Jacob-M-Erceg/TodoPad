@@ -31,9 +31,6 @@ class TaskFormNotificationCell: BaseTaskFormDropDownCell {
 //        self.selectionStyle = .none
 //        self.backgroundColor = .dynamicColorTwo
 //
-//
-//        NSLayoutConstraint.activate([
-//
-//        ])
+//        NSLayoutConstraint.activate([])
 //    }
 }

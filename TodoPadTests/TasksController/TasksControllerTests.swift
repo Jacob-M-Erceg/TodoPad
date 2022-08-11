@@ -47,7 +47,6 @@ class TasksControllerTests: XCTestCase {
         XCTAssertNotEqual(
             originalDate.timeIntervalSince1970,
             sut.viewModel.selectedDate.timeIntervalSince1970,
-            accuracy: 0.1,
             "When TasksControllerViewModel.changeSelectedDate() was called, the selectedDate variable did not change."
         )
     }
@@ -66,4 +65,47 @@ class TasksControllerTests: XCTestCase {
         }
     }
 
+}
+
+
+// MARK: - TableView - Header
+extension TasksControllerTests {
+    
+    
+    func testTableViewHeader_NumberOfSections_EqualToViewModelTaskGroups() {
+        // Arrange
+        let count = self.sut.tableView.dataSource?.numberOfSections?(in: self.sut.tableView)
+        
+        // Assert
+        XCTAssertEqual(count, self.sut.viewModel.taskGroups.count)
+    }
+    
+    func testTableViewHeader_ViewForHeaderInSection_ConfiguredCorrectly() {
+        // Arrange
+        let cell = self.sut.tableView.delegate?.tableView?(self.sut.tableView, viewForHeaderInSection: 0) as? TaskGroupCell
+        let taskGroup = self.sut.viewModel.taskGroups[0]
+        
+        // Assert
+        XCTAssertEqual(cell?.label.text, taskGroup.title)
+    }
+    
+    func testTableViewHeader_HeightForHeaderInSection_Is44() {
+        // Arrange
+        let headerHeight = self.sut.tableView.delegate?.tableView?(self.sut.tableView, heightForHeaderInSection: 0)
+        
+        // Assert
+        XCTAssertEqual(headerHeight, 44)
+    }
+    
+    func testTableViewHeader_didTapTaskGroupCellCalled_OpensOrClosesTaskGroup() {
+        // Arrange
+        let taskGroup = self.sut.viewModel.taskGroups[0]
+        
+        // Act
+        self.sut.didTapTaskGroupCell(for: taskGroup)
+        XCTAssertNotEqual(taskGroup.isOpened, self.sut.viewModel.taskGroups[0].isOpened)
+        
+        self.sut.didTapTaskGroupCell(for: taskGroup)
+        XCTAssertEqual(taskGroup.isOpened, self.sut.viewModel.taskGroups[0].isOpened)
+    }
 }

@@ -42,3 +42,41 @@ struct RepeatingTask: TaskVariant {
 //        self.notificationsEnabled = repeatingTaskCD.notificationsEnabled
 //    }
 //}
+
+
+extension RepeatingTask {
+    
+    static var getMockRepeatingTask: RepeatingTask {
+        return RepeatingTask(
+            title: "Eat brekfast",
+            desc: nil,
+            taskUUID: UUID(),
+            isCompleted: false,
+            startDate: Date().addingTimeInterval(60*60*24*(-14)),
+            time: Date().addingTimeInterval(60*60*2),
+            repeatSettings: .daily,
+            endDate: nil,
+            notificationsEnabled: true
+        )
+    }
+    
+    static var getMockRepeatingTaskArray: [RepeatingTask] {
+        var array = [RepeatingTask]()
+        
+        for x in 0...8 {
+            array.append(
+                RepeatingTask(
+                    title: "Repeating task \(x)",
+                    desc: "\(x)",
+                    taskUUID: UUID(),
+                    isCompleted: (x%2)==0,
+                    startDate: Date().addingTimeInterval(60*60*24*(-14)),
+                    time: Date().addingTimeInterval(TimeInterval(60*60*x)),
+                    repeatSettings: .daily,
+                    endDate: nil,
+                    notificationsEnabled: true)
+            )
+        }
+        return array
+    }
+}

@@ -36,3 +36,23 @@ struct PersistentTask: TaskVariant {
 //        self.dateCompleted = persistentTaskCD.dateCompleted
 //    }
 //}
+
+
+extension PersistentTask {
+    
+    static var getMockPersistentTask: PersistentTask {
+        return PersistentTask(title: "Finish Math Homework", desc: "Assignment 2", taskUUID: UUID(), dateCompleted: nil)
+    }
+    
+    static var getMockPersistentTaskArray: [PersistentTask] {
+        return [
+            PersistentTask(title: "Finish Math Homework", desc: "Assignment 2", taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Take out trash", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Do the dishes", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Test core data", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Visit grandma", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Visit grandma", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Finish app", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+        ]
+    }
+}

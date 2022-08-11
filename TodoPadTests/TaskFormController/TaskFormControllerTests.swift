@@ -22,9 +22,19 @@ class TaskFormControllerTests: XCTestCase {
         self.sutNewTask.loadViewIfNeeded()
         
         // SutEditTask
-        let nonRepTask = NonRepeatingTask(title: "Eat Broccoli", desc: nil, taskUUID: UUID(), isCompleted: false, date: Date(), time: nil, notificationsEnabled: false)
-        let taskFormModel = TaskFormModel(for: nonRepTask)
-        let vmEditTask = TaskFormControllerViewModel(nonRepTask.date, taskFormModel, Task.nonRepeating(nonRepTask))
+        let repeatingTask = RepeatingTask(
+            title: "Eat Broccoli",
+            desc: "A description about eating broccoli.",
+            taskUUID: UUID(),
+            isCompleted: false,
+            startDate: Date().startOfDay,
+            time: Date().addingTimeInterval(60*60*3),
+            repeatSettings: RepeatSettings.daily,
+            endDate: Date().addingTimeInterval(60*60*24*2),
+            notificationsEnabled: true
+        )
+        let taskFormModel = TaskFormModel(for: repeatingTask)
+        let vmEditTask = TaskFormControllerViewModel(repeatingTask.startDate, taskFormModel, Task.repeating(repeatingTask))
         self.sutEditTask = TaskFormController(vmEditTask)
         self.sutEditTask.loadViewIfNeeded()
     }
@@ -33,9 +43,11 @@ class TaskFormControllerTests: XCTestCase {
         self.sutNewTask = nil
         self.sutEditTask = nil
     }
-    
-    
-    // MARK: - Tests
+}
+
+ 
+// MARK: - Initialization
+extension TaskFormControllerTests {
     func testTaskFormController_WhenNewTaskMode_NavigationTitleIsNewTask() {
         XCTAssertEqual(self.sutNewTask.navigationItem.title, "New Task")
     }
@@ -51,5 +63,18 @@ class TaskFormControllerTests: XCTestCase {
     func testTaskFormController_WhenNewTaskMode_SaveButtonTitleIsSave() {
         XCTAssertEqual(self.sutEditTask.navigationItem.rightBarButtonItem?.title, "Save")
     }
+}
 
+
+// MARK: - CollectionView
+extension TaskFormControllerTests {
+    
+    func testTaskFormController_CollectionView_numberOfSections() {
+        // Arrange
+        let sectionCount = self.sutNewTask.tableView.dataSource?.numberOfSections?(in: self.sutNewTask.tableView)
+        
+        // Assert
+        XCTAssertEqual(sectionCount, 2)
+    }
+    
 }

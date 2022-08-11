@@ -74,6 +74,8 @@
 		8EB9605F289B7F4B00D63477 /* TasksControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9605E289B7F4B00D63477 /* TasksControllerViewModelTests.swift */; };
 		8EB96061289B981A00D63477 /* TasksTableViewHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96060289B981A00D63477 /* TasksTableViewHeaderTests.swift */; };
 		8EB96064289B984D00D63477 /* MockTasksTableViewHeaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96063289B984D00D63477 /* MockTasksTableViewHeaderDelegate.swift */; };
+		8EF8610128A4FC3500FC6674 /* TaskGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8610028A4FC3500FC6674 /* TaskGroupCell.swift */; };
+		8EF8610328A4FDD100FC6674 /* TaskGroupCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF8610228A4FDD100FC6674 /* TaskGroupCellTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +167,8 @@
 		8EB9605E289B7F4B00D63477 /* TasksControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksControllerViewModelTests.swift; sourceTree = "<group>"; };
 		8EB96060289B981A00D63477 /* TasksTableViewHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewHeaderTests.swift; sourceTree = "<group>"; };
 		8EB96063289B984D00D63477 /* MockTasksTableViewHeaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTasksTableViewHeaderDelegate.swift; sourceTree = "<group>"; };
+		8EF8610028A4FC3500FC6674 /* TaskGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGroupCell.swift; sourceTree = "<group>"; };
+		8EF8610228A4FDD100FC6674 /* TaskGroupCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskGroupCellTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +440,7 @@
 				8E7FAFB3289A12EB00E0CF58 /* TasksController.swift */,
 				8E7FAFC4289A311300E0CF58 /* TasksControllerViewModel.swift */,
 				8EB9605C289B7AC500D63477 /* TasksTableViewHeader.swift */,
+				8EF8610028A4FC3500FC6674 /* TaskGroupCell.swift */,
 			);
 			path = TaskController;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				8EB96059289B79DF00D63477 /* TasksControllerTests.swift */,
 				8EB9605E289B7F4B00D63477 /* TasksControllerViewModelTests.swift */,
 				8EB96060289B981A00D63477 /* TasksTableViewHeaderTests.swift */,
+				8EF8610228A4FDD100FC6674 /* TaskGroupCellTests.swift */,
 			);
 			path = TasksController;
 			sourceTree = "<group>";
@@ -653,6 +659,7 @@
 				8E2B2BCD289D8E4000DC1D4D /* PersistentTask.swift in Sources */,
 				8E4A9F5A28A12D4F0092B6AB /* Collection+Extensions.swift in Sources */,
 				8E0CEC2028A39E2300EFE295 /* TaskFormRepeatSettingsCellViewModel.swift in Sources */,
+				8EF8610128A4FC3500FC6674 /* TaskGroupCell.swift in Sources */,
 				8E2B2BCF289D8E4B00DC1D4D /* RepeatingTask.swift in Sources */,
 				8E7FAFD2289A39B000E0CF58 /* DateScrollerCell.swift in Sources */,
 				8E4A9F7128A22A790092B6AB /* TaskFormDatePickerCell.swift in Sources */,
@@ -697,6 +704,7 @@
 				8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */,
 				8E0CEC1928A342AA00EFE295 /* TaskFormRepeatSettingsCellTests.swift in Sources */,
 				8E7FAFD4289A3D2300E0CF58 /* DateScrollerCellTests.swift in Sources */,
+				8EF8610328A4FDD100FC6674 /* TaskGroupCellTests.swift in Sources */,
 				8E4A9F6A28A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift in Sources */,
 				8E4A9F7328A2449B0092B6AB /* TaskFormDatePickerCellTests.swift in Sources */,
 				8E0CEC2328A39FA600EFE295 /* RepeatingDayCellTests.swift in Sources */,
