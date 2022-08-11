@@ -36,3 +36,27 @@ extension NonRepeatingTask {
 //        self.notificationsEnabled = nonRepeatingTaskCD.notificationsEnabled
 //    }
 }
+
+
+extension NonRepeatingTask {
+    
+    var getMockNonRepeatingTask: NonRepeatingTask {
+        return NonRepeatingTask(
+            title: "Hang out with Justin",
+            desc: "At his house",
+            taskUUID: UUID(),
+            isCompleted: false,
+            date: Date().addingTimeInterval(60*60*8),
+            time: Date(),
+            notificationsEnabled: true
+        )
+    }
+    
+    var getMockNonRepeatingTaskArray: [NonRepeatingTask] {
+        return [
+            NonRepeatingTask(title: "Hang out with Justin", desc: "At his house", taskUUID: UUID(), isCompleted: false, date: Date().addingTimeInterval(60*60*8), time: Date(), notificationsEnabled: true),
+            NonRepeatingTask(title: "Dentist appointment", desc: nil, taskUUID: UUID(), isCompleted: false, date: Date().addingTimeInterval(60*60*24*3), time: Date(), notificationsEnabled: false),
+            NonRepeatingTask(title: "Clean room", desc: nil, taskUUID: UUID(), isCompleted: true, date: Date(), time: Date().addingTimeInterval((-60)*60), notificationsEnabled: false)
+        ]
+    }
+}

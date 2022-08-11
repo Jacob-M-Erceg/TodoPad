@@ -41,9 +41,29 @@ class TasksControllerViewModelTests: XCTestCase {
         XCTAssertNotEqual(
             originalDate.timeIntervalSince1970,
             sut.selectedDate.timeIntervalSince1970,
-            accuracy: 0.1,
             "When TasksControllerViewModel.changeSelectedDate() was called, the selectedDate variable did not change."
         )
     }
+    
+//    func test_openOrCloseTaskGroupSectionCalled_TaskGroupOpenedOrClosed() {
+//        // Arrange
+//        let taskGroup = self.sut.taskGroups[0]
+//        
+//        self.sut.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
+//            
+//            if isOpening {
+//                devPrint("isOpening")
+//            } else {
+//                devPrint("isNotOpening")
+//            }
+//            
+//        }
+//        
+//        // Act
+//        self.sut.openOrCloseTaskGroupSection(for: taskGroup)
+//        
+//        // Assert
+//        
+//    }
 
 }

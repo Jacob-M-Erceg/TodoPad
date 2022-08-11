@@ -16,9 +16,9 @@ class TasksController: UIViewController {
     // MARK: - UI Components
     let dateScroller: DateScroller
     
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-//        tableView.register(TaskGroupCell.self, forHeaderFooterViewReuseIdentifier: TaskGroupCell.identifier)
+        tableView.register(TaskGroupCell.self, forHeaderFooterViewReuseIdentifier: TaskGroupCell.identifier)
 //        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
         tableView.backgroundColor = .dynamicColorOne
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 66, right: 0)
@@ -42,12 +42,24 @@ class TasksController: UIViewController {
         self.navigationItem.title = DateHelper.getMonthAndDayString(for: Date())
         self.setupUI()
         
-//        self.tableView.dataSource = self
-//        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         self.dateScroller.delegate = self
         
-        
+//        self.viewModel.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
+//            DispatchQueue.main.async { [weak self] in
+//                self?.tableView.performBatchUpdates({
+//                    if isOpening {
+//                        self?.tableView.insertRows(at: indexPaths, with: .fade)
+//                    } else {
+//                        self?.tableView.deleteRows(at: indexPaths, with: .fade)
+//                    }
+//                }, completion: { _ in
+//                    self?.tableView.reloadData()
+//                })
+//            }
+//        }
     }
     
     
@@ -96,14 +108,51 @@ extension TasksController: DateScrollerDelegate {
 
 
 // MARK: - TableView - Header
-extension TasksController {
+extension TasksController: UITableViewDelegate, UITableViewDataSource, TaskGroupCellDelegate {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel.taskGroups.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TaskGroupCell.identifier) as? TaskGroupCell else {
+            return UITableViewHeaderFooterView()
+        }
+        let taskGroup = self.viewModel.taskGroups[section]
+        header.configure(with: taskGroup)
+        header.delegate = self
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
+    func didTapTaskGroupCell(for taskGroup: TaskGroup) {
+        self.viewModel.openOrCloseTaskGroupSection(for: taskGroup)
+    }
 }
 
 
-// MARK: - TableView - Header
+// MARK: - TableView - Main
 extension TasksController {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        let taskGroup = self.viewModel.taskGroups[section]
+//        return taskGroup.isOpened ? taskGroup.tasks.count : 0
+        
+        0
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell else {
+            return UITableViewCell()
+//        }
+//        let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
+//        let isCompleted = task.isCompleted
+//        cell.configure(with: task, isCompleted)
+//
+//        return cell
+    }
 }
 
 
