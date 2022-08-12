@@ -27,15 +27,15 @@ struct PersistentTask: TaskVariant {
 }
 
 // MARK: - Initalizers
-//extension PersistentTask {
-//    
-//    init(persistentTaskCD: PersistentTaskCD) {
-//        self.title = persistentTaskCD.title
-//        self.desc = persistentTaskCD.desc
-//        self.taskUUID = persistentTaskCD.taskUUID
-//        self.dateCompleted = persistentTaskCD.dateCompleted
-//    }
-//}
+extension PersistentTask {
+    
+    init(persistentTaskCD: PersistentTaskCD) {
+        self.title = persistentTaskCD.title
+        self.desc = persistentTaskCD.desc
+        self.taskUUID = persistentTaskCD.taskUUID
+        self.dateCompleted = persistentTaskCD.dateCompleted
+    }
+}
 
 
 extension PersistentTask {

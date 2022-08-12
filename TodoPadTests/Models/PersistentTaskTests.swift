@@ -25,5 +25,4 @@ class PersistentTaskTests: XCTestCase {
         // Assert
         XCTAssertTrue(sut.isCompleted)
     }
-    
 }
