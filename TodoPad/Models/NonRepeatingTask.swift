@@ -24,17 +24,17 @@ struct NonRepeatingTask: TaskVariant {
 // MARK: - Initalizers
 extension NonRepeatingTask {
     
-//    init(nonRepeatingTaskCD: NonRepeatingTaskCD) {
-//        self.title = nonRepeatingTaskCD.title
-//        self.desc = nonRepeatingTaskCD.desc
-//        self.taskUUID = nonRepeatingTaskCD.taskUUID
-//        self.isCompleted = nonRepeatingTaskCD.isCompleted
-//        
-//        self.date = nonRepeatingTaskCD.date
-//        self.time = nonRepeatingTaskCD.time
-//        
-//        self.notificationsEnabled = nonRepeatingTaskCD.notificationsEnabled
-//    }
+    init(nonRepeatingTaskCD: NonRepeatingTaskCD) {
+        self.title = nonRepeatingTaskCD.title
+        self.desc = nonRepeatingTaskCD.desc
+        self.taskUUID = nonRepeatingTaskCD.taskUUID
+        self.isCompleted = nonRepeatingTaskCD.isCompleted
+        
+        self.date = nonRepeatingTaskCD.date
+        self.time = nonRepeatingTaskCD.time
+        
+        self.notificationsEnabled = nonRepeatingTaskCD.notificationsEnabled
+    }
 }
 
 

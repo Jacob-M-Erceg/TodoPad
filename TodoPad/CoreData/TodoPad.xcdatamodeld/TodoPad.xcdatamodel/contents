@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="NonRepeatingTaskCD" representedClassName="NonRepeatingTaskCD" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="isCompleted" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="notificationsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="taskUUID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
     <entity name="PersistentTaskCD" representedClassName="PersistentTaskCD" syncable="YES">
         <attribute name="dateCompleted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
@@ -8,5 +17,6 @@
     </entity>
     <elements>
         <element name="PersistentTaskCD" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="NonRepeatingTaskCD" positionX="-63" positionY="9" width="128" height="134"/>
     </elements>
 </model>
