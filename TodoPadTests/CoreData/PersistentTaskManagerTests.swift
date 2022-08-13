@@ -165,7 +165,7 @@ extension PersistentTaskManagerTests {
 // MARK: - Delete
 extension PersistentTaskManagerTests {
     
-    func testPersistentTaskManager_ShouldDeleteTask() {
+    func testPersistentTaskManager_DeleteTask() {
         // Arrange
         let pTaskOne = self.pTask
         let pTaskTwo = PersistentTask(title: "My Task", desc: nil, taskUUID: UUID(), dateCompleted: nil)

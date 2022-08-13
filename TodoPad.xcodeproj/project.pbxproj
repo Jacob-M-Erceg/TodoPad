@@ -38,6 +38,10 @@
 		8E2B2BD8289DC36400DC1D4D /* RepeatSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BD7289DC36400DC1D4D /* RepeatSettingsTests.swift */; };
 		8E2B2BDA289DD77400DC1D4D /* PersistentTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BD9289DD77400DC1D4D /* PersistentTaskTests.swift */; };
 		8E2B2BDC289E373100DC1D4D /* TaskFormModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BDB289E373100DC1D4D /* TaskFormModelTests.swift */; };
+		8E37475428A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37475228A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift */; };
+		8E37475528A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37475328A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift */; };
+		8E37475728A819F6001A114C /* NonRepeatingTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37475628A819F6001A114C /* NonRepeatingTaskManager.swift */; };
+		8E37475928A81AFF001A114C /* NonRepeatingTaskManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E37475828A81AFF001A114C /* NonRepeatingTaskManagerTests.swift */; };
 		8E4A9F5428A0A0440092B6AB /* TaskFormCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5328A0A0440092B6AB /* TaskFormCellModel.swift */; };
 		8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */; };
 		8E4A9F5A28A12D4F0092B6AB /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */; };
@@ -138,6 +142,10 @@
 		8E2B2BD7289DC36400DC1D4D /* RepeatSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSettingsTests.swift; sourceTree = "<group>"; };
 		8E2B2BD9289DD77400DC1D4D /* PersistentTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentTaskTests.swift; sourceTree = "<group>"; };
 		8E2B2BDB289E373100DC1D4D /* TaskFormModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormModelTests.swift; sourceTree = "<group>"; };
+		8E37475228A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NonRepeatingTaskCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8E37475328A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NonRepeatingTaskCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8E37475628A819F6001A114C /* NonRepeatingTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonRepeatingTaskManager.swift; sourceTree = "<group>"; };
+		8E37475828A81AFF001A114C /* NonRepeatingTaskManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonRepeatingTaskManagerTests.swift; sourceTree = "<group>"; };
 		8E4A9F5328A0A0440092B6AB /* TaskFormCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormCellModel.swift; sourceTree = "<group>"; };
 		8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormCellModelTests.swift; sourceTree = "<group>"; };
 		8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
@@ -336,6 +344,7 @@
 				8E73F1A928A658C00085ED91 /* Models */,
 				8E73F1A028A64E6E0085ED91 /* CoreDataStack.swift */,
 				8E73F1A328A655FD0085ED91 /* PersistentTaskManager.swift */,
+				8E37475628A819F6001A114C /* NonRepeatingTaskManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -348,6 +357,15 @@
 				8E2B2BD7289DC36400DC1D4D /* RepeatSettingsTests.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8E37475128A814D8001A114C /* Non-Repeating */ = {
+			isa = PBXGroup;
+			children = (
+				8E37475228A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift */,
+				8E37475328A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift */,
+			);
+			path = "Non-Repeating";
 			sourceTree = "<group>";
 		};
 		8E4A9F5528A0A22A0092B6AB /* Models */ = {
@@ -406,6 +424,7 @@
 				8E73F1A528A656A00085ED91 /* CoreDataTestStack.swift */,
 				8E73F1B828A661E00085ED91 /* CoreDataTaskModelTests.swift */,
 				8E73F1A728A657340085ED91 /* PersistentTaskManagerTests.swift */,
+				8E37475828A81AFF001A114C /* NonRepeatingTaskManagerTests.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -422,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				8E73F1AB28A658E70085ED91 /* Persistent */,
+				8E37475128A814D8001A114C /* Non-Repeating */,
 			);
 			path = NSManagedObjects;
 			sourceTree = "<group>";
@@ -707,6 +727,7 @@
 				8E73F1A428A655FD0085ED91 /* PersistentTaskManager.swift in Sources */,
 				8E0CEC2028A39E2300EFE295 /* TaskFormRepeatSettingsCellViewModel.swift in Sources */,
 				8E73F1A128A64E6E0085ED91 /* CoreDataStack.swift in Sources */,
+				8E37475528A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift in Sources */,
 				8EF8610128A4FC3500FC6674 /* TaskGroupCell.swift in Sources */,
 				8E2B2BCF289D8E4B00DC1D4D /* RepeatingTask.swift in Sources */,
 				8E7FAFD2289A39B000E0CF58 /* DateScrollerCell.swift in Sources */,
@@ -728,6 +749,7 @@
 				8E7FAFC5289A311300E0CF58 /* TasksControllerViewModel.swift in Sources */,
 				8E2B2BBF289CCEC300DC1D4D /* TaskFormModel.swift in Sources */,
 				8E7FAFBF289A184700E0CF58 /* UINavigationController+Extensions.swift in Sources */,
+				8E37475728A819F6001A114C /* NonRepeatingTaskManager.swift in Sources */,
 				8E2B2BCB289D8E2E00DC1D4D /* TaskVariant.swift in Sources */,
 				8E4A9F5F28A210AE0092B6AB /* TaskFormTextFieldCell.swift in Sources */,
 				8E4A9F5C28A1CDC60092B6AB /* Date+Extensions.swift in Sources */,
@@ -737,6 +759,7 @@
 				8E0CEC1E28A39DC100EFE295 /* RepeatingDayCell.swift in Sources */,
 				8E7FAFCD289A34D700E0CF58 /* DateScrollerViewModel.swift in Sources */,
 				8E73F1B728A65B050085ED91 /* PersistentTaskCD+CoreDataProperties.swift in Sources */,
+				8E37475428A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift in Sources */,
 				8E2B2BD6289DC34600DC1D4D /* RepeatSettings.swift in Sources */,
 				8E0CEC1728A33FC000EFE295 /* TaskFormRepeatSettingsCell.swift in Sources */,
 				8E7FAFC3289A1BF300E0CF58 /* Constants.swift in Sources */,
@@ -755,6 +778,7 @@
 				8E0CEC1928A342AA00EFE295 /* TaskFormRepeatSettingsCellTests.swift in Sources */,
 				8E73F1A828A657340085ED91 /* PersistentTaskManagerTests.swift in Sources */,
 				8E7FAFD4289A3D2300E0CF58 /* DateScrollerCellTests.swift in Sources */,
+				8E37475928A81AFF001A114C /* NonRepeatingTaskManagerTests.swift in Sources */,
 				8EF8610328A4FDD100FC6674 /* TaskGroupCellTests.swift in Sources */,
 				8E73F1B928A661E00085ED91 /* CoreDataTaskModelTests.swift in Sources */,
 				8E4A9F6A28A221660092B6AB /* MockBaseTaskFormDropDownCellDelegate.swift in Sources */,
