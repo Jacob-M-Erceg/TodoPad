@@ -47,6 +47,12 @@ class TasksController: UIViewController {
         
         self.dateScroller.delegate = self
         
+        self.viewModel.onUpdate = { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+        
 //        self.viewModel.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
 //            DispatchQueue.main.async { [weak self] in
 //                self?.tableView.performBatchUpdates({
@@ -88,10 +94,7 @@ class TasksController: UIViewController {
         let header = TasksTableViewHeader(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 66))
         header.delegate = self
         tableView.tableHeaderView = header
-        
-        if #available(iOS 15.0, *) {
-          tableView.sectionHeaderTopPadding = 0.0
-        }
+        if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = 0.0 }
     }
     
 }
@@ -107,7 +110,7 @@ extension TasksController: DateScrollerDelegate {
 }
 
 
-// MARK: - TableView - Header
+// MARK: - TableView - Cell Headers
 extension TasksController: UITableViewDelegate, UITableViewDataSource, TaskGroupCellDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

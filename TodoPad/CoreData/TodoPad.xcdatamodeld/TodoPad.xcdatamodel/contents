@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G224" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CompletedRepeatingTaskCD" representedClassName="CompletedRepeatingTaskCD" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCompleted" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskUUID" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
     <entity name="NonRepeatingTaskCD" representedClassName="NonRepeatingTaskCD" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
@@ -15,8 +19,26 @@
         <attribute name="taskUUID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
     </entity>
+    <entity name="RepeatingTaskCD" representedClassName="RepeatingTaskCD" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notificationsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskUUID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="repeatSettings" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="RepeatSettingsCD" inverseName="task" inverseEntity="RepeatSettingsCD"/>
+    </entity>
+    <entity name="RepeatSettingsCD" representedClassName="RepeatSettingsCD" syncable="YES">
+        <attribute name="days" optional="YES" attributeType="Transformable"/>
+        <attribute name="peroid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="RepeatingTaskCD" inverseName="repeatSettings" inverseEntity="RepeatingTaskCD"/>
+    </entity>
     <elements>
-        <element name="PersistentTaskCD" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="CompletedRepeatingTaskCD" positionX="-63" positionY="45" width="128" height="59"/>
         <element name="NonRepeatingTaskCD" positionX="-63" positionY="9" width="128" height="134"/>
+        <element name="PersistentTaskCD" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="RepeatingTaskCD" positionX="-54" positionY="54" width="128" height="149"/>
+        <element name="RepeatSettingsCD" positionX="-36" positionY="90" width="128" height="74"/>
     </elements>
 </model>

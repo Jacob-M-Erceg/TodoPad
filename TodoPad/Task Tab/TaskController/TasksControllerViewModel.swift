@@ -10,8 +10,13 @@ import Foundation
 class TasksControllerViewModel {
     
     // MARK: - Callbacks
-//    var onUpdate: (() -> Void)?
-    var onExpandCloseGroup: (([IndexPath], Bool) -> Void)?
+    var onUpdate: (() -> Void)?
+//    var onExpandCloseGroup: (([IndexPath], Bool) -> Void)?
+    
+    // MARK: - Managers/Services
+    private let persistentTaskManager: PersistentTaskManager
+    private let repeatingTaskManager: RepeatingTaskManager
+    private let nonRepeatingTaskManager: NonRepeatingTaskManager
     
     // MARK: - Variables
     private(set) var selectedDate: Date
@@ -22,9 +27,17 @@ class TasksControllerViewModel {
     ]
     
     init(
+        persistentTaskManager: PersistentTaskManager = PersistentTaskManager(),
+        repeatingTaskManager: RepeatingTaskManager = RepeatingTaskManager(),
+        nonRepeatingTaskManager: NonRepeatingTaskManager = NonRepeatingTaskManager(),
         date: Date = Date()
     ) {
+        self.persistentTaskManager = persistentTaskManager
+        self.repeatingTaskManager = repeatingTaskManager
+        self.nonRepeatingTaskManager = nonRepeatingTaskManager
         self.selectedDate = date
+        
+        self.fetchTasks(for: self.selectedDate)
     }
     
     public func changeSelectedDate(with date: Date) {
@@ -63,7 +76,4 @@ extension TasksControllerViewModel {
         
 //        self.onUpdate?()
     }
-    
-    
-    
 }
