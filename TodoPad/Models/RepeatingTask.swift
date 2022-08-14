@@ -21,27 +21,27 @@ struct RepeatingTask: TaskVariant {
     var notificationsEnabled: Bool
 }
 
-//extension RepeatingTask {
-//    
-//    init(repeatingTaskCD: RepeatingTaskCD) {
-//        let repeatSettings = RepeatSettings.init(
-//            with: repeatingTaskCD.repeatSettings.peroid,
-//            days: repeatingTaskCD.repeatSettings.days
-//        )
-//        
-//        self.title = repeatingTaskCD.title
-//        self.desc = repeatingTaskCD.desc
-//        self.taskUUID = repeatingTaskCD.taskUUID
-//        self.isCompleted = false
-//        
-//        self.startDate = repeatingTaskCD.startDate
-//        self.time = repeatingTaskCD.time
-//        self.repeatSettings = repeatSettings
-//        self.endDate = repeatingTaskCD.endDate
-//        
-//        self.notificationsEnabled = repeatingTaskCD.notificationsEnabled
-//    }
-//}
+extension RepeatingTask {
+    
+    init(repeatingTaskCD: RepeatingTaskCD) {
+        let repeatSettings = RepeatSettings.init(
+            number: repeatingTaskCD.repeatSettings.peroid,
+            days: repeatingTaskCD.repeatSettings.days
+        )
+        
+        self.title = repeatingTaskCD.title
+        self.desc = repeatingTaskCD.desc
+        self.taskUUID = repeatingTaskCD.taskUUID
+        self.isCompleted = false
+        
+        self.startDate = repeatingTaskCD.startDate
+        self.time = repeatingTaskCD.time
+        self.repeatSettings = repeatSettings
+        self.endDate = repeatingTaskCD.endDate
+        
+        self.notificationsEnabled = repeatingTaskCD.notificationsEnabled
+    }
+}
 
 
 extension RepeatingTask {

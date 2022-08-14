@@ -19,6 +19,10 @@ class TasksControllerViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
         sut = nil
     }
+}
+
+// MARK: - Initialization
+extension TasksControllerViewModelTests {
     
     func testTasksControllerViewModel_WhenInitalized_SelectedDateIsToday() {
         // Assert
@@ -50,20 +54,16 @@ class TasksControllerViewModelTests: XCTestCase {
 //        let taskGroup = self.sut.taskGroups[0]
 //        
 //        self.sut.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
-//            
 //            if isOpening {
 //                devPrint("isOpening")
 //            } else {
 //                devPrint("isNotOpening")
 //            }
-//            
 //        }
 //        
 //        // Act
 //        self.sut.openOrCloseTaskGroupSection(for: taskGroup)
 //        
 //        // Assert
-//        
 //    }
-
 }

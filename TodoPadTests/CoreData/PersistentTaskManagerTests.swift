@@ -39,7 +39,6 @@ extension PersistentTaskManagerTests {
         XCTAssertEqual(pTaskCD.taskUUID, self.pTask.taskUUID)
         XCTAssertEqual(pTaskCD.dateCompleted, self.pTask.dateCompleted)
     }
-    
 }
 
 

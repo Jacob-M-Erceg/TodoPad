@@ -15,6 +15,12 @@
 		8E0CEC2328A39FA600EFE295 /* RepeatingDayCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0CEC2228A39FA600EFE295 /* RepeatingDayCellTests.swift */; };
 		8E0CEC2528A3B07B00EFE295 /* TaskFormRepeatSettingsCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0CEC2428A3B07B00EFE295 /* TaskFormRepeatSettingsCellViewModelTests.swift */; };
 		8E0CEC2728A3C7DE00EFE295 /* TaskFormNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0CEC2628A3C7DE00EFE295 /* TaskFormNotificationCell.swift */; };
+		8E15C26F28A84F7F00380B64 /* RepeatingTaskManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C26E28A84F7F00380B64 /* RepeatingTaskManagerTests.swift */; };
+		8E15C27128A84FAC00380B64 /* RepeatingTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27028A84FAC00380B64 /* RepeatingTaskManager.swift */; };
+		8E15C27528A852C200380B64 /* RepeatingTaskCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27328A852C200380B64 /* RepeatingTaskCD+CoreDataClass.swift */; };
+		8E15C27628A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27428A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift */; };
+		8E15C27928A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27728A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift */; };
+		8E15C27A28A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27828A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift */; };
 		8E2AA0B5289A09A6009F2C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0B4289A09A6009F2C53 /* AppDelegate.swift */; };
 		8E2AA0B7289A09A6009F2C53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0B6289A09A6009F2C53 /* SceneDelegate.swift */; };
 		8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0BD289A09A6009F2C53 /* TodoPad.xcdatamodeld */; };
@@ -115,6 +121,12 @@
 		8E0CEC2228A39FA600EFE295 /* RepeatingDayCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingDayCellTests.swift; sourceTree = "<group>"; };
 		8E0CEC2428A3B07B00EFE295 /* TaskFormRepeatSettingsCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormRepeatSettingsCellViewModelTests.swift; sourceTree = "<group>"; };
 		8E0CEC2628A3C7DE00EFE295 /* TaskFormNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormNotificationCell.swift; sourceTree = "<group>"; };
+		8E15C26E28A84F7F00380B64 /* RepeatingTaskManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTaskManagerTests.swift; sourceTree = "<group>"; };
+		8E15C27028A84FAC00380B64 /* RepeatingTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingTaskManager.swift; sourceTree = "<group>"; };
+		8E15C27328A852C200380B64 /* RepeatingTaskCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatingTaskCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8E15C27428A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatingTaskCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8E15C27728A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatSettingsCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8E15C27828A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatSettingsCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8E2AA0B1289A09A6009F2C53 /* TodoPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E2AA0B4289A09A6009F2C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E2AA0B6289A09A6009F2C53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +250,17 @@
 			path = TaskFormRepeatSettingsCell;
 			sourceTree = "<group>";
 		};
+		8E15C27228A852A500380B64 /* Repeating */ = {
+			isa = PBXGroup;
+			children = (
+				8E15C27728A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift */,
+				8E15C27828A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift */,
+				8E15C27328A852C200380B64 /* RepeatingTaskCD+CoreDataClass.swift */,
+				8E15C27428A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift */,
+			);
+			path = Repeating;
+			sourceTree = "<group>";
+		};
 		8E2AA0A8289A09A6009F2C53 = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +367,7 @@
 				8E73F1A928A658C00085ED91 /* Models */,
 				8E73F1A028A64E6E0085ED91 /* CoreDataStack.swift */,
 				8E73F1A328A655FD0085ED91 /* PersistentTaskManager.swift */,
+				8E15C27028A84FAC00380B64 /* RepeatingTaskManager.swift */,
 				8E37475628A819F6001A114C /* NonRepeatingTaskManager.swift */,
 			);
 			path = CoreData;
@@ -424,6 +448,7 @@
 				8E73F1A528A656A00085ED91 /* CoreDataTestStack.swift */,
 				8E73F1B828A661E00085ED91 /* CoreDataTaskModelTests.swift */,
 				8E73F1A728A657340085ED91 /* PersistentTaskManagerTests.swift */,
+				8E15C26E28A84F7F00380B64 /* RepeatingTaskManagerTests.swift */,
 				8E37475828A81AFF001A114C /* NonRepeatingTaskManagerTests.swift */,
 			);
 			path = CoreData;
@@ -441,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				8E73F1AB28A658E70085ED91 /* Persistent */,
+				8E15C27228A852A500380B64 /* Repeating */,
 				8E37475128A814D8001A114C /* Non-Repeating */,
 			);
 			path = NSManagedObjects;
@@ -732,6 +758,8 @@
 				8E2B2BCF289D8E4B00DC1D4D /* RepeatingTask.swift in Sources */,
 				8E7FAFD2289A39B000E0CF58 /* DateScrollerCell.swift in Sources */,
 				8E4A9F7128A22A790092B6AB /* TaskFormDatePickerCell.swift in Sources */,
+				8E15C27528A852C200380B64 /* RepeatingTaskCD+CoreDataClass.swift in Sources */,
+				8E15C27928A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift in Sources */,
 				8E4A9F5428A0A0440092B6AB /* TaskFormCellModel.swift in Sources */,
 				8E4A9F6628A21E6C0092B6AB /* BaseTaskFormDropDownCell.swift in Sources */,
 				8E2B2BC9289D8E2600DC1D4D /* Task.swift in Sources */,
@@ -742,6 +770,7 @@
 				8EB9605D289B7AC500D63477 /* TasksTableViewHeader.swift in Sources */,
 				8E0CEC2728A3C7DE00EFE295 /* TaskFormNotificationCell.swift in Sources */,
 				8E2AA0B7289A09A6009F2C53 /* SceneDelegate.swift in Sources */,
+				8E15C27128A84FAC00380B64 /* RepeatingTaskManager.swift in Sources */,
 				8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */,
 				8E2B2BC7289D8E1F00DC1D4D /* TaskGroup.swift in Sources */,
 				8E7FAFCB289A334700E0CF58 /* DateScroller.swift in Sources */,
@@ -755,11 +784,13 @@
 				8E4A9F5C28A1CDC60092B6AB /* Date+Extensions.swift in Sources */,
 				8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */,
 				8E2B2BD1289D8E5400DC1D4D /* NonRepeatingTask.swift in Sources */,
+				8E15C27628A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift in Sources */,
 				8E7FAFD6289A3D9700E0CF58 /* UIView+Extensions.swift in Sources */,
 				8E0CEC1E28A39DC100EFE295 /* RepeatingDayCell.swift in Sources */,
 				8E7FAFCD289A34D700E0CF58 /* DateScrollerViewModel.swift in Sources */,
 				8E73F1B728A65B050085ED91 /* PersistentTaskCD+CoreDataProperties.swift in Sources */,
 				8E37475428A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift in Sources */,
+				8E15C27A28A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift in Sources */,
 				8E2B2BD6289DC34600DC1D4D /* RepeatSettings.swift in Sources */,
 				8E0CEC1728A33FC000EFE295 /* TaskFormRepeatSettingsCell.swift in Sources */,
 				8E7FAFC3289A1BF300E0CF58 /* Constants.swift in Sources */,
@@ -797,6 +828,7 @@
 				8E7FAFDA289A3EB500E0CF58 /* DateScrollerTests.swift in Sources */,
 				8E4A9F7528A261470092B6AB /* MockTaskFormDatePickerCellDelegate.swift in Sources */,
 				8E2B2BDA289DD77400DC1D4D /* PersistentTaskTests.swift in Sources */,
+				8E15C26F28A84F7F00380B64 /* RepeatingTaskManagerTests.swift in Sources */,
 				8EB96064289B984D00D63477 /* MockTasksTableViewHeaderDelegate.swift in Sources */,
 				8E2B2BB4289CB02F00DC1D4D /* SpyNavigationController.swift in Sources */,
 				8E2B2BDC289E373100DC1D4D /* TaskFormModelTests.swift in Sources */,

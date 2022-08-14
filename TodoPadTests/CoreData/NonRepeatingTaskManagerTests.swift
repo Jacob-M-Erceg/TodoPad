@@ -175,7 +175,7 @@ extension NonRepeatingTaskManagerTests {
         XCTAssertEqual(nonRepTasksFetched?.isCompleted, false)
     }
     
-    func testNonRepeatingTaskManager_InvertTaskCompletedTwice_TaskReturnsIsCompleted() {
+    func testNonRepeatingTaskManager_InvertTaskCompletedTwice_TaskReturnsCompleted() {
         // Arrange
         self.sut.saveNewNonRepeatingTask(with: self.nonRepTask) // Initially completed
         
