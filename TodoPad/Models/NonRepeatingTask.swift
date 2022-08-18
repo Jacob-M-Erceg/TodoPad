@@ -40,7 +40,7 @@ extension NonRepeatingTask {
 
 extension NonRepeatingTask {
     
-    var getMockNonRepeatingTask: NonRepeatingTask {
+    static var getMockNonRepeatingTask: NonRepeatingTask {
         return NonRepeatingTask(
             title: "Hang out with Justin",
             desc: "At his house",
@@ -52,11 +52,34 @@ extension NonRepeatingTask {
         )
     }
     
-    var getMockNonRepeatingTaskArray: [NonRepeatingTask] {
+    static var getMockNonRepeatingTaskArray: [NonRepeatingTask] {
         return [
-            NonRepeatingTask(title: "Hang out with Justin", desc: "At his house", taskUUID: UUID(), isCompleted: false, date: Date().addingTimeInterval(60*60*8), time: Date(), notificationsEnabled: true),
-            NonRepeatingTask(title: "Dentist appointment", desc: nil, taskUUID: UUID(), isCompleted: false, date: Date().addingTimeInterval(60*60*24*3), time: Date(), notificationsEnabled: false),
-            NonRepeatingTask(title: "Clean room", desc: nil, taskUUID: UUID(), isCompleted: true, date: Date(), time: Date().addingTimeInterval((-60)*60), notificationsEnabled: false)
+            NonRepeatingTask(
+                title: "Clean room",
+                desc: nil,
+                taskUUID: UUID(),
+                isCompleted: true,
+                date: Date(),
+                time: Date().addingTimeInterval((-60)*60),
+                notificationsEnabled: false
+            ),
+            NonRepeatingTask(
+                title: "Hang out with Justin",
+                desc: "At his house",
+                taskUUID: UUID(),
+                isCompleted: true,
+                date: Date(),
+                time: Date(), notificationsEnabled: true
+            ),
+            NonRepeatingTask(
+                title: "Dentist appointment",
+                desc: nil,
+                taskUUID: UUID(),
+                isCompleted: false,
+                date: Date().addingTimeInterval(60*24),
+                time: Date(),
+                notificationsEnabled: false
+            )
         ]
     }
 }

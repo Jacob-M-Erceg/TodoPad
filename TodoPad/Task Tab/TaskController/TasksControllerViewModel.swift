@@ -65,15 +65,64 @@ class TasksControllerViewModel {
 // MARK: - Fetch & Refresh Tasks
 extension TasksControllerViewModel {
     
-    private func fetchTasks(for date: Date) {
+    public func fetchTasks(for date: Date) {
+        // Clear Tasks
         for (index, _) in self.taskGroups.enumerated() {
             self.taskGroups[index].tasks.removeAll()
         }
         
-//        self.fetchRepeatingTasks(for: date)
-//        self.fetchPersistentTask(for: date)
-//        self.fetchNonRepeatingTask(for: date)
+        // Get Tasks
+        var tasks = [Task]()
         
-//        self.onUpdate?()
+        tasks.append(contentsOf: self.fetchRepeatingTasks(for: date))
+        tasks.append(contentsOf: self.fetchPersistentTask(for: date))
+        tasks.append(contentsOf: self.fetchNonRepeatingTask(for: date))
+
+        
+        // Sort Tasks by Time
+        tasks.sort(by: { task1, task2 in
+            if let task1Time = task1.time?.comparableByTime,
+               let task2Time = task2.time?.comparableByTime {
+                return task1Time < task2Time
+            } else {
+                return true
+            }
+        })
+        
+        // Sort Tasks into their Task Group
+        for task in tasks {
+            if task.isCompleted {
+                // Completed Group
+                self.taskGroups[1].tasks.append(task)
+            } else {
+                // In Progress Group
+                self.taskGroups[0].tasks.append(task)
+            }
+        }
+        
+        self.onUpdate?()
     }
+    
+    
+    /// Fetch Repeating Tasks
+    public func fetchRepeatingTasks(for date: Date) -> [Task] {
+        // TODO -
+        let tasks =  self.repeatingTaskManager.fetchRepeatingTasks(on: date).map({ Task.repeating($0) })
+        return tasks.count < 0 ? tasks : RepeatingTask.getMockRepeatingTaskArray.map({ Task.repeating($0) })
+    }
+    
+    /// Fetch Persistent Tasks
+    public func fetchPersistentTask(for date: Date) -> [Task] {
+        // TODO -
+        let tasks =  persistentTaskManager.fetchPersistentTasks().map({ Task.persistent($0) })
+        return tasks.count < 0 ? tasks : PersistentTask.getMockPersistentTaskArray.map({ Task.persistent($0) })
+    }
+    
+    /// Fetch Non-Repeating Tasks
+    public func fetchNonRepeatingTask(for date: Date) -> [Task] {
+        // TODO -
+        let tasks =   nonRepeatingTaskManager.fetchNonRepeatingTasks(for: date).map({ Task.nonRepeating($0) })
+        return tasks.count < 0 ? tasks : NonRepeatingTask.getMockNonRepeatingTaskArray.map({ Task.nonRepeating($0) })
+    }
+    
 }

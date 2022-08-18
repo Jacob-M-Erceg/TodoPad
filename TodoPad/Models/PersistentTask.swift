@@ -14,6 +14,8 @@ struct PersistentTask: TaskVariant {
     let desc: String?
     let taskUUID: UUID
     
+    let time: Date? = nil
+    
     var isCompleted: Bool {
         var isCompleted = false
         if dateCompleted != nil { isCompleted = true }
@@ -46,9 +48,9 @@ extension PersistentTask {
     
     static var getMockPersistentTaskArray: [PersistentTask] {
         return [
-            PersistentTask(title: "Finish Math Homework", desc: "Assignment 2", taskUUID: UUID(), dateCompleted: nil),
-            PersistentTask(title: "Take out trash", desc: nil, taskUUID: UUID(), dateCompleted: nil),
-            PersistentTask(title: "Do the dishes", desc: nil, taskUUID: UUID(), dateCompleted: nil),
+            PersistentTask(title: "Finish Math Homework", desc: "Assignment 2", taskUUID: UUID(), dateCompleted: Date()),
+            PersistentTask(title: "Take out trash", desc: nil, taskUUID: UUID(), dateCompleted: Date()),
+            PersistentTask(title: "Do the dishes", desc: nil, taskUUID: UUID(), dateCompleted: Date()),
             PersistentTask(title: "Test core data", desc: nil, taskUUID: UUID(), dateCompleted: nil),
             PersistentTask(title: "Visit grandma", desc: nil, taskUUID: UUID(), dateCompleted: nil),
             PersistentTask(title: "Visit grandma", desc: nil, taskUUID: UUID(), dateCompleted: nil),
