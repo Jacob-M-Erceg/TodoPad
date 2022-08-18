@@ -64,6 +64,8 @@ extension RepeatingTask {
         var array = [RepeatingTask]()
         
         for x in 0...8 {
+            let time: Date? = (x%2)==0 ? Date().addingTimeInterval(TimeInterval(60*60*x)) : nil
+            
             array.append(
                 RepeatingTask(
                     title: "Repeating task \(x)",
@@ -71,10 +73,11 @@ extension RepeatingTask {
                     taskUUID: UUID(),
                     isCompleted: (x%2)==0,
                     startDate: Date().addingTimeInterval(60*60*24*(-14)),
-                    time: Date().addingTimeInterval(TimeInterval(60*60*x)),
+                    time: time,
                     repeatSettings: .daily,
                     endDate: nil,
-                    notificationsEnabled: true)
+                    notificationsEnabled: true
+                )
             )
         }
         return array

@@ -12,5 +12,6 @@ protocol TaskVariant {
     var desc: String? { get }
     var taskUUID: UUID { get }
     var isCompleted: Bool { get }
+    var time: Date? { get }
     var notificationsEnabled: Bool { get }
 }

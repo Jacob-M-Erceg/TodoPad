@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol TasksControllerDelegate: AnyObject {
+    func showTasksCompletedPopup()
+}
+
 class TasksController: UIViewController {
     
     // MARK: - Variables
     let viewModel: TasksControllerViewModel
     
+    weak var delegate: TasksControllerDelegate?
     
     // MARK: - UI Components
     let dateScroller: DateScroller
@@ -19,7 +24,7 @@ class TasksController: UIViewController {
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(TaskGroupCell.self, forHeaderFooterViewReuseIdentifier: TaskGroupCell.identifier)
-//        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
+        tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
         tableView.backgroundColor = .dynamicColorOne
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 66, right: 0)
         return tableView
@@ -27,7 +32,7 @@ class TasksController: UIViewController {
     
     
     // MARK: - Lifecycle
-    init(_ dateScroller: DateScroller = DateScroller(), _ viewModel: TasksControllerViewModel = TasksControllerViewModel()) {
+    init(_ dateScroller: DateScroller = DateScroller(), viewModel: TasksControllerViewModel = TasksControllerViewModel()) {
         self.dateScroller = dateScroller
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -139,22 +144,58 @@ extension TasksController: UITableViewDelegate, UITableViewDataSource, TaskGroup
 
 // MARK: - TableView - Main
 extension TasksController {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let taskGroup = self.viewModel.taskGroups[section]
-//        return taskGroup.isOpened ? taskGroup.tasks.count : 0
-        
-        0
+        let taskGroup = self.viewModel.taskGroups[section]
+        return taskGroup.isOpened ? taskGroup.tasks.count : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell else {
-            return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as? TaskCell else {
+            fatalError("Failed to dequeueReusableCell in TasksController.")
+        }
+        let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
+        let isCompleted = task.isCompleted
+        cell.configure(with: task, isCompleted)
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 66
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        // TODO -
+        let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
+        let viewModel = ViewTaskControllerViewModel(task: task)
+        let vc = ViewTaskController(/*viewModel: viewModel*/)
+//        vc.onTappedCompleteTask = { [weak self] in
+//            self?.viewModel.invertTaskCompleted(with: task)
+//            if !task.isCompleted {
+//                self?.showTasksCompletedPopup()
+//            }
 //        }
+        let nav = UINavigationController(rootViewController: vc)
+        nav.setupNavBarColor()
+        self.present(nav, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
-//        let isCompleted = task.isCompleted
-//        cell.configure(with: task, isCompleted)
-//
-//        return cell
+//        let isCompleted = self.viewModel.isTaskCompleted(with: task)
+        
+        let actionButtonTitle: String = /*isCompleted ? "Undo" :*/ "Complete"
+        
+        let action = UIContextualAction(style: .normal, title: actionButtonTitle) { aaaa, bbbb, completion in
+//            self.viewModel.invertTaskCompleted(with: task)
+//            if !isCompleted {
+//                self.showTasksCompletedPopup()
+//            }
+        }
+        action.backgroundColor = .systemBlue
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 
@@ -166,6 +207,29 @@ extension TasksController: TasksTableViewHeaderDelegate {
         let taskFormModel = TaskFormModel()
         let viewModel = TaskFormControllerViewModel(self.viewModel.selectedDate, taskFormModel, nil)
         let vc = TaskFormController(viewModel)
+        // TODO -
+//        vc.onCompleted = { [weak self] in self?.viewModel.refreshTasks() }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didTapEditTask(for task: Task) {
+        var taskFormModel: TaskFormModel
+        
+        switch task {
+        case .persistent(let persistentTask):
+            taskFormModel = TaskFormModel(for: persistentTask)
+            
+        case .repeating(let repeatingTask):
+            taskFormModel = TaskFormModel(for: repeatingTask)
+            
+        case .nonRepeating(let nonRepeatingTask):
+            taskFormModel = TaskFormModel(for: nonRepeatingTask)
+        }
+        
+        let viewModel = TaskFormControllerViewModel(self.viewModel.selectedDate, taskFormModel, task)
+        let vc = TaskFormController(viewModel)
+        // TODO - 
+//        vc.onCompleted = { [weak self] in self?.viewModel.refreshTasks() }
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

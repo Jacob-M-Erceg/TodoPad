@@ -30,7 +30,7 @@
         <relationship name="repeatSettings" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="RepeatSettingsCD" inverseName="task" inverseEntity="RepeatSettingsCD"/>
     </entity>
     <entity name="RepeatSettingsCD" representedClassName="RepeatSettingsCD" syncable="YES">
-        <attribute name="days" optional="YES" attributeType="Transformable"/>
+        <attribute name="days" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="peroid" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="RepeatingTaskCD" inverseName="repeatSettings" inverseEntity="RepeatingTaskCD"/>
     </entity>

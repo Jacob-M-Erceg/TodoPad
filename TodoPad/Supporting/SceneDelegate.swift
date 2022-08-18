@@ -17,10 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = TabBarController()
         self.window = window
         self.window?.makeKeyAndVisible()
+        
+        devPrint(NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first)
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        // TODO - 
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 }
 
