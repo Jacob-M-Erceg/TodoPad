@@ -170,7 +170,7 @@ extension TasksController {
         // TODO -
         let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
         let viewModel = ViewTaskControllerViewModel(task: task)
-        let vc = ViewTaskController(/*viewModel: viewModel*/)
+        let vc = ViewTaskController(viewModel: viewModel)
 //        vc.onTappedCompleteTask = { [weak self] in
 //            self?.viewModel.invertTaskCompleted(with: task)
 //            if !task.isCompleted {

@@ -74,6 +74,15 @@
 		8E73F1B928A661E00085ED91 /* CoreDataTaskModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E73F1B828A661E00085ED91 /* CoreDataTaskModelTests.swift */; };
 		8E75D71928ADF6AA00B7988B /* ViewTaskControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D71828ADF6AA00B7988B /* ViewTaskControllerViewModel.swift */; };
 		8E75D71B28AE344900B7988B /* MockTasksControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D71A28AE344900B7988B /* MockTasksControllerDelegate.swift */; };
+		8E75D71F28AE41D700B7988B /* ViewTaskControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D71E28AE41D700B7988B /* ViewTaskControllerTests.swift */; };
+		8E75D72128AE43C600B7988B /* ViewTaskControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72028AE43C600B7988B /* ViewTaskControllerViewModelTests.swift */; };
+		8E75D72328AE446000B7988B /* ViewTaskCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72228AE446000B7988B /* ViewTaskCellModel.swift */; };
+		8E75D72528AE565400B7988B /* ViewTaskTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72428AE565400B7988B /* ViewTaskTableViewHeader.swift */; };
+		8E75D72728AE56AD00B7988B /* ViewTaskTableViewHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72628AE56AD00B7988B /* ViewTaskTableViewHeaderTests.swift */; };
+		8E75D72928AE698100B7988B /* NormalViewTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72828AE698100B7988B /* NormalViewTaskCell.swift */; };
+		8E75D72B28AE69B300B7988B /* NormalViewTaskCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72A28AE69B300B7988B /* NormalViewTaskCellTests.swift */; };
+		8E75D72D28AE6B8500B7988B /* RepeatSettingsViewTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72C28AE6B8500B7988B /* RepeatSettingsViewTaskCell.swift */; };
+		8E75D72F28AE6BF700B7988B /* RepeatSettingsViewTaskCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75D72E28AE6BF700B7988B /* RepeatSettingsViewTaskCellTests.swift */; };
 		8E7FAFB4289A12EB00E0CF58 /* TasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFB3289A12EB00E0CF58 /* TasksController.swift */; };
 		8E7FAFB7289A131500E0CF58 /* StatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFB6289A131500E0CF58 /* StatsController.swift */; };
 		8E7FAFBA289A16BB00E0CF58 /* TabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFB9289A16BB00E0CF58 /* TabBarControllerTests.swift */; };
@@ -190,6 +199,15 @@
 		8E73F1B828A661E00085ED91 /* CoreDataTaskModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTaskModelTests.swift; sourceTree = "<group>"; };
 		8E75D71828ADF6AA00B7988B /* ViewTaskControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskControllerViewModel.swift; sourceTree = "<group>"; };
 		8E75D71A28AE344900B7988B /* MockTasksControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTasksControllerDelegate.swift; sourceTree = "<group>"; };
+		8E75D71E28AE41D700B7988B /* ViewTaskControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskControllerTests.swift; sourceTree = "<group>"; };
+		8E75D72028AE43C600B7988B /* ViewTaskControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskControllerViewModelTests.swift; sourceTree = "<group>"; };
+		8E75D72228AE446000B7988B /* ViewTaskCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskCellModel.swift; sourceTree = "<group>"; };
+		8E75D72428AE565400B7988B /* ViewTaskTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskTableViewHeader.swift; sourceTree = "<group>"; };
+		8E75D72628AE56AD00B7988B /* ViewTaskTableViewHeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskTableViewHeaderTests.swift; sourceTree = "<group>"; };
+		8E75D72828AE698100B7988B /* NormalViewTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewTaskCell.swift; sourceTree = "<group>"; };
+		8E75D72A28AE69B300B7988B /* NormalViewTaskCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalViewTaskCellTests.swift; sourceTree = "<group>"; };
+		8E75D72C28AE6B8500B7988B /* RepeatSettingsViewTaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSettingsViewTaskCell.swift; sourceTree = "<group>"; };
+		8E75D72E28AE6BF700B7988B /* RepeatSettingsViewTaskCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSettingsViewTaskCellTests.swift; sourceTree = "<group>"; };
 		8E7FAFB3289A12EB00E0CF58 /* TasksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksController.swift; sourceTree = "<group>"; };
 		8E7FAFB6289A131500E0CF58 /* StatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsController.swift; sourceTree = "<group>"; };
 		8E7FAFB9289A16BB00E0CF58 /* TabBarControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerTests.swift; sourceTree = "<group>"; };
@@ -314,8 +332,7 @@
 			children = (
 				8E2B2BB3289CB02F00DC1D4D /* SpyNavigationController.swift */,
 				8E7FAFB9289A16BB00E0CF58 /* TabBarControllerTests.swift */,
-				8EB9605B289B7A8000D63477 /* TasksController */,
-				8E2B2BB5289CC57E00DC1D4D /* TaskFormController */,
+				8E75D71C28AE41B400B7988B /* TaskTab */,
 				8E7FAFC7289A32CB00E0CF58 /* DateScroller */,
 				8E2B2BD2289DC29100DC1D4D /* Models */,
 				8E73DB0528A5398900928F1F /* CoreData */,
@@ -409,6 +426,10 @@
 			children = (
 				8E40F6D828AC8704000E5A50 /* ViewTaskController.swift */,
 				8E75D71828ADF6AA00B7988B /* ViewTaskControllerViewModel.swift */,
+				8E75D72228AE446000B7988B /* ViewTaskCellModel.swift */,
+				8E75D72428AE565400B7988B /* ViewTaskTableViewHeader.swift */,
+				8E75D72828AE698100B7988B /* NormalViewTaskCell.swift */,
+				8E75D72C28AE6B8500B7988B /* RepeatSettingsViewTaskCell.swift */,
 			);
 			path = ViewTaskController;
 			sourceTree = "<group>";
@@ -500,6 +521,28 @@
 				8E73F1B528A65B050085ED91 /* PersistentTaskCD+CoreDataProperties.swift */,
 			);
 			path = Persistent;
+			sourceTree = "<group>";
+		};
+		8E75D71C28AE41B400B7988B /* TaskTab */ = {
+			isa = PBXGroup;
+			children = (
+				8EB9605B289B7A8000D63477 /* TasksController */,
+				8E2B2BB5289CC57E00DC1D4D /* TaskFormController */,
+				8E75D71D28AE41C600B7988B /* ViewTaskController */,
+			);
+			path = TaskTab;
+			sourceTree = "<group>";
+		};
+		8E75D71D28AE41C600B7988B /* ViewTaskController */ = {
+			isa = PBXGroup;
+			children = (
+				8E75D71E28AE41D700B7988B /* ViewTaskControllerTests.swift */,
+				8E75D72028AE43C600B7988B /* ViewTaskControllerViewModelTests.swift */,
+				8E75D72628AE56AD00B7988B /* ViewTaskTableViewHeaderTests.swift */,
+				8E75D72A28AE69B300B7988B /* NormalViewTaskCellTests.swift */,
+				8E75D72E28AE6BF700B7988B /* RepeatSettingsViewTaskCellTests.swift */,
+			);
+			path = ViewTaskController;
 			sourceTree = "<group>";
 		};
 		8E7FAFAE289A122B00E0CF58 /* Task Tab */ = {
@@ -772,6 +815,8 @@
 			files = (
 				8E2B2BB7289CCA7700DC1D4D /* TaskFormControllerViewModel.swift in Sources */,
 				8E40F6D428AC20C8000E5A50 /* TaskCell.swift in Sources */,
+				8E75D72928AE698100B7988B /* NormalViewTaskCell.swift in Sources */,
+				8E75D72D28AE6B8500B7988B /* RepeatSettingsViewTaskCell.swift in Sources */,
 				8E73F1B628A65B050085ED91 /* PersistentTaskCD+CoreDataClass.swift in Sources */,
 				8E2B2BB2289C554D00DC1D4D /* TaskFormController.swift in Sources */,
 				8E7FAFB7289A131500E0CF58 /* StatsController.swift in Sources */,
@@ -779,6 +824,7 @@
 				8E4A9F5A28A12D4F0092B6AB /* Collection+Extensions.swift in Sources */,
 				8E73F1A428A655FD0085ED91 /* PersistentTaskManager.swift in Sources */,
 				8E0CEC2028A39E2300EFE295 /* TaskFormRepeatSettingsCellViewModel.swift in Sources */,
+				8E75D72328AE446000B7988B /* ViewTaskCellModel.swift in Sources */,
 				8E73F1A128A64E6E0085ED91 /* CoreDataStack.swift in Sources */,
 				8E37475528A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift in Sources */,
 				8EF8610128A4FC3500FC6674 /* TaskGroupCell.swift in Sources */,
@@ -797,6 +843,7 @@
 				8EB9605D289B7AC500D63477 /* TasksTableViewHeader.swift in Sources */,
 				8E0CEC2728A3C7DE00EFE295 /* TaskFormNotificationCell.swift in Sources */,
 				8E2AA0B7289A09A6009F2C53 /* SceneDelegate.swift in Sources */,
+				8E75D72528AE565400B7988B /* ViewTaskTableViewHeader.swift in Sources */,
 				8E15C27128A84FAC00380B64 /* RepeatingTaskManager.swift in Sources */,
 				8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */,
 				8E2B2BC7289D8E1F00DC1D4D /* TaskGroup.swift in Sources */,
@@ -833,9 +880,11 @@
 				8E2B2BBB289CCE5100DC1D4D /* TaskFormControllerTests.swift in Sources */,
 				8E4A9F6428A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift in Sources */,
 				8EB9605F289B7F4B00D63477 /* TasksControllerViewModelTests.swift in Sources */,
+				8E75D72F28AE6BF700B7988B /* RepeatSettingsViewTaskCellTests.swift in Sources */,
 				8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */,
 				8E40F6D628AC2101000E5A50 /* TaskCellTests.swift in Sources */,
 				8E73F1A628A656A00085ED91 /* CoreDataTestStack.swift in Sources */,
+				8E75D72128AE43C600B7988B /* ViewTaskControllerViewModelTests.swift in Sources */,
 				8E0CEC1928A342AA00EFE295 /* TaskFormRepeatSettingsCellTests.swift in Sources */,
 				8E73F1A828A657340085ED91 /* PersistentTaskManagerTests.swift in Sources */,
 				8E7FAFD4289A3D2300E0CF58 /* DateScrollerCellTests.swift in Sources */,
@@ -846,12 +895,14 @@
 				8E4A9F7328A2449B0092B6AB /* TaskFormDatePickerCellTests.swift in Sources */,
 				8E0CEC2328A39FA600EFE295 /* RepeatingDayCellTests.swift in Sources */,
 				8E2B2BBD289CCE8E00DC1D4D /* TaskFormControllerViewModelTests.swift in Sources */,
+				8E75D72728AE56AD00B7988B /* ViewTaskTableViewHeaderTests.swift in Sources */,
 				8E40F6DB28AC948A000E5A50 /* MockTasksController.swift in Sources */,
 				8E0CEC1B28A357CD00EFE295 /* MockTaskFormRepeatSettingsCellDelegate.swift in Sources */,
 				8E2B2BD4289DC2AA00DC1D4D /* TaskTests.swift in Sources */,
 				8E7FAFC9289A330C00E0CF58 /* DateScrollerViewModelTests.swift in Sources */,
 				8EB96058289B577100D63477 /* MockDateScrollerDelegate.swift in Sources */,
 				8E2B2BD8289DC36400DC1D4D /* RepeatSettingsTests.swift in Sources */,
+				8E75D71F28AE41D700B7988B /* ViewTaskControllerTests.swift in Sources */,
 				8EB9605A289B79DF00D63477 /* TasksControllerTests.swift in Sources */,
 				8E4A9F6128A212450092B6AB /* TaskFormTextFieldCellTests.swift in Sources */,
 				8E4A9F6828A21F190092B6AB /* BaseTaskFormDropDownCellTests.swift in Sources */,
@@ -861,6 +912,7 @@
 				8E2B2BDA289DD77400DC1D4D /* PersistentTaskTests.swift in Sources */,
 				8E15C26F28A84F7F00380B64 /* RepeatingTaskManagerTests.swift in Sources */,
 				8EB96064289B984D00D63477 /* MockTasksTableViewHeaderDelegate.swift in Sources */,
+				8E75D72B28AE69B300B7988B /* NormalViewTaskCellTests.swift in Sources */,
 				8E2B2BB4289CB02F00DC1D4D /* SpyNavigationController.swift in Sources */,
 				8E2B2BDC289E373100DC1D4D /* TaskFormModelTests.swift in Sources */,
 				8E75D71B28AE344900B7988B /* MockTasksControllerDelegate.swift in Sources */,

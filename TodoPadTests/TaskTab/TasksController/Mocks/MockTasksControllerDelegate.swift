@@ -10,7 +10,11 @@ import XCTest
 
 class MockTasksControllerDelegate: TasksControllerDelegate {
     
-
+    
+    
+    func showTasksCompletedPopup() {
+        // TODO - 
+    }
 }
 
 /*
