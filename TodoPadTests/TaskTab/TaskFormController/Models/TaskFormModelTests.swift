@@ -129,6 +129,8 @@ class TaskFormModelTests: XCTestCase {
         XCTAssertEqual(taskFormModel.currentTaskFormModelType, TaskFormModel.TaskModelTypes.nonRepeating)
     }
     
+    
+    // MARK: - Validate Form Model
     func testTaskFormModel_WhenNoTitleSet_isTitleValidReturnsFalse() {
         // Arrange
         let taskFormModel = TaskFormModel()
@@ -173,6 +175,43 @@ class TaskFormModelTests: XCTestCase {
         
         // Assert
         XCTAssertTrue(taskFormModel.isDescriptionValid)
+    }
+    
+    func testTaskFormModel_WhenEndDateDoesNotExist_ReturnsTrue() {
+        // Arrange
+        let taskFormModel = TaskFormModel()
+        
+        // Assert
+        XCTAssertTrue(taskFormModel.isEndDateValid)
+    }
+    
+    func testTaskFormModel_WhenStartDateDoesNotExistButEndDateDoes_ReturnsFalse() {
+        // Arrange
+        var taskFormModel = TaskFormModel()
+        taskFormModel.endDate = Date()
+        
+        // Assert
+        XCTAssertFalse(taskFormModel.isEndDateValid)
+    }
+    
+    func testTaskFormModel_WhenStartDateIsGreaterThanEndDate_ReturnsFalse() {
+        // Arrange
+        var taskFormModel = TaskFormModel()
+        taskFormModel.startDate = Date().addingTimeInterval(60*60)
+        taskFormModel.endDate = Date()
+        
+        // Assert
+        XCTAssertFalse(taskFormModel.isEndDateValid)
+    }
+    
+    func testTaskFormModel_WhenEndDateIsGreaterThanStartDate_ReturnsTrue() {
+        // Arrange
+        var taskFormModel = TaskFormModel()
+        taskFormModel.startDate = Date()
+        taskFormModel.endDate = Date().addingTimeInterval(60*60)
+        
+        // Assert
+        XCTAssertTrue(taskFormModel.isEndDateValid)
     }
     
 }

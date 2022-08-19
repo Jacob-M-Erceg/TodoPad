@@ -12,6 +12,7 @@ class TaskFormController: UIViewController {
     // MARK: - Variables
     let viewModel: TaskFormControllerViewModel
     
+//    var onCompleted: (() -> Void)?
     
     // MARK: - UI Components
     let tableView: UITableView = {
@@ -39,11 +40,11 @@ class TaskFormController: UIViewController {
         super.viewDidLoad()
         self.setupUI()
         
-        //        self.viewModel.onUpdate = { [weak self] in
-        //            DispatchQueue.main.async { [weak self] in
-        //                self?.tableView.reloadData()
-        //            }
-        //        }
+        self.viewModel.onUpdate = { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -71,7 +72,14 @@ class TaskFormController: UIViewController {
     
     // MARK: - Selectors
     @objc private func didClickSave() {
-        
+        if let task = self.viewModel.validateTaskFormModel(with: self.viewModel.taskFormModel) {
+//            switch self.viewModel.taskFormMode {
+//            case .newTask:
+//                self.addNewTask(task: task)
+//            case .editTask:
+//                self.editExistingTask(task: task)
+//            }
+        }
     }
 }
 
@@ -84,26 +92,56 @@ extension TaskFormController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return self.viewModel.taskFormCellModels[section].count
-        1
+        return self.viewModel.taskFormCellModels[section].count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let taskFormCellModel = self.viewModel.taskFormCellModels[indexPath.section][indexPath.row]
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskFormTextFieldCell.identifier, for: indexPath) as? TaskFormTextFieldCell else {
-            fatalError("TaskFormTextFieldCell failed to dequeue in TaskFormController.")
+        switch taskFormCellModel.cellType {
+        case .title, .description:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskFormTextFieldCell.identifier, for: indexPath) as? TaskFormTextFieldCell else {
+                fatalError("TaskFormTextFieldCell failed to dequeue in TaskFormController.")
+            }
+            
+            if taskFormCellModel.cellType == .title {
+                cell.configure(with: taskFormCellModel, textFieldText: self.viewModel.taskFormModel.title)
+            }
+            else if taskFormCellModel.cellType == .description {
+                cell.configure(with: taskFormCellModel, textFieldText: self.viewModel.taskFormModel.description)
+            }
+            cell.delegate = self
+            return cell
+            
+        case .startDate, .time, .endDate:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskFormDatePickerCell.identifier, for: indexPath) as? TaskFormDatePickerCell else {
+                fatalError("TaskFormDatePickerCell failed to dequeue in TaskFormController.")
+            }
+            
+            cell.configure(with: taskFormCellModel, and: self.viewModel.taskFormModel)
+            cell.baseDelegate = self
+            cell.delegate = self
+            return cell
+            
+        case .repeats:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskFormRepeatSettingsCell.identifier, for: indexPath) as? TaskFormRepeatSettingsCell else {
+                fatalError("TaskFormRepeatingCell failed to dequeue in TaskFormController.")
+            }
+            
+            cell.configure(with: taskFormCellModel, and: self.viewModel.taskFormModel.repeatSettings ?? RepeatSettings.daily)
+            cell.baseDelegate = self
+            cell.delegate = self
+
+            return cell
+            
+        case .notifications:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskFormNotificationCell.identifier, for: indexPath) as? TaskFormNotificationCell else {
+                fatalError("TaskFormNotificationCell failed to dequeue in TaskFormController.")
+            }
+            cell.configure(with: taskFormCellModel)
+            cell.baseDelegate = self
+            return cell
         }
-        
-        if taskFormCellModel.cellType == .title {
-            cell.configure(with: taskFormCellModel, textFieldText: self.viewModel.taskFormModel.title)
-        }
-        else if taskFormCellModel.cellType == .description {
-            cell.configure(with: taskFormCellModel, textFieldText: self.viewModel.taskFormModel.description)
-        }
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -122,5 +160,40 @@ extension TaskFormController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let taskFormCellModel = self.viewModel.taskFormCellModels[indexPath.section][indexPath.row]
+        guard taskFormCellModel.isEnabled, taskFormCellModel.cellType.isExpandable else { return }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.viewModel.invertIsExpanded(indexPath)
+        }
+    }
+}
+
+// MARK: - TaskCell Delegate Functions
+extension TaskFormController: BaseTaskFormDropDownCellDelegate,
+                             TaskFormTextFieldCellDelegate,
+                             TaskFormDatePickerCellDelegate,
+                             TaskFormRepeatSettingsCellDelegate {
     
+    // BaseTaskFormDropDownCellDelegate
+    func didChangeCellIsEnabled(taskFormCellModel: TaskFormCellModel, isEnabled: Bool) {
+        self.viewModel.didChangeCellIsEnabled(taskFormCellModel, isEnabled: isEnabled)
+    }
+    
+    // TaskFormTextFieldCellDelegate
+    func didEditTextField(_ taskFormCellModel: TaskFormCellModel, _ text: String?) {
+        self.viewModel.updateTaskFormModelForTextField(taskFormCellModel, text)
+    }
+    
+    // TaskFormDatePickerCellDelegate
+    func didEditDatePicker(_ taskFormCellModel: TaskFormCellModel, _ date: Date) {
+        self.viewModel.updateTaskFormModelForDate(taskFormCellModel, date)
+    }
+    
+    // TaskFormRepeatingCellDelegate
+    func didChangeRepeatSettings(_ repeatSettings: RepeatSettings) {
+        self.viewModel.updateTaskFormModelForRepeatSettings(repeatSettings)
+    }
 }
