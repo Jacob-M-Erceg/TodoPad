@@ -127,13 +127,27 @@ extension TaskFormModel {
         
         return returnValue
     }
+    
+    /// Makes sure endDate is not before startDate
+    var isEndDateValid: Bool {
+        if let endDate = self.endDate {
+            if let startDate = self.startDate {
+                if endDate < startDate {
+                    // If endDate is less than start date then it is invalid
+                    return false
+                } else {
+                    // If endDate is after startDate then it is valid
+                    return true
+                }
+            } else {
+                // If startDate exists but endDate does not then it is not invalid
+                return false
+            }
+        } else {
+            // If endDate does not exist then it cannot be before startDate thus valid
+            return true
+        }
+    }
 }
 
-// MARK: - MOCKS (FOR DEVELOPMENT ONLY)
-extension TaskFormModel {
-    
-    
-    
-    
-}
 

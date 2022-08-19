@@ -107,22 +107,25 @@ extension TasksControllerViewModel {
     /// Fetch Repeating Tasks
     public func fetchRepeatingTasks(for date: Date) -> [Task] {
         // TODO -
-        let tasks =  self.repeatingTaskManager.fetchRepeatingTasks(on: date).map({ Task.repeating($0) })
-        return tasks.count < 0 ? tasks : RepeatingTask.getMockRepeatingTaskArray.map({ Task.repeating($0) })
+//        let tasks =
+        return self.repeatingTaskManager.fetchRepeatingTasks(on: date).map({ Task.repeating($0) })
+//        return tasks.count < 0 ? tasks : RepeatingTask.getMockRepeatingTaskArray.map({ Task.repeating($0) })
     }
     
     /// Fetch Persistent Tasks
     public func fetchPersistentTask(for date: Date) -> [Task] {
         // TODO -
-        let tasks =  persistentTaskManager.fetchPersistentTasks().map({ Task.persistent($0) })
-        return tasks.count < 0 ? tasks : PersistentTask.getMockPersistentTaskArray.map({ Task.persistent($0) })
+//        let tasks =
+        return persistentTaskManager.fetchPersistentTasks().map({ Task.persistent($0) })
+//        return tasks.count < 0 ? tasks : PersistentTask.getMockPersistentTaskArray.map({ Task.persistent($0) })
     }
     
     /// Fetch Non-Repeating Tasks
     public func fetchNonRepeatingTask(for date: Date) -> [Task] {
         // TODO -
-        let tasks =   nonRepeatingTaskManager.fetchNonRepeatingTasks(for: date).map({ Task.nonRepeating($0) })
-        return tasks.count < 0 ? tasks : NonRepeatingTask.getMockNonRepeatingTaskArray.map({ Task.nonRepeating($0) })
+//        let tasks =
+        return nonRepeatingTaskManager.fetchNonRepeatingTasks(for: date).map({ Task.nonRepeating($0) })
+//        return tasks.count < 0 ? tasks : NonRepeatingTask.getMockNonRepeatingTaskArray.map({ Task.nonRepeating($0) })
     }
     
 }

@@ -14,6 +14,8 @@ class TaskFormControllerViewModel {
         case editTask
     }
     
+    var onUpdate: (()->Void)?
+    
     /// The date that was selected in TasksController before adding/editing a task.
     let selectedDate: Date
     private(set) var taskFormModel: TaskFormModel!
@@ -36,17 +38,9 @@ class TaskFormControllerViewModel {
         self.originalTask = originalTask
         
         if self.taskFormMode == .editTask {
-//            assertionFailure("Needs to be implemented.")
-//            self.updateFormCellModels()
+            self.updateFormCellModels()
         }
     }
-    
-    public func setTaskFormModel(taskFormModel: TaskFormModel!) {
-        if Constants.inDevelopment {
-            self.taskFormModel = taskFormModel
-        }
-    }
-    
 }
 
 // MARK: - Computed Properties
@@ -80,11 +74,11 @@ extension TaskFormControllerViewModel {
 extension TaskFormControllerViewModel {
     
     public func didChangeCellIsEnabled(_ taskFormCellModel: TaskFormCellModel, isEnabled: Bool) {
-//        self.closeAllExpandedCells()
+        self.closeAllExpandedCells()
         self.updateFormModelWhenCellEnableChange(taskFormCellModel, isEnabled)
         self.updateFormCellModels()
-//        self.expandCellWhenIsEnabledChanged(taskFormCellModel, isEnabled)
-//        self.onUpdate?()
+        self.expandCellWhenIsEnabledChanged(taskFormCellModel, isEnabled)
+        self.onUpdate?()
     }
     
     private func updateFormModelWhenCellEnableChange(_ taskFormCellModel: TaskFormCellModel, _ isEnabled: Bool) {
@@ -214,7 +208,36 @@ extension TaskFormControllerViewModel {
 
 // MARK: - Is Expanded Logic
 extension TaskFormControllerViewModel {
+    
+    // TODO - IsExpanded Tests
 
+    public func invertIsExpanded(_ indexPath: IndexPath) {
+        let taskCell = self.taskFormCellModels[indexPath.section][indexPath.row]
+        let taskCellState = taskCell.isExpanded
+        self.closeAllExpandedCells()
+        self.taskFormCellModels[indexPath.section][indexPath.row].setIsExpanded(isExpanded: !taskCellState)
+        self.onUpdate?()
+    }
+    
+    private func closeAllExpandedCells() {
+        for (section, array) in self.taskFormCellModels.enumerated() {
+            for (index, _) in array.enumerated() {
+                if self.taskFormCellModels[section][index].isExpanded {
+                    self.taskFormCellModels[section][index].setIsExpanded(isExpanded: false)
+                }
+            }
+        }
+    }
+    
+    private func expandCellWhenIsEnabledChanged(_ taskFormCellModel: TaskFormCellModel, _ isEnabled: Bool) {
+        for (section, array) in self.taskFormCellModels.enumerated() {
+            for (index, taskCell) in array.enumerated() {
+                if taskCell.cellType == taskFormCellModel.cellType {
+                    self.taskFormCellModels[section][index].setIsExpanded(isExpanded: isEnabled)
+                }
+            }
+        }
+    }
 }
 
 
@@ -263,5 +286,78 @@ extension TaskFormControllerViewModel {
 // MARK: - Validate Task Form Model
 extension TaskFormControllerViewModel {
     
+    public func validateTaskFormModel(with taskFormModel: TaskFormModel) -> Task? {
+        guard taskFormModel.isTitleValid, taskFormModel.isDescriptionValid, taskFormModel.isEndDateValid
+        else { return nil }
+        
+        switch self.taskFormModel.currentTaskFormModelType {
+            
+        case .repeating:
+            let repeatingTask = self.createRepeatingTask(with: taskFormModel)
+            return Task.repeating(repeatingTask)
+            
+        case .nonRepeating:
+            let nonRepeatingTask = self.createNonRepeatingTask(with: taskFormModel)
+            return Task.nonRepeating(nonRepeatingTask)
+            
+        case .persistent:
+            let persistentTask = self.createPersistentTask(with: taskFormModel)
+            return Task.persistent(persistentTask)
+        }
+        
+        return nil
+    }
+    
+    private func createRepeatingTask(with taskFormModel: TaskFormModel) -> RepeatingTask {
+        
+        var time: Date?
+        if self.taskFormCellModels[1].contains(where: { $0.cellType == .time && $0.isEnabled }) {
+            time = taskFormModel.time
+        }
+        
+        var endDate: Date?
+        if self.taskFormCellModels[1].contains(where: { $0.cellType == .endDate && $0.isEnabled }) {
+            endDate = taskFormModel.endDate
+        }
+        
+        return RepeatingTask(
+            title: taskFormModel.title!,
+            desc: taskFormModel.description,
+            taskUUID: taskFormModel.uuid,
+            isCompleted: false,
+            startDate: taskFormModel.startDate ?? self.selectedDate,
+            time: time,
+            repeatSettings: taskFormModel.repeatSettings ?? .daily,
+            endDate: endDate,
+            notificationsEnabled: taskFormModel.notificationsEnabled
+        )
+    }
+    
+    private func createNonRepeatingTask(with taskFormModel: TaskFormModel) -> NonRepeatingTask {
+        
+        var time: Date?
+        if self.taskFormCellModels[1].contains(where: { $0.cellType == .time && $0.isEnabled }) {
+            time = taskFormModel.time
+        }
+        
+        return NonRepeatingTask(
+            title: taskFormModel.title!,
+            desc: taskFormModel.description,
+            taskUUID: taskFormModel.uuid,
+            isCompleted: false,
+            date: taskFormModel.startDate ?? self.selectedDate,
+            time: time,
+            notificationsEnabled: taskFormModel.notificationsEnabled
+        )
+    }
+    
+    private func createPersistentTask(with taskFormModel: TaskFormModel) -> PersistentTask {
+        return PersistentTask(
+            title: taskFormModel.title!,
+            desc: taskFormModel.description,
+            taskUUID: taskFormModel.uuid,
+            dateCompleted: nil
+        )
+    }
 }
 
