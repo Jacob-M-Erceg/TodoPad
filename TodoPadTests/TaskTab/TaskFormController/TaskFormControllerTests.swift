@@ -14,8 +14,17 @@ class TaskFormControllerTests: XCTestCase {
     
     // MARK: - Setup
     override func setUpWithError() throws {
-        // SutNewTask
-        let viewModel = TaskFormControllerViewModel(Date(), TaskFormModel(), nil)
+        let coreDataContext = CoreDataTestStack().context
+        
+        let viewModel = TaskFormControllerViewModel(
+            selectedDate: Date(),
+            taskFormModel: TaskFormModel(),
+            originalTask: nil,
+            persistentTaskManager: PersistentTaskManager(context: coreDataContext),
+            repeatingTaskManager: RepeatingTaskManager(context: coreDataContext),
+            nonRepeatingTaskManager: NonRepeatingTaskManager(context: coreDataContext)
+        )
+        
         self.sut = TaskFormController(viewModel)
         self.sut.loadViewIfNeeded()
     }
@@ -23,18 +32,23 @@ class TaskFormControllerTests: XCTestCase {
     private func setupSutInEditMode(task: Task) {
         var viewModel: TaskFormControllerViewModel!
         
+        let coreDataContext = CoreDataTestStack().context
+        let pTaskMan = PersistentTaskManager(context: coreDataContext)
+        let rTaskMan = RepeatingTaskManager(context: coreDataContext)
+        let nonRepTaskMan = NonRepeatingTaskManager(context: coreDataContext)
+        
         switch task {
         case .persistent(let pTask):
             let taskFormModel = TaskFormModel(for: pTask)
-            viewModel = TaskFormControllerViewModel(Date(), taskFormModel, task)
+            viewModel = TaskFormControllerViewModel(selectedDate: Date(), taskFormModel: taskFormModel, originalTask: task, persistentTaskManager: pTaskMan, repeatingTaskManager: rTaskMan, nonRepeatingTaskManager: nonRepTaskMan)
             
         case .repeating(let rTask):
             let taskFormModel = TaskFormModel(for: rTask)
-            viewModel = TaskFormControllerViewModel(rTask.startDate, taskFormModel, task)
+            viewModel = TaskFormControllerViewModel(selectedDate: rTask.startDate, taskFormModel: taskFormModel, originalTask: task, persistentTaskManager: pTaskMan, repeatingTaskManager: rTaskMan, nonRepeatingTaskManager: nonRepTaskMan)
             
         case .nonRepeating(let nonRepTask):
             let taskFormModel = TaskFormModel(for: nonRepTask)
-            viewModel = TaskFormControllerViewModel(nonRepTask.date, taskFormModel, task)
+            viewModel = TaskFormControllerViewModel(selectedDate: nonRepTask.date, taskFormModel: taskFormModel, originalTask: task, persistentTaskManager: pTaskMan, repeatingTaskManager: rTaskMan, nonRepeatingTaskManager: nonRepTaskMan)
         }
         
         self.sut = TaskFormController(viewModel)
@@ -82,6 +96,153 @@ extension TaskFormControllerTests {
         XCTAssertEqual(self.sut.navigationItem.rightBarButtonItem?.title, "Save")
     }
 }
+
+// MARK: - didClickSave Selector
+extension TaskFormControllerTests {
+    
+    // MARK: - Save New Task
+    func testDidClickSave_WhenNewPersistenTask_SavesNewPersistentTaskToCoreData() {
+        // Arrange
+        let initialCount = self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count
+        XCTAssertEqual(initialCount, 0)
+        
+        self.sut.didEditTextField(.init(cellType: .title), "My Persistent Task")
+        self.sut.didEditTextField(.init(cellType: .description), "My description")
+        
+        // Act
+        let addButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = addButton?.target?.perform(addButton?.action, with: nil)
+        
+        // Assert
+        let afterCount = self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count
+        XCTAssertEqual(afterCount, 1)
+    }
+    
+    func testDidClickSave_WhenNewRepeatingTask_SavesNewRepeatingTaskToCoreData() {
+        // Arrange
+        let initialCount = self.sut.viewModel.repeatingTaskManager.fetchAllRepeatingTasks().count
+        XCTAssertEqual(initialCount, 0)
+        
+        self.sut.didEditTextField(.init(cellType: .title), "My Repeating Task")
+        self.sut.didChangeCellIsEnabled(taskFormCellModel: .init(cellType: .startDate), isEnabled: true)
+        self.sut.didChangeCellIsEnabled(taskFormCellModel: .init(cellType: .time), isEnabled: true)
+        self.sut.didChangeCellIsEnabled(taskFormCellModel: .init(cellType: .repeats), isEnabled: true)
+        
+        // Act
+        let addButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = addButton?.target?.perform(addButton?.action, with: nil)
+        
+        // Assert
+        let afterCount = self.sut.viewModel.repeatingTaskManager.fetchAllRepeatingTasks().count
+        XCTAssertEqual(afterCount, 1)
+    }
+    
+    func testDidClickSave_WhenNewNonRepeatingTask_SavesNewNonRepeatingTaskToCoreData() {
+        // Arrange
+        let initialCount = self.sut.viewModel.nonRepeatingTaskManager.fetchNonRepeatingTasks(for: self.sut.viewModel.selectedDate).count
+        XCTAssertEqual(initialCount, 0)
+        
+        self.sut.didEditTextField(.init(cellType: .title), "My Repeating Task")
+        self.sut.didChangeCellIsEnabled(taskFormCellModel: .init(cellType: .startDate), isEnabled: true)
+        
+        // Act
+        let addButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = addButton?.target?.perform(addButton?.action, with: nil)
+        
+        // Assert
+        let afterCount = self.sut.viewModel.nonRepeatingTaskManager.fetchNonRepeatingTasks(for: self.sut.viewModel.selectedDate).count
+        XCTAssertEqual(afterCount, 1)
+    }
+    
+    // MARK: - Save Edited Task
+    func testDidClickSave_WhenEditingPersistentTask_SavesUpdatedPersistentTaskToCoreData() {
+        // Arrange
+        let initalPTask = PersistentTask(title: "My pTask", desc: nil, taskUUID: UUID(), dateCompleted: nil)
+        self.setupSutInEditMode(task: Task.persistent(initalPTask))
+        
+        self.sut.viewModel.persistentTaskManager.saveNewPersistentTask(with: initalPTask)
+        XCTAssertEqual(self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count, 1)
+        
+        // Act
+        self.sut.didEditTextField(.init(cellType: .title), "My pTask Updated")
+        self.sut.didEditTextField(.init(cellType: .description), "My Description")
+        
+        let addButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = addButton?.target?.perform(addButton?.action, with: nil)
+        
+        // Assert
+        let afterPTask = self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().first
+        
+        XCTAssertNotEqual(initalPTask.title, afterPTask?.title)
+        XCTAssertNotEqual(initalPTask.desc, afterPTask?.desc)
+        XCTAssertEqual(initalPTask.taskUUID, afterPTask?.taskUUID)
+        
+        XCTAssertEqual(self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count, 1)
+    }
+    
+    func testDidClickSave_WhenEditingRepeatingTask_SavesUpdatedRepeatingTaskToCoreData() {
+        // Arrange
+        let initialRTask = RepeatingTask(title: "My rTask", desc: nil, taskUUID: UUID(), isCompleted: false, startDate: Date(), time: Date(), repeatSettings: .daily, endDate: Date().addingTimeInterval(60*60*24*7), notificationsEnabled: false)
+        self.setupSutInEditMode(task: Task.repeating(initialRTask))
+        
+        self.sut.viewModel.repeatingTaskManager.saveNewRepeatingTask(with: initialRTask)
+        XCTAssertEqual(self.sut.viewModel.repeatingTaskManager.fetchAllRepeatingTasks().count, 1)
+        
+        // Act
+        self.sut.didEditTextField(.init(cellType: .title), "My rTask Updated")
+        self.sut.didEditTextField(.init(cellType: .description), "My Description")
+        self.sut.didEditDatePicker(.init(cellType: .startDate), Date().addingTimeInterval(60*60*24))
+        self.sut.didEditDatePicker(.init(cellType: .time), Date().addingTimeInterval(60*3))
+        self.sut.didChangeRepeatSettings(.weekly([1, 2, 5]))
+        self.sut.didEditDatePicker(.init(cellType: .endDate), Date().addingTimeInterval(60*60*24*14))
+        
+        let addButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = addButton?.target?.perform(addButton?.action, with: nil)
+        
+        // Assert
+        let afterRTask = self.sut.viewModel.repeatingTaskManager.fetchAllRepeatingTasks().first
+        
+        XCTAssertNotEqual(initialRTask.title, afterRTask?.title)
+        XCTAssertNotEqual(initialRTask.desc, afterRTask?.desc)
+        XCTAssertNotEqual(initialRTask.startDate.startOfDay, afterRTask?.startDate)
+        XCTAssertNotEqual(initialRTask.time, afterRTask?.time)
+        XCTAssertNotEqual(initialRTask.repeatSettings, afterRTask?.repeatSettings)
+        XCTAssertNotEqual(initialRTask.endDate, afterRTask?.endDate)
+        XCTAssertEqual(initialRTask.taskUUID, afterRTask?.taskUUID)
+        
+        XCTAssertEqual(self.sut.viewModel.repeatingTaskManager.fetchAllRepeatingTasks().count, 1)
+    }
+    
+    func testDidClickSave_WhenEditingNonRepeatingTask_SavesUpdatedNonRepeatingTaskToCoreData() {
+        // Arrange
+        let initialNonRepTask = NonRepeatingTask(title: "My nonRepTask", desc: nil, taskUUID: UUID(), isCompleted: false, date: Date(), time: Date(), notificationsEnabled: false)
+        self.setupSutInEditMode(task: Task.nonRepeating(initialNonRepTask))
+        
+        self.sut.viewModel.nonRepeatingTaskManager.saveNewNonRepeatingTask(with: initialNonRepTask)
+        XCTAssertEqual(self.sut.viewModel.nonRepeatingTaskManager.fetchNonRepeatingTasks(for: Date()).count, 1)
+        
+        // Act
+        self.sut.didEditTextField(.init(cellType: .title), "My nonRepTask Updated")
+        self.sut.didEditTextField(.init(cellType: .description), "My Description")
+        self.sut.didEditDatePicker(.init(cellType: .startDate), Date().addingTimeInterval(60))
+        self.sut.didEditDatePicker(.init(cellType: .time), Date().addingTimeInterval(60*3))
+        
+        let addButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = addButton?.target?.perform(addButton?.action, with: nil)
+        
+        // Assert
+        let afterNonRepTask = self.sut.viewModel.nonRepeatingTaskManager.fetchNonRepeatingTasks(for: Date()).first
+        
+        XCTAssertNotEqual(initialNonRepTask.title, afterNonRepTask?.title)
+        XCTAssertNotEqual(initialNonRepTask.desc, afterNonRepTask?.desc)
+        XCTAssertNotEqual(initialNonRepTask.date, afterNonRepTask?.date)
+        XCTAssertNotEqual(initialNonRepTask.time, afterNonRepTask?.time)
+        XCTAssertEqual(initialNonRepTask.taskUUID, afterNonRepTask?.taskUUID)
+        
+        XCTAssertEqual(self.sut.viewModel.nonRepeatingTaskManager.fetchNonRepeatingTasks(for: Date()).count, 1)
+    }
+}
+
 
 
 // MARK: - TableView

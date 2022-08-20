@@ -14,9 +14,15 @@ class TaskFormControllerViewModel {
         case editTask
     }
     
+    // MARK: - Callbacks
     var onUpdate: (()->Void)?
     
-    /// The date that was selected in TasksController before adding/editing a task.
+    // MARK: - Managers/Services
+    private(set) var persistentTaskManager: PersistentTaskManager
+    private(set) var repeatingTaskManager: RepeatingTaskManager
+    private(set) var nonRepeatingTaskManager: NonRepeatingTaskManager
+    
+    // MARK: - Variables
     let selectedDate: Date
     private(set) var taskFormModel: TaskFormModel!
     /// For edit mode only
@@ -32,10 +38,22 @@ class TaskFormControllerViewModel {
         ]
     ]
     
-    init(_ selectedDate: Date, _ taskFormModel: TaskFormModel, _ originalTask: Task?) {
+    // MARK: - Init
+    init(
+        selectedDate: Date,
+        taskFormModel: TaskFormModel,
+        originalTask: Task?,
+        persistentTaskManager: PersistentTaskManager = PersistentTaskManager(),
+        repeatingTaskManager: RepeatingTaskManager = RepeatingTaskManager(),
+        nonRepeatingTaskManager: NonRepeatingTaskManager = NonRepeatingTaskManager()
+    ) {
         self.selectedDate = selectedDate
         self.taskFormModel = taskFormModel
         self.originalTask = originalTask
+        
+        self.persistentTaskManager = persistentTaskManager
+        self.repeatingTaskManager = repeatingTaskManager
+        self.nonRepeatingTaskManager = nonRepeatingTaskManager
         
         if self.taskFormMode == .editTask {
             self.updateFormCellModels()
@@ -210,7 +228,7 @@ extension TaskFormControllerViewModel {
 extension TaskFormControllerViewModel {
     
     // TODO - IsExpanded Tests
-
+    
     public func invertIsExpanded(_ indexPath: IndexPath) {
         let taskCell = self.taskFormCellModels[indexPath.section][indexPath.row]
         let taskCellState = taskCell.isExpanded
@@ -304,8 +322,6 @@ extension TaskFormControllerViewModel {
             let persistentTask = self.createPersistentTask(with: taskFormModel)
             return Task.persistent(persistentTask)
         }
-        
-        return nil
     }
     
     private func createRepeatingTask(with taskFormModel: TaskFormModel) -> RepeatingTask {
@@ -361,3 +377,33 @@ extension TaskFormControllerViewModel {
     }
 }
 
+
+// MARK: - Save/Update Task
+extension TaskFormControllerViewModel {
+    
+    func saveNewTask(task: Task) {
+        switch task {
+        case .persistent(let persistentTask):
+            self.persistentTaskManager.saveNewPersistentTask(with: persistentTask)
+            
+        case .repeating(let repeatingTask):
+            self.repeatingTaskManager.saveNewRepeatingTask(with: repeatingTask)
+            
+        case .nonRepeating(let nonRepeatingTask):
+            self.nonRepeatingTaskManager.saveNewNonRepeatingTask(with: nonRepeatingTask)
+        }
+    }
+    
+    func editExistingTask(task: Task) {
+        switch task {
+        case .persistent(let persistentTask):
+            self.persistentTaskManager.updatePersistentTask(with: persistentTask)
+            
+        case .repeating(let repeatingTask):
+            self.repeatingTaskManager.updateRepeatingTask(with: repeatingTask)
+            
+        case .nonRepeating(let nonRepeatingTask):
+            self.nonRepeatingTaskManager.updateNonRepeatingTask(with: nonRepeatingTask)
+        }
+    }
+}
