@@ -14,26 +14,26 @@ class TaskFormControllerViewModelTests: XCTestCase {
     
     // MARK: - Setup
     override func setUpWithError() throws {
-        self.sut = TaskFormControllerViewModel(Date(), TaskFormModel(), nil)
+        self.sut = TaskFormControllerViewModel(selectedDate: Date(), taskFormModel: TaskFormModel(), originalTask: nil)
     }
     
     private func setupSut(using taskFormModel: TaskFormModel) {
-        self.sut = TaskFormControllerViewModel(Date(), taskFormModel, nil)
+        self.sut = TaskFormControllerViewModel(selectedDate: Date(), taskFormModel: taskFormModel, originalTask: nil)
     }
     
     private func setupSutInEditMode(task: Task) {
         switch task {
         case .persistent(let pTask):
             let taskFormModel = TaskFormModel(for: pTask)
-            self.sut = TaskFormControllerViewModel(Date(), taskFormModel, task)
+            self.sut = TaskFormControllerViewModel(selectedDate: Date(), taskFormModel: taskFormModel, originalTask: task)
             
         case .repeating(let rTask):
             let taskFormModel = TaskFormModel(for: rTask)
-            self.sut = TaskFormControllerViewModel(rTask.startDate, taskFormModel, task)
+            self.sut = TaskFormControllerViewModel(selectedDate: rTask.startDate, taskFormModel: taskFormModel, originalTask: task)
             
         case .nonRepeating(let nonRepTask):
             let taskFormModel = TaskFormModel(for: nonRepTask)
-            self.sut = TaskFormControllerViewModel(nonRepTask.date, taskFormModel, task)
+            self.sut = TaskFormControllerViewModel(selectedDate: nonRepTask.date, taskFormModel: taskFormModel, originalTask: task)
         }
     }
     
@@ -315,7 +315,7 @@ extension TaskFormControllerViewModelTests {
 }
 
 
-// MARK: - Update Task Form Model (Called from Delegate Functions in Cells)
+// MARK: - Update Task Form Model (Called in Delegate Functions From Cells)
 extension TaskFormControllerViewModelTests {
     func testTaskFormControllerViewModel_UpdateTaskFormModelForTextField_UpdatesTitleInTaskFormModel() {
         // Arrange

@@ -12,7 +12,7 @@ class TaskFormController: UIViewController {
     // MARK: - Variables
     let viewModel: TaskFormControllerViewModel
     
-//    var onCompleted: (() -> Void)?
+    var onCompleted: (() -> Void)?
     
     // MARK: - UI Components
     let tableView: UITableView = {
@@ -73,14 +73,43 @@ class TaskFormController: UIViewController {
     // MARK: - Selectors
     @objc private func didClickSave() {
         if let task = self.viewModel.validateTaskFormModel(with: self.viewModel.taskFormModel) {
-//            switch self.viewModel.taskFormMode {
-//            case .newTask:
-//                self.addNewTask(task: task)
-//            case .editTask:
-//                self.editExistingTask(task: task)
+            switch self.viewModel.taskFormMode {
+            case .newTask:
+                self.saveNewTask(task: task)
+            case .editTask:
+                self.editExistingTask(task: task)
+            }
+            
+//            NotificationManager.removeNotifications(for: task)
+//            if task.notificationsEnabled {
+//                NotificationManager.setNotification(for: task)
 //            }
+            
+            self.navigationController?.popViewController(animated: true)
+            self.onCompleted?()
         }
     }
+    
+    private func saveNewTask(task: Task) {
+        self.viewModel.saveNewTask(task: task)
+    }
+    
+    private func editExistingTask(task: Task) {
+        guard let originalTask = self.viewModel.originalTask else { return }
+        
+        // If task enum type is not the same
+        if !(originalTask ~= task) {
+            AlertManager.showCannotEditTaskTypeErrorAlert(
+                on: self,
+                firstTaskType: self.viewModel.originalTask!.typeOfTask,
+                secondTaskType: task.typeOfTask
+            )
+            return
+        }
+        
+        self.viewModel.editExistingTask(task: task)
+    }
+    
 }
 
 
@@ -131,7 +160,7 @@ extension TaskFormController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(with: taskFormCellModel, and: self.viewModel.taskFormModel.repeatSettings ?? RepeatSettings.daily)
             cell.baseDelegate = self
             cell.delegate = self
-
+            
             return cell
             
         case .notifications:
@@ -149,10 +178,10 @@ extension TaskFormController: UITableViewDelegate, UITableViewDataSource {
         
         if taskFormCellModel.isEnabled && taskFormCellModel.isExpanded {
             switch taskFormCellModel.cellType {
-                case .title, .description: return 66
-                case .startDate, .time, .endDate: return 66 + 55
-                case .repeats: return 66 + 44 + 122
-                case .notifications: return 66
+            case .title, .description: return 66
+            case .startDate, .time, .endDate: return 66 + 55
+            case .repeats: return 66 + 44 + 122
+            case .notifications: return 66
             }
         }
         else {
@@ -173,9 +202,9 @@ extension TaskFormController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - TaskCell Delegate Functions
 extension TaskFormController: BaseTaskFormDropDownCellDelegate,
-                             TaskFormTextFieldCellDelegate,
-                             TaskFormDatePickerCellDelegate,
-                             TaskFormRepeatSettingsCellDelegate {
+                              TaskFormTextFieldCellDelegate,
+                              TaskFormDatePickerCellDelegate,
+                              TaskFormRepeatSettingsCellDelegate {
     
     // BaseTaskFormDropDownCellDelegate
     func didChangeCellIsEnabled(taskFormCellModel: TaskFormCellModel, isEnabled: Bool) {

@@ -205,7 +205,7 @@ extension TasksController: TasksTableViewHeaderDelegate {
     
     func didTapAddNewTask() {
         let taskFormModel = TaskFormModel()
-        let viewModel = TaskFormControllerViewModel(self.viewModel.selectedDate, taskFormModel, nil)
+        let viewModel = TaskFormControllerViewModel(selectedDate: self.viewModel.selectedDate, taskFormModel: taskFormModel, originalTask: nil)
         let vc = TaskFormController(viewModel)
         // TODO -
 //        vc.onCompleted = { [weak self] in self?.viewModel.refreshTasks() }
@@ -226,7 +226,7 @@ extension TasksController: TasksTableViewHeaderDelegate {
             taskFormModel = TaskFormModel(for: nonRepeatingTask)
         }
         
-        let viewModel = TaskFormControllerViewModel(self.viewModel.selectedDate, taskFormModel, task)
+        let viewModel = TaskFormControllerViewModel(selectedDate: self.viewModel.selectedDate, taskFormModel: taskFormModel, originalTask: task)
         let vc = TaskFormController(viewModel)
         // TODO - 
 //        vc.onCompleted = { [weak self] in self?.viewModel.refreshTasks() }

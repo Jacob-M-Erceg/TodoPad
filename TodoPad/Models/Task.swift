@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol EnumTypeEquatable {
+    static func ~=(lhs: Self, rhs: Self) -> Bool
+}
+
 @dynamicMemberLookup
 enum Task {
     case persistent(PersistentTask)
@@ -14,6 +18,19 @@ enum Task {
     case nonRepeating(NonRepeatingTask)
 }
 
+extension Task: EnumTypeEquatable {
+    
+    static func ~= (lhs: Task, rhs: Task) -> Bool {
+        switch (lhs, rhs) {
+        case (.persistent, .persistent),
+            (.repeating, .repeating),
+            (.nonRepeating, .nonRepeating):
+            return true
+        default:
+            return false
+        }
+    }
+}
 
 // MARK: - Subscript
 extension Task {
