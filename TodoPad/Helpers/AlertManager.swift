@@ -27,4 +27,16 @@ class AlertManager {
     static func showCannotEditTaskTypeErrorAlert(on vc: UIViewController, firstTaskType: String, secondTaskType: String) {
         self.showBasicAlert(on: vc, title: "Editing Error", message: "You cannot currently change a \(firstTaskType) Task to a \(secondTaskType) Task.")
     }
+    
+    static func showNotificationsPermissionsError(on vc: UIViewController, _ errorMessage: String) {
+        self.showBasicAlert(on: vc, title: "Notification Permissions Error", message: "Please enable notifications for this app in your phones settings. ERROR: \(errorMessage)")
+    }
+    
+    static func showMaximumNotificationsError(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Maximum Notifications", message: "You can only set 64 notifications currently. For weekly tasks, each weekday counts as its own seperate notification. Please turn off notifications for some of your current events to enable this notification.")
+    }
+    
+    static func showSetNotificationError(on vc: UIViewController, taskTitle: String, error: Error?) {
+        self.showBasicAlert(on: vc, title: "Could not create notification for \(taskTitle)", message: error?.localizedDescription)
+    }
 }
