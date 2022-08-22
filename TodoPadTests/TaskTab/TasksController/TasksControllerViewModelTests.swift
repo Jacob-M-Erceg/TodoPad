@@ -82,6 +82,55 @@ extension TasksControllerViewModelTests {
     //    }
 }
 
+
+// MARK: - Task Groups
+extension TasksControllerViewModelTests {
+    
+    func testopenOrCloseTaskGroupSection_WhenClosedAndOpened_TaskGroupChanges() {
+        // In Progress Group
+        let inProgGroup = TaskGroup(title: "In Progress")
+        
+        self.sut.openOrCloseTaskGroupSection(for: inProgGroup) // Closed
+        XCTAssertFalse(self.sut.taskGroups.first(where: { $0.title == "In Progress" })?.isOpened ?? true)
+        
+        self.sut.openOrCloseTaskGroupSection(for: inProgGroup) // Opened
+        XCTAssertTrue(self.sut.taskGroups.first(where: { $0.title == "In Progress" })?.isOpened ?? true)
+        
+        // Completed Group
+        let completedGroup = TaskGroup(title: "Completed")
+        
+        self.sut.openOrCloseTaskGroupSection(for: completedGroup) // Closed
+        XCTAssertFalse(self.sut.taskGroups.first(where: { $0.title == "Completed" })?.isOpened ?? true)
+        
+        self.sut.openOrCloseTaskGroupSection(for: completedGroup) // Closed
+        XCTAssertTrue(self.sut.taskGroups.first(where: { $0.title == "Completed" })?.isOpened ?? true)
+    }
+    
+    func testopenOrCloseTaskGroupSection_onExpandCloseGroupCallback_isOpenIsFalseAndTwoIndexPaths() {
+        // Arrange
+        self.sut.onExpandCloseGroup = { indexPaths, isOpen in
+            XCTAssertFalse(isOpen)
+            
+            XCTAssertEqual(indexPaths.count, 2)
+            XCTAssertEqual(indexPaths[0].row, 0)
+            XCTAssertEqual(indexPaths[1].row, 1)
+        }
+        
+        self.sut.persistentTaskManager.saveNewPersistentTask(with: PersistentTask(title: "1", desc: nil, taskUUID: UUID(), dateCompleted: nil))
+        self.sut.persistentTaskManager.saveNewPersistentTask(with: PersistentTask(title: "2", desc: nil, taskUUID: UUID(), dateCompleted: Date()))
+        self.sut.persistentTaskManager.saveNewPersistentTask(with: PersistentTask(title: "3", desc: nil, taskUUID: UUID(), dateCompleted: Date()))
+        self.sut.persistentTaskManager.saveNewPersistentTask(with: PersistentTask(title: "4", desc: nil, taskUUID: UUID(), dateCompleted: nil))
+        self.sut.persistentTaskManager.saveNewPersistentTask(with: PersistentTask(title: "5", desc: nil, taskUUID: UUID(), dateCompleted: Date()))
+        
+        self.sut.fetchTasks(for: self.sut.selectedDate)
+        
+        let inProgGroup = TaskGroup(title: "In Progress")
+        self.sut.openOrCloseTaskGroupSection(for: inProgGroup)
+    }
+    
+}
+
+
 // MARK: - Fetch & Refresh Tasks
 extension TasksControllerViewModelTests {
     
@@ -182,6 +231,63 @@ extension TasksControllerViewModelTests {
         // Assert
         XCTAssertEqual(tasks.count, NonRepeatingTask.getMockNonRepeatingTaskArray.count)
     }
+}
+
+
+// MARK: - TaskCompleted Functions
+extension TasksControllerViewModelTests {
     
+    func testInvertAndIsTaskCompleted_RepeatingTask() {
+        // Arrange
+        var rTask = RepeatingTask(title: "Repeating Task", desc: nil, taskUUID: UUID(), isCompleted: false, startDate: Date(), time: nil, repeatSettings: .daily, endDate: nil, notificationsEnabled: false)
+        self.sut.repeatingTaskManager.saveNewRepeatingTask(with: rTask)
+        rTask = self.sut.fetchRepeatingTasks(for: rTask.startDate).compactMap({ $0.getRepeatingTask })[0]
+        
+        // Assert & Act
+        XCTAssertFalse(self.sut.isTaskCompleted(with: Task.repeating(rTask)))
+        self.sut.invertTaskCompleted(with: Task.repeating(rTask))
+        rTask = self.sut.fetchRepeatingTasks(for: rTask.startDate).compactMap({ $0.getRepeatingTask })[0]
+        
+        XCTAssertTrue(self.sut.isTaskCompleted(with: Task.repeating(rTask)))
+        self.sut.invertTaskCompleted(with: Task.repeating(rTask))
+        rTask = self.sut.fetchRepeatingTasks(for: rTask.startDate).compactMap({ $0.getRepeatingTask })[0]
+        
+        XCTAssertFalse(self.sut.isTaskCompleted(with: Task.repeating(rTask)))
+    }
     
+    func testInvertAndIsTaskCompleted_NonRepeatingTask() {
+        // Arrange
+        var nonRepTask = NonRepeatingTask(title: "NonRep Task", desc: nil, taskUUID: UUID(), isCompleted: false, date: Date(), time: nil, notificationsEnabled: false)
+        self.sut.nonRepeatingTaskManager.saveNewNonRepeatingTask(with: nonRepTask)
+        nonRepTask = self.sut.fetchNonRepeatingTask(for: nonRepTask.date).compactMap({ $0.getNonRepeatingTask })[0]
+        
+        // Assert & Act
+        XCTAssertFalse(self.sut.isTaskCompleted(with: Task.nonRepeating(nonRepTask)))
+        self.sut.invertTaskCompleted(with: Task.nonRepeating(nonRepTask))
+        nonRepTask = self.sut.fetchNonRepeatingTask(for: nonRepTask.date).compactMap({ $0.getNonRepeatingTask })[0]
+        
+        XCTAssertTrue(self.sut.isTaskCompleted(with: Task.nonRepeating(nonRepTask)))
+        self.sut.invertTaskCompleted(with: Task.nonRepeating(nonRepTask))
+        nonRepTask = self.sut.fetchNonRepeatingTask(for: nonRepTask.date).compactMap({ $0.getNonRepeatingTask })[0]
+        
+        XCTAssertFalse(self.sut.isTaskCompleted(with: Task.nonRepeating(nonRepTask)))
+    }
+    
+    func testInvertAndIsTaskCompleted_PersistentTask() {
+        // Arrange
+        var pTask = PersistentTask(title: "Persistent Task", desc: nil, taskUUID: UUID(), dateCompleted: nil)
+        self.sut.persistentTaskManager.saveNewPersistentTask(with: pTask)
+        pTask = self.sut.fetchPersistentTask(for: Date()).compactMap({ $0.getPersistentTask })[0]
+        
+        // Assert & Act
+        XCTAssertFalse(self.sut.isTaskCompleted(with: Task.persistent(pTask)))
+        self.sut.invertTaskCompleted(with: Task.persistent(pTask))
+        pTask = self.sut.fetchPersistentTask(for: Date()).compactMap({ $0.getPersistentTask })[0]
+        
+        XCTAssertTrue(self.sut.isTaskCompleted(with: Task.persistent(pTask)))
+        self.sut.invertTaskCompleted(with: Task.persistent(pTask))
+        pTask = self.sut.fetchPersistentTask(for: Date()).compactMap({ $0.getPersistentTask })[0]
+        
+        XCTAssertFalse(self.sut.isTaskCompleted(with: Task.persistent(pTask)))
+    }
 }

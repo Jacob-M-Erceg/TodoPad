@@ -3,4 +3,102 @@
    uuid = "DAB57BD3-A3CE-4B64-A1D8-86E986E93732"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C98E5C6D-5418-418B-8EE7-43BADCA3DA75"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPadTests/TaskTab/TasksController/TasksControllerViewModelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "testopenOrCloseTaskGroupSection_onExpandCloseGroupCallback_isOpenIsFalseAndTwoIndexPaths()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C98E5C6D-5418-418B-8EE7-43BADCA3DA75 - 42a5c4243a8b5f9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoPadTests.TasksControllerViewModelTests.testasdf_sadf_sdf() -&gt; ()"
+                  moduleName = "TodoPadTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPadTests/TaskTab/TasksController/TasksControllerViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "2550">
+               </Location>
+               <Location
+                  uuid = "C98E5C6D-5418-418B-8EE7-43BADCA3DA75 - 42a5c4243a8b5f9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoPadTests.TasksControllerViewModelTests.testasdf_sadf_sdf() -&gt; ()"
+                  moduleName = "TodoPadTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPadTests/TaskTab/TasksController/TasksControllerViewModelTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "2632">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02876C4C-E2D0-4EC4-A844-4ABE5D4929A0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPadTests/TaskTab/TasksController/TasksControllerViewModelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "testopenOrCloseTaskGroupSection_onExpandCloseGroupCallback_isOpenIsFalseAndTwoIndexPaths()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83C63EEF-DFB9-4F69-8774-E70AE8E9C895"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPadTests/TaskTab/TasksController/TasksControllerViewModelTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "testopenOrCloseTaskGroupSection_onExpandCloseGroupCallback_isOpenIsFalseAndTwoIndexPaths()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B30BE022-7476-48C8-96A7-20B252AB4FB1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPad/Task Tab/TaskController/TasksControllerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "fetchTasks(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

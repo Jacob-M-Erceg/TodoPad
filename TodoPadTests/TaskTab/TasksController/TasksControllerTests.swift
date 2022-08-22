@@ -129,7 +129,7 @@ extension TasksControllerTests {
 // MARK: - TableView - Main Cells
 extension TasksControllerTests {
     
-    func testTableViewCell_NumberOfRowsInSection_IsEqualToTaskGroupTaskCount() {
+    func testTableViewCell_NumberOfRowsInSection_WhenTaskGroupOpen_IsEqualToTaskGroupTaskCount() {
         // Arrange
         let inProgressCount = self.sut.tableView.dataSource?.tableView(self.sut.tableView, numberOfRowsInSection: 0)
         let completedCount = self.sut.tableView.dataSource?.tableView(self.sut.tableView, numberOfRowsInSection: 1)
@@ -137,6 +137,19 @@ extension TasksControllerTests {
         // Assert
         XCTAssertEqual(inProgressCount, self.sut.viewModel.taskGroups[0].tasks.count)
         XCTAssertEqual(completedCount, self.sut.viewModel.taskGroups[1].tasks.count)
+    }
+    
+    func testTableViewCell_NumberOfRowsInSection_WhenTaskGroupClosed_IsEqualToTaskGroupTaskCount() {
+        // Arrange
+        self.sut.viewModel.openOrCloseTaskGroupSection(for: TaskGroup(title: "In Progress"))
+        self.sut.viewModel.openOrCloseTaskGroupSection(for: TaskGroup(title: "Completed"))
+        
+        let inProgressCount = self.sut.tableView.dataSource?.tableView(self.sut.tableView, numberOfRowsInSection: 0)
+        let completedCount = self.sut.tableView.dataSource?.tableView(self.sut.tableView, numberOfRowsInSection: 1)
+        
+        // Assert
+        XCTAssertEqual(inProgressCount, 0)
+        XCTAssertEqual(completedCount, 0)
     }
     
     // TODO - Couldnt get this working

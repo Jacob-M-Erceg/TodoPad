@@ -126,7 +126,7 @@ extension NonRepeatingTaskManager {
         fetchRequest.predicate = uuidPredicate
         
         if let tasksCD = self.loadNonRepeatingTasks(with: fetchRequest), tasksCD.count == 1, let taskCD = tasksCD.first {
-            taskCD.isCompleted = !taskCD.isCompleted
+            taskCD.isCompleted = !taskCD.isCompleted // Todo maybe change this to task.isCompleted
             self.saveContext()
         }
     }

@@ -11,15 +11,19 @@ class TasksControllerViewModel {
     
     // MARK: - Callbacks
     var onUpdate: (() -> Void)?
-//    var onExpandCloseGroup: (([IndexPath], Bool) -> Void)?
+    var onExpandCloseGroup: (([IndexPath], Bool) -> Void)?
     
     // MARK: - Managers/Services
-    private let persistentTaskManager: PersistentTaskManager
-    private let repeatingTaskManager: RepeatingTaskManager
-    private let nonRepeatingTaskManager: NonRepeatingTaskManager
+    private(set) var persistentTaskManager: PersistentTaskManager
+    private(set) var repeatingTaskManager: RepeatingTaskManager
+    private(set) var nonRepeatingTaskManager: NonRepeatingTaskManager
     
     // MARK: - Variables
-    private(set) var selectedDate: Date
+    private(set) var selectedDate: Date {
+        didSet {
+            self.fetchTasks(for: selectedDate)
+        }
+    }
     
     private(set) var taskGroups = [
         TaskGroup(title: "In Progress", isOpened: true, tasks: []),
@@ -42,22 +46,21 @@ class TasksControllerViewModel {
     
     public func changeSelectedDate(with date: Date) {
         self.selectedDate = date
-//        self.refreshTasks()
     }
     
     public func openOrCloseTaskGroupSection(for taskGroup: TaskGroup) {
         
-//        for (section, viewModelTaskGroup) in self.taskGroups.enumerated() {
-//            if taskGroup.title == viewModelTaskGroup.title {
-//                self.taskGroups[section].isOpened = !self.taskGroups[section].isOpened
-//                var indexPaths: [IndexPath] = []
-//                
-//                for (row, _) in taskGroups[section].tasks.enumerated() {
-//                    indexPaths.append(IndexPath(row: row, section: section))
-//                }
-//                self.onExpandCloseGroup?(indexPaths, self.taskGroups[section].isOpened)
-//            }
-//        }
+        for (section, viewModelTaskGroup) in self.taskGroups.enumerated() {
+            if taskGroup.title == viewModelTaskGroup.title {
+                self.taskGroups[section].isOpened = !self.taskGroups[section].isOpened
+                var indexPaths: [IndexPath] = []
+                
+                for (row, _) in taskGroups[section].tasks.enumerated() {
+                    indexPaths.append(IndexPath(row: row, section: section))
+                }
+                self.onExpandCloseGroup?(indexPaths, self.taskGroups[section].isOpened)
+            }
+        }
     }
 }
 
@@ -107,25 +110,65 @@ extension TasksControllerViewModel {
     /// Fetch Repeating Tasks
     public func fetchRepeatingTasks(for date: Date) -> [Task] {
         // TODO -
-//        let tasks =
         return self.repeatingTaskManager.fetchRepeatingTasks(on: date).map({ Task.repeating($0) })
-//        return tasks.count < 0 ? tasks : RepeatingTask.getMockRepeatingTaskArray.map({ Task.repeating($0) })
     }
     
     /// Fetch Persistent Tasks
     public func fetchPersistentTask(for date: Date) -> [Task] {
         // TODO -
-//        let tasks =
         return persistentTaskManager.fetchPersistentTasks().map({ Task.persistent($0) })
-//        return tasks.count < 0 ? tasks : PersistentTask.getMockPersistentTaskArray.map({ Task.persistent($0) })
     }
     
     /// Fetch Non-Repeating Tasks
     public func fetchNonRepeatingTask(for date: Date) -> [Task] {
         // TODO -
-//        let tasks =
         return nonRepeatingTaskManager.fetchNonRepeatingTasks(for: date).map({ Task.nonRepeating($0) })
-//        return tasks.count < 0 ? tasks : NonRepeatingTask.getMockNonRepeatingTaskArray.map({ Task.nonRepeating($0) })
+    }
+}
+
+
+// MARK: - TaskCompleted Functions
+extension TasksControllerViewModel {
+    
+    public func isTaskCompleted(with task: Task) -> Bool {
+        let isCompleted: Bool
+
+        switch task {
+        case .persistent(let persistentTask):
+            isCompleted = persistentTask.isCompleted
+
+        case .repeating(let repeatingTask):
+            isCompleted = self.repeatingTaskManager.isTaskMarkedCompleted(with: repeatingTask, for: self.selectedDate)
+
+        case .nonRepeating(let nonRepeatingTask):
+            isCompleted = nonRepeatingTask.isCompleted
+
+        }
+
+        return isCompleted
     }
     
+    // MARK: - Update
+    public func invertTaskCompleted(with task: Task) {
+        
+        switch task {
+        case .persistent(let persistentTask):
+            self.persistentTaskManager.invertTaskCompleted(persistentTask, for: self.selectedDate)
+            
+        case .repeating(let repeatingTask):
+            let alreadyCompleted = self.repeatingTaskManager.isTaskMarkedCompleted(with: repeatingTask, for: selectedDate)
+            
+            // TODO - Do check and invert in one function
+            if alreadyCompleted {
+                self.repeatingTaskManager.deleteCompletedRepeatingTask(with: repeatingTask, for: selectedDate)
+            } else {
+                self.repeatingTaskManager.setTaskCompleted(with: repeatingTask, for: selectedDate)
+            }
+            
+        case .nonRepeating(let nonRepeatingTask):
+            self.nonRepeatingTaskManager.invertTaskCompleted(nonRepeatingTask)
+        }
+        
+        self.fetchTasks(for: self.selectedDate)
+    }
 }

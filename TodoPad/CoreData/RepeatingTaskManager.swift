@@ -72,7 +72,8 @@ extension RepeatingTaskManager {
         var tasks = [RepeatingTask]()
         
         for repeatingTask in repeatingTasks {
-            let task = RepeatingTask(repeatingTaskCD: repeatingTask)
+            var task = RepeatingTask(repeatingTaskCD: repeatingTask)
+            task.isCompleted = self.isTaskMarkedCompleted(with: task, for: date)
             tasks.append(task)
         }
         
