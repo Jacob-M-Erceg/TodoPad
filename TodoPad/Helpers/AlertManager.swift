@@ -40,3 +40,46 @@ class AlertManager {
         self.showBasicAlert(on: vc, title: "Could not create notification for \(taskTitle)", message: error?.localizedDescription)
     }
 }
+
+// MARK: - Destructive Alerts
+extension AlertManager {
+    
+    /// A helper function that shows a destructive "Continue" or "Cancel" alert.
+    /// - Parameters:
+    ///   - vc: The UIViewController that you wish to display the alert on.
+    ///   - title: The title for the alert.
+    ///   - message: A optional additional message for the alert.
+    ///   - completion: Boolean True means to continue with the desctrutive action. Boolean False means to cancel the destructive action.
+    private static func showDestructiveAlert(on vc: UIViewController, title: String, message: String?, completion: @escaping (Bool)->()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: { _ in
+            completion(true)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            completion(false)
+        }))
+        
+        DispatchQueue.main.async { vc.present(alert, animated: true, completion: nil) }
+    }
+    
+    public static func showDeleteAllNotificationskWarning(on vc: UIViewController, completion: @escaping (Bool)->()) {
+        self.showDestructiveAlert(
+            on: vc,
+            title: "Are you sure you want to delete all notifications?",
+            message: "This will completely delete all notifications for all your tasks. You will have to edit your tasks and re-enable them.",
+            completion: completion
+        )
+    }
+    
+    public static func showDeleteAllTaskskWarning(on vc: UIViewController, completion: @escaping (Bool)->()) {
+        self.showDestructiveAlert(
+            on: vc,
+            title: "Are you sure you want to delete all tasks?",
+            message: "This will delete all completed and non completed tasks. It will completely wipe all stats history. You will not be able to recover once deleted.",
+            completion: completion
+        )
+    }
+    
+}

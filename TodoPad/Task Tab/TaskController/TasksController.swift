@@ -58,6 +58,8 @@ class TasksController: UIViewController {
             }
         }
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapSettings))
+        
 //        self.viewModel.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
 //            DispatchQueue.main.async { [weak self] in
 //                self?.tableView.performBatchUpdates({
@@ -100,6 +102,14 @@ class TasksController: UIViewController {
         header.delegate = self
         tableView.tableHeaderView = header
         if #available(iOS 15.0, *) { tableView.sectionHeaderTopPadding = 0.0 }
+    }
+    
+    @objc private func didTapSettings() {
+        let vc = SettingsController()
+        vc.refreshTasks = { [weak self] in
+            self?.viewModel.fetchTasks(for: self?.viewModel.selectedDate ?? Date())
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -187,6 +187,23 @@ extension RepeatingTaskManager {
             }
         }
     }
+    
+    public func deleteAllRepeatingTasks() {
+        if let repeatingTasksCD = self.loadRepeatingTasks() {
+            for repeatingTaskCD in repeatingTasksCD {
+                self.context.delete(repeatingTaskCD.repeatSettings)
+                self.context.delete(repeatingTaskCD)
+            }
+        }
+        
+        if let completedTasksCD = self.loadCompletedRepeatingTasks() {
+            for completedTaskCD in completedTasksCD {
+                self.context.delete(completedTaskCD)
+            }
+        }
+        
+        self.saveContext()
+    }
 }
 
 
