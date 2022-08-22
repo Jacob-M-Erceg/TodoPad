@@ -145,7 +145,7 @@ extension TaskFormControllerViewModel {
     }
     
     // MARK: - updateFormCellModels Functions
-    private func updateFormCellModels() {
+    func updateFormCellModels() {
         self.removeAllOptionalTaskFormCells()
         self.setupConditionalCellsForStartDate()
         self.setupConditionalCellsForRepeatSettings()

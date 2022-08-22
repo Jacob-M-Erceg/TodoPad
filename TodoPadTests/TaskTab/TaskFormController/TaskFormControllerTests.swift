@@ -55,6 +55,19 @@ class TaskFormControllerTests: XCTestCase {
         self.sut.loadViewIfNeeded()
     }
     
+    private func setupSutInNewTaskMode(with nonRepTask: NonRepeatingTask) {
+        let coreDataContext = CoreDataTestStack().context
+        let pTaskMan = PersistentTaskManager(context: coreDataContext)
+        let rTaskMan = RepeatingTaskManager(context: coreDataContext)
+        let nonRepTaskMan = NonRepeatingTaskManager(context: coreDataContext)
+        
+        let taskFormModel = TaskFormModel(for: nonRepTask)
+        let viewModel = TaskFormControllerViewModel(selectedDate: nonRepTask.date, taskFormModel: taskFormModel, originalTask: nil, persistentTaskManager: pTaskMan, repeatingTaskManager: rTaskMan, nonRepeatingTaskManager: nonRepTaskMan)
+        
+        self.sut = TaskFormController(viewModel)
+        self.sut.loadViewIfNeeded()
+    }
+    
     private func setupSutWithAllCellsEnabled() {
         let rTask = RepeatingTask(
             title: "Eat Broccoli",
@@ -99,6 +112,36 @@ extension TaskFormControllerTests {
 
 // MARK: - didClickSave Selector
 extension TaskFormControllerTests {
+    
+    func testDidClickSave_NewTask_NotificationSaved() {
+        // Arrange
+        let nonRepTask = NonRepeatingTask(title: "My NonRep Task", desc: nil, taskUUID: UUID(), isCompleted: false, date: Date().addingTimeInterval(60*60*24*3), time: nil, notificationsEnabled: true)
+        self.setupSutInNewTaskMode(with: nonRepTask)
+        
+        let expectation = self.expectation(description: "Save notification for new task.")
+        
+        // Act & Assert
+        NotificationManager.getAllPendingNotifications { beforeRequests in
+            let containsNotificationAlready = beforeRequests.contains(where: { $0.identifier == nonRepTask.taskUUID.uuidString })
+            XCTAssertFalse(containsNotificationAlready)
+            
+            DispatchQueue.main.sync {
+                // Presses add button
+                let addButton = self.sut.navigationItem.rightBarButtonItem
+                let _ = addButton?.target?.perform(addButton?.action, with: nil)
+            }
+            
+            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now()+1) {
+                NotificationManager.getAllPendingNotifications { requests in
+                    let containsNotification = requests.contains(where: { $0.identifier == nonRepTask.taskUUID.uuidString })
+                    XCTAssertTrue(containsNotification)
+                    expectation.fulfill()
+                    NotificationManager.removeNotifications(for: Task.nonRepeating(nonRepTask))
+                }
+            }
+        }
+        waitForExpectations(timeout: 3)
+    }
     
     // MARK: - Save New Task
     func testDidClickSave_WhenNewPersistenTask_SavesNewPersistentTaskToCoreData() {

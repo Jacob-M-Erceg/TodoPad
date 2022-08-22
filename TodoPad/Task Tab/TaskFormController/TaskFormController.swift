@@ -80,10 +80,10 @@ class TaskFormController: UIViewController {
                 self.editExistingTask(task: task)
             }
             
-//            NotificationManager.removeNotifications(for: task)
-//            if task.notificationsEnabled {
-//                NotificationManager.setNotification(for: task)
-//            }
+            NotificationManager.removeNotifications(for: task)
+            if task.notificationsEnabled {
+                NotificationManager.setNotification(for: task)
+            }
             
             self.navigationController?.popViewController(animated: true)
             self.onCompleted?()
