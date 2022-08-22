@@ -60,19 +60,19 @@ class TasksController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapSettings))
         
-//        self.viewModel.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
-//            DispatchQueue.main.async { [weak self] in
-//                self?.tableView.performBatchUpdates({
-//                    if isOpening {
-//                        self?.tableView.insertRows(at: indexPaths, with: .fade)
-//                    } else {
-//                        self?.tableView.deleteRows(at: indexPaths, with: .fade)
-//                    }
-//                }, completion: { _ in
-//                    self?.tableView.reloadData()
-//                })
-//            }
-//        }
+        self.viewModel.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.performBatchUpdates({
+                    if isOpening {
+                        self?.tableView.insertRows(at: indexPaths, with: .fade)
+                    } else {
+                        self?.tableView.deleteRows(at: indexPaths, with: .fade)
+                    }
+                }, completion: { _ in
+                    self?.tableView.reloadData()
+                })
+            }
+        }
     }
     
     
@@ -193,16 +193,16 @@ extension TasksController {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
-//        let isCompleted = self.viewModel.isTaskCompleted(with: task)
+        let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
+        let isCompleted = self.viewModel.isTaskCompleted(with: task)
         
-        let actionButtonTitle: String = /*isCompleted ? "Undo" :*/ "Complete"
+        let actionButtonTitle: String = isCompleted ? "Undo" : "Complete"
         
         let action = UIContextualAction(style: .normal, title: actionButtonTitle) { aaaa, bbbb, completion in
-//            self.viewModel.invertTaskCompleted(with: task)
-//            if !isCompleted {
+            self.viewModel.invertTaskCompleted(with: task)
+            if !isCompleted {
 //                self.showTasksCompletedPopup()
-//            }
+            }
         }
         action.backgroundColor = .systemBlue
         return UISwipeActionsConfiguration(actions: [action])
