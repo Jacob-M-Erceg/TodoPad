@@ -146,6 +146,15 @@ extension NonRepeatingTaskManager {
             self.saveContext()
         }
     }
+    
+    public func deleteAllNonRepeatingTasks() {
+        if let nonRepTasksCD = self.loadNonRepeatingTasks() {
+            for nonRepTaskCD in nonRepTasksCD {
+                self.context.delete(nonRepTaskCD)
+            }
+            self.saveContext()
+        }
+    }
 }
 
 

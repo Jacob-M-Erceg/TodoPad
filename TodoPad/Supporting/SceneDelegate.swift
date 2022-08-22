@@ -18,7 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         self.window?.makeKeyAndVisible()
         
-        devPrint(NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first)
+        var cdLocation = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first?.appending("/../Library/Application\\")
+        cdLocation?.removeLast()
+        cdLocation = cdLocation?.appending(" Support/")
+        devPrint(cdLocation ?? "")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

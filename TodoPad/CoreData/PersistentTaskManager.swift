@@ -105,6 +105,15 @@ extension PersistentTaskManager {
             self.saveContext()
         }
     }
+    
+    public func deleteAllPersistentTasks() {
+        if let tasksCD = self.loadPersistentTasks() {
+            for tasksCD in tasksCD {
+                self.context.delete(tasksCD)
+            }
+            self.saveContext()
+        }
+    }
 }
 
 

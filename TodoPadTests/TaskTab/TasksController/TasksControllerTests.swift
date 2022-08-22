@@ -63,6 +63,21 @@ extension TasksControllerTests {
         )
     }
     
+    func testTasksController_WhenSettingsButtonTapped_NavigateToSettingsController() {
+        // Arrange
+        let spyNavController = SpyNavigationController(rootViewController: self.sut)
+        
+        // Act
+        let settingsButton = self.sut.navigationItem.rightBarButtonItem
+        let _ = settingsButton?.target?.perform(settingsButton?.action, with: nil)
+        
+        // Assert
+        guard let _ = spyNavController.pushedViewController as? SettingsController else {
+            XCTFail("SettingsController was not presented when the TasksController.didTapSettings selctor method was called.")
+            return
+        }
+    }
+    
 }
 
 

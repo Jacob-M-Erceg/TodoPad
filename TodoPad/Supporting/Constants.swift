@@ -26,4 +26,8 @@ class Constants {
         "Monthly",
         "Yearly"
     ]
+    
+    // MARK: - Links
+    static let privacyPolicy = "https://todopad.app/privacy-policy"
+    static let termsAndConditions = "https://todopad.app/terms-and-conditions"
 }
