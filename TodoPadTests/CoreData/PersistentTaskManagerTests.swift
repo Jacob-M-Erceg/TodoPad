@@ -54,7 +54,7 @@ extension PersistentTaskManagerTests {
         self.sut.saveNewPersistentTask(with: pTaskTwo)
         
         // Act
-        let fetchedTasks = self.sut.fetchPersistentTasks()
+        let fetchedTasks = self.sut.fetchAllPersistentTasks()
         
         // Assert
         XCTAssertEqual(fetchedTasks.count, 2)
@@ -70,6 +70,8 @@ extension PersistentTaskManagerTests {
         XCTAssertEqual(pTaskTwo.desc, pTaskCDTwo?.desc)
         XCTAssertEqual(pTaskTwo.dateCompleted, pTaskCDTwo?.dateCompleted)
     }
+    
+    // TODO - Test date filtering (if pTask.isCompleted && !DateHelper.isSameDay(pTask.dateCompleted!, selectedDate)) in FetchTasks
     
     func testPersistentTaskManager_FetchCompletedTaskCount_ReturnsTwo() {
         // Arrange
@@ -87,7 +89,6 @@ extension PersistentTaskManagerTests {
         // Assert
         XCTAssertEqual(completedTaskCount, 2)
     }
-    
 }
 
 
@@ -115,7 +116,7 @@ extension PersistentTaskManagerTests {
         
         self.sut.updatePersistentTask(with: pTaskUpdate)
         
-        let pTaskUpdatedFetched = self.sut.fetchPersistentTasks().first
+        let pTaskUpdatedFetched = self.sut.fetchAllPersistentTasks().first
         
         // Assert
         XCTAssertEqual(pTask.title + " Updated Title", pTaskUpdatedFetched?.title)
@@ -133,7 +134,7 @@ extension PersistentTaskManagerTests {
         // Act
         self.sut.invertTaskCompleted(self.pTask, for: Date().addingTimeInterval(60*60*24*3))
         
-        guard let pTaskFetched = self.sut.fetchPersistentTasks().first else { XCTFail(); return }
+        guard let pTaskFetched = self.sut.fetchAllPersistentTasks().first else { XCTFail(); return }
         
         // Assert
         XCTAssertFalse(pTaskFetched.isCompleted)
@@ -150,7 +151,7 @@ extension PersistentTaskManagerTests {
         self.sut.invertTaskCompleted(self.pTask, for: self.pTask.dateCompleted ?? Date())
         self.sut.invertTaskCompleted(self.pTask, for: self.pTask.dateCompleted ?? Date())
         
-        guard let pTaskFetched = self.sut.fetchPersistentTasks().first else { XCTFail(); return }
+        guard let pTaskFetched = self.sut.fetchAllPersistentTasks().first else { XCTFail(); return }
         
         // Assert
         XCTAssertTrue(pTaskFetched.isCompleted)
@@ -172,13 +173,13 @@ extension PersistentTaskManagerTests {
         self.sut.saveNewPersistentTask(with: pTaskOne)
         self.sut.saveNewPersistentTask(with: pTaskTwo)
         
-        let originalFetch = self.sut.fetchPersistentTasks()
+        let originalFetch = self.sut.fetchAllPersistentTasks()
 
         XCTAssertEqual(originalFetch.count, 2)
         
         // Act
         self.sut.deletePersistentTask(with: pTaskOne)
-        let afterDeleteFetch = self.sut.fetchPersistentTasks()
+        let afterDeleteFetch = self.sut.fetchAllPersistentTasks()
         
         // Assert
         XCTAssertNotEqual(originalFetch.count, afterDeleteFetch.count)

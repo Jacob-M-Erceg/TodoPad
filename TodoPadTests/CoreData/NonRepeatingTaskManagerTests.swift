@@ -118,7 +118,6 @@ extension NonRepeatingTaskManagerTests {
         // Assert
         XCTAssertEqual(completedTaskCount, 2)
     }
-    
 }
 
 

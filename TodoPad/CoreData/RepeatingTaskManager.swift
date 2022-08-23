@@ -66,18 +66,37 @@ extension RepeatingTaskManager {
         fetchRequest.predicate = predicates
         
         // Fetch & unwrap CoreData models
-        guard let repeatingTasks = self.loadRepeatingTasks(with: fetchRequest) else { return [] }
+        guard let rTasksCD = self.loadRepeatingTasks(with: fetchRequest) else { return [] }
         
         // Convert CoreData models to normal models and return
-        var tasks = [RepeatingTask]()
+        var rTasks = [RepeatingTask]()
         
-        for repeatingTask in repeatingTasks {
-            var task = RepeatingTask(repeatingTaskCD: repeatingTask)
-            task.isCompleted = self.isTaskMarkedCompleted(with: task, for: date)
-            tasks.append(task)
+        for rTaskCD in rTasksCD {
+            var rTask = RepeatingTask(repeatingTaskCD: rTaskCD)
+            rTask.isCompleted = self.isTaskMarkedCompleted(with: rTask, for: date)
+            
+            switch rTask.repeatSettings {
+            case .daily:
+                rTasks.append(rTask)
+                
+            case .weekly(let days):
+                if days.contains(where: { $0 == DateHelper.getWeekdayNumber(for: date)}) {
+                    rTasks.append(rTask)
+                }
+                
+            case .monthly:
+                if DateHelper.isSameDayOfMonth(rTask.startDate, date) {
+                    rTasks.append(rTask)
+                }
+                
+            case .yearly:
+                if DateHelper.isSameDayOfYear(rTask.startDate, date) {
+                    rTasks.append(rTask)
+                }
+            }
         }
         
-        return tasks
+        return rTasks
     }
     
     /// Fetches the total task completed count for a RepeatingTask.

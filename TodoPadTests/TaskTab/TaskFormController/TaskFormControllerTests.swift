@@ -146,7 +146,7 @@ extension TaskFormControllerTests {
     // MARK: - Save New Task
     func testDidClickSave_WhenNewPersistenTask_SavesNewPersistentTaskToCoreData() {
         // Arrange
-        let initialCount = self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count
+        let initialCount = self.sut.viewModel.persistentTaskManager.fetchAllPersistentTasks().count
         XCTAssertEqual(initialCount, 0)
         
         self.sut.didEditTextField(.init(cellType: .title), "My Persistent Task")
@@ -157,7 +157,7 @@ extension TaskFormControllerTests {
         let _ = addButton?.target?.perform(addButton?.action, with: nil)
         
         // Assert
-        let afterCount = self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count
+        let afterCount = self.sut.viewModel.persistentTaskManager.fetchAllPersistentTasks().count
         XCTAssertEqual(afterCount, 1)
     }
     
@@ -204,7 +204,7 @@ extension TaskFormControllerTests {
         self.setupSutInEditMode(task: Task.persistent(initalPTask))
         
         self.sut.viewModel.persistentTaskManager.saveNewPersistentTask(with: initalPTask)
-        XCTAssertEqual(self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count, 1)
+        XCTAssertEqual(self.sut.viewModel.persistentTaskManager.fetchAllPersistentTasks().count, 1)
         
         // Act
         self.sut.didEditTextField(.init(cellType: .title), "My pTask Updated")
@@ -214,13 +214,13 @@ extension TaskFormControllerTests {
         let _ = addButton?.target?.perform(addButton?.action, with: nil)
         
         // Assert
-        let afterPTask = self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().first
+        let afterPTask = self.sut.viewModel.persistentTaskManager.fetchAllPersistentTasks().first
         
         XCTAssertNotEqual(initalPTask.title, afterPTask?.title)
         XCTAssertNotEqual(initalPTask.desc, afterPTask?.desc)
         XCTAssertEqual(initalPTask.taskUUID, afterPTask?.taskUUID)
         
-        XCTAssertEqual(self.sut.viewModel.persistentTaskManager.fetchPersistentTasks().count, 1)
+        XCTAssertEqual(self.sut.viewModel.persistentTaskManager.fetchAllPersistentTasks().count, 1)
     }
     
     func testDidClickSave_WhenEditingRepeatingTask_SavesUpdatedRepeatingTaskToCoreData() {
