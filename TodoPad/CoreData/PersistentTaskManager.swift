@@ -41,16 +41,42 @@ extension PersistentTaskManager {
 // MARK: - Read
 extension PersistentTaskManager {
     
-    public func fetchPersistentTasks() -> [PersistentTask] {
-        guard let persistentTasksCD = self.loadPersistentTasks() else { return [] }
+    
+    /// Only fetches PersistentTask's that are Non-Completed, or PersistentTasks's that were completed on the given selectedDate
+    /// - Parameter selectedDate: Completed PersistentTask's will only be returned for this date
+    public func fetchPersistentTasks(filteredFor selectedDate: Date) -> [PersistentTask] {
+        guard let pTasksCD = self.loadPersistentTasks() else { return [] }
         
-        var persistentTasks: [PersistentTask] = []
+        var pTasks: [PersistentTask] = []
         
-        for persistentTaskCD in persistentTasksCD {
-            let persistentTask = PersistentTask(persistentTaskCD: persistentTaskCD)
-            persistentTasks.append(persistentTask)
+        for pTaskCD in pTasksCD {
+            let pTask = PersistentTask(persistentTaskCD: pTaskCD)
+            
+            if pTask.isCompleted && !DateHelper.isSameDay(pTask.dateCompleted!, selectedDate) {
+                // Break out of this loop iteration & dont add to array because we only
+                // show persistent tasks if they're non-completed or
+                // completed on the current selected day
+                continue
+            }
+            
+            pTasks.append(pTask)
         }
-        return persistentTasks
+        return pTasks
+    }
+    
+    
+    /// Fetches all PersistentTask's regardless of if they are completed, or non-completed
+    /// - Returns: All PersistenTask's saved in core data
+    public func fetchAllPersistentTasks() -> [PersistentTask] {
+        guard let pTasksCD = self.loadPersistentTasks() else { return [] }
+        
+        var pTasks: [PersistentTask] = []
+        
+        for pTaskCD in pTasksCD {
+            let pTask = PersistentTask(persistentTaskCD: pTaskCD)
+            pTasks.append(pTask)
+        }
+        return pTasks
     }
     
     public func fetchCompletedPersistentTaskCount() -> Int {

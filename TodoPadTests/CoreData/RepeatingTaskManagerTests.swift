@@ -58,7 +58,7 @@ extension RepeatingTaskManagerTests {
 // MARK: - Read
 extension RepeatingTaskManagerTests {
     
-    func testPersistentTaskManager_FetchAllTasks_ReturnsTwoTasks() {
+    func testRepeatingTaskManager_FetchAllTasks_ReturnsTwoTasks() {
         // Arrange
         let rTaskOne = self.rTask
         let rTaskTwo = RepeatingTask(title: "My second task", desc: nil, taskUUID: UUID(), isCompleted: false, startDate: Date().addingTimeInterval(60*60*24*45), time: nil, repeatSettings: .yearly, endDate: nil, notificationsEnabled: false)
@@ -77,7 +77,7 @@ extension RepeatingTaskManagerTests {
         XCTAssertNotNil(rTaskTwoFetched)
     }
     
-    func testPersistentTaskManager_FetchRepeatingTasksStartingFromDate_ReturnsSixTasks() {
+    func testRepeatingTaskManager_FetchRepeatingTasksStartingFromDate_ReturnsSixTasks() {
         // Arrange
         for x in 0...11 {
             let rTask = RepeatingTask(title: "Repeating Task #\(x)", desc: "desc #\(x)", taskUUID: UUID(), isCompleted: false, startDate: Date().startOfDay.addingTimeInterval(TimeInterval(60*60*8*x)), time: Date().startOfDay.addingTimeInterval(TimeInterval(60*x)), repeatSettings: .daily, endDate: nil, notificationsEnabled: false)
@@ -116,6 +116,12 @@ extension RepeatingTaskManagerTests {
         XCTAssertEqual(self.sut.fetchRepeatingTaskCompletedCount(for: rTask), 5)
     }
     
+    
+    // TODO - fetchRepeatingTasks(on date: Date) returns correct isCompleted
+    
+    // TODO - fetchRepeatingTasks(on date: Date) returns correctly filtered RepeatSettings
+    
+    // TODO - Test filtering fetchRepeatingTasks(on date: Date) on RepeatSettings
 }
 
 

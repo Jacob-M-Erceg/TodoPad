@@ -106,22 +106,18 @@ extension TasksControllerViewModel {
         self.onUpdate?()
     }
     
-    
     /// Fetch Repeating Tasks
     public func fetchRepeatingTasks(for date: Date) -> [Task] {
-        // TODO -
         return self.repeatingTaskManager.fetchRepeatingTasks(on: date).map({ Task.repeating($0) })
     }
     
     /// Fetch Persistent Tasks
     public func fetchPersistentTask(for date: Date) -> [Task] {
-        // TODO -
-        return persistentTaskManager.fetchPersistentTasks().map({ Task.persistent($0) })
+        return persistentTaskManager.fetchPersistentTasks(filteredFor: self.selectedDate).map({ Task.persistent($0) })
     }
     
     /// Fetch Non-Repeating Tasks
     public func fetchNonRepeatingTask(for date: Date) -> [Task] {
-        // TODO -
         return nonRepeatingTaskManager.fetchNonRepeatingTasks(for: date).map({ Task.nonRepeating($0) })
     }
 }

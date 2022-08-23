@@ -73,4 +73,45 @@ class DateHelper {
         df.dateFormat = "MMMM d, yyyy"
         return df.string(from: date)
     }
+    
+    
+    /// For future months only
+    static func isSameDayOfMonth(_ taskDate: Date, _ selectedDate: Date) -> Bool {
+        let taskDate = taskDate.startOfDay
+        let selectedDate = selectedDate.startOfDay
+        
+        var increment: Int = 1
+        var curDate = taskDate
+        
+        while curDate <= selectedDate {
+            if curDate == selectedDate {
+                return true
+                
+            }
+            curDate = Calendar.current.date(byAdding: .month, value: increment, to: taskDate)!
+            increment += 1
+        }
+        
+        return false
+    }
+    
+    
+    /// For future years only
+    static func isSameDayOfYear(_ taskDate: Date, _ selectedDate: Date) -> Bool {
+        let taskDate = taskDate.startOfDay
+        let selectedDate = selectedDate.startOfDay
+        
+        var increment: Int = 1
+        var curDate = taskDate
+        
+        while curDate <= selectedDate {
+            if curDate == selectedDate {
+                return true
+            }
+            curDate = Calendar.current.date(byAdding: .year, value: increment, to: taskDate)!
+            increment += 1
+        }
+        
+        return false
+    }
 }
