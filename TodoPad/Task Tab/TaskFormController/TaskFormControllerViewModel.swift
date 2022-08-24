@@ -43,6 +43,7 @@ class TaskFormControllerViewModel {
         selectedDate: Date,
         taskFormModel: TaskFormModel,
         originalTask: Task?,
+        
         persistentTaskManager: PersistentTaskManager = PersistentTaskManager(),
         repeatingTaskManager: RepeatingTaskManager = RepeatingTaskManager(),
         nonRepeatingTaskManager: NonRepeatingTaskManager = NonRepeatingTaskManager()
@@ -111,7 +112,7 @@ extension TaskFormControllerViewModel {
             case .repeats:
                 self.taskFormModel.repeatSettings = .daily
             case .endDate:
-                self.taskFormModel.endDate = self.selectedDate.endOfDay
+                self.taskFormModel.endDate = self.selectedDate.addingTimeInterval(60*60*24).startOfDay
             case .notifications:
                 self.taskFormModel.notificationsEnabled = true
             }
@@ -149,7 +150,7 @@ extension TaskFormControllerViewModel {
         self.removeAllOptionalTaskFormCells()
         self.setupConditionalCellsForStartDate()
         self.setupConditionalCellsForRepeatSettings()
-        self.updateIsEnabledCells()
+        self.updateIsEnabledForCells()
     }
     
     private func removeAllOptionalTaskFormCells() {
@@ -179,7 +180,7 @@ extension TaskFormControllerViewModel {
     }
     
     
-    private func updateIsEnabledCells() {
+    private func updateIsEnabledForCells() {
         // StartDate
         if self.taskFormModel.startDate != nil {
             if let index = self.taskFormCellModels[1].firstIndex(where: { $0.cellType == .startDate }) {

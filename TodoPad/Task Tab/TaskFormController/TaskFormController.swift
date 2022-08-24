@@ -77,6 +77,7 @@ class TaskFormController: UIViewController {
             case .newTask:
                 self.saveNewTask(task: task)
             case .editTask:
+                if self.illegalExistingTaskChange(task: task) { return }
                 self.editExistingTask(task: task)
             }
             
@@ -95,7 +96,11 @@ class TaskFormController: UIViewController {
     }
     
     private func editExistingTask(task: Task) {
-        guard let originalTask = self.viewModel.originalTask else { return }
+        self.viewModel.editExistingTask(task: task)
+    }
+    
+    private func illegalExistingTaskChange(task: Task) -> Bool {
+        guard let originalTask = self.viewModel.originalTask else { return true }
         
         // If task enum type is not the same
         if !(originalTask ~= task) {
@@ -104,12 +109,11 @@ class TaskFormController: UIViewController {
                 firstTaskType: self.viewModel.originalTask!.typeOfTask,
                 secondTaskType: task.typeOfTask
             )
-            return
+            return true
         }
         
-        self.viewModel.editExistingTask(task: task)
+        return false
     }
-    
 }
 
 

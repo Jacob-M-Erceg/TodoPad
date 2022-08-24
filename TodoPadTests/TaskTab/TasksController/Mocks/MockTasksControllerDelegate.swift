@@ -10,10 +10,21 @@ import XCTest
 
 class MockTasksControllerDelegate: TasksControllerDelegate {
     
+    var wasCalled: Bool = false
+    private var expectation: XCTestExpectation?
+    private let testCase: XCTestCase
     
+    init(testCase: XCTestCase) {
+        self.testCase = testCase
+    }
     
-    func showTasksCompletedPopup() {
-        // TODO - 
+    func expect() {
+        expectation = testCase.expectation(description: "Expected showTaskCompletedPopup")
+    }
+    
+    func showTaskCompletedPopup() {
+        self.wasCalled = true
+        self.expectation?.fulfill()
     }
 }
 
