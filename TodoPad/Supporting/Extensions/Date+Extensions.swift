@@ -21,8 +21,8 @@ extension Date {
         
         let startOfDay = calendar.startOfDay(for: self)
         
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
-        
+        var endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
+        endOfDay = endOfDay?.addingTimeInterval(-1)
         return endOfDay
     }
     

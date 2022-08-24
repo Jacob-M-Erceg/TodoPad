@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TasksControllerDelegate: AnyObject {
-    func showTasksCompletedPopup()
+    func showTaskCompletedPopup()
 }
 
 class TasksController: UIViewController {
@@ -58,8 +58,6 @@ class TasksController: UIViewController {
             }
         }
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapSettings))
-        
         self.viewModel.onExpandCloseGroup = { [weak self] indexPaths, isOpening in
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.performBatchUpdates({
@@ -73,6 +71,8 @@ class TasksController: UIViewController {
                 })
             }
         }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(didTapSettings))
     }
     
     
@@ -177,16 +177,15 @@ extension TasksController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // TODO -
         let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
         let viewModel = ViewTaskControllerViewModel(task: task)
         let vc = ViewTaskController(viewModel: viewModel)
-//        vc.onTappedCompleteTask = { [weak self] in
-//            self?.viewModel.invertTaskCompleted(with: task)
-//            if !task.isCompleted {
-//                self?.showTasksCompletedPopup()
-//            }
-//        }
+        vc.onTappedCompleteTask = { [weak self] in
+            self?.viewModel.invertTaskCompleted(with: task)
+            if !task.isCompleted {
+                self?.showTaskCompletedPopup()
+            }
+        }
         let nav = UINavigationController(rootViewController: vc)
         nav.setupNavBarColor()
         self.present(nav, animated: true, completion: nil)
@@ -198,14 +197,30 @@ extension TasksController {
         
         let actionButtonTitle: String = isCompleted ? "Undo" : "Complete"
         
-        let action = UIContextualAction(style: .normal, title: actionButtonTitle) { aaaa, bbbb, completion in
+        let action = UIContextualAction(style: .normal, title: actionButtonTitle) { _, _, completion in
             self.viewModel.invertTaskCompleted(with: task)
             if !isCompleted {
-//                self.showTasksCompletedPopup()
+                self.showTaskCompletedPopup()
             }
         }
         action.backgroundColor = .systemBlue
         return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        let edit = UIContextualAction(style: .normal, title: "Edit") { [weak self] _, _, _ in
+            guard let self = self else { return }
+            let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
+            self.didTapEditTask(for: task)
+        }
+
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, _ in
+            guard let self = self else { return }
+            let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
+            self.deleteTask(with: task)
+        }
+        return UISwipeActionsConfiguration(actions: [delete, edit])
     }
 }
 
@@ -217,8 +232,10 @@ extension TasksController: TasksTableViewHeaderDelegate {
         let taskFormModel = TaskFormModel()
         let viewModel = TaskFormControllerViewModel(selectedDate: self.viewModel.selectedDate, taskFormModel: taskFormModel, originalTask: nil)
         let vc = TaskFormController(viewModel)
-        // TODO -
-//        vc.onCompleted = { [weak self] in self?.viewModel.refreshTasks() }
+        vc.onCompleted = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.fetchTasks(for: self.viewModel.selectedDate)
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -238,9 +255,53 @@ extension TasksController: TasksTableViewHeaderDelegate {
         
         let viewModel = TaskFormControllerViewModel(selectedDate: self.viewModel.selectedDate, taskFormModel: taskFormModel, originalTask: task)
         let vc = TaskFormController(viewModel)
-        // TODO - 
-//        vc.onCompleted = { [weak self] in self?.viewModel.refreshTasks() }
+        
+        vc.onCompleted = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.fetchTasks(for: self.viewModel.selectedDate)
+        }
+        
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - Delete Tasks
+extension TasksController {
+    
+    private func deleteTask(with task: Task) {
+        switch task {
+        case .persistent(_), .nonRepeating(_):
+            AlertManager.showDeleteTaskWarning(on: self) { [weak self] willContinue in
+                guard willContinue else { self?.viewModel.onUpdate?(); return }
+                self?.viewModel.deleteTask(for: task)
+            }
+            
+            return
+        case .repeating(let repeatingTask):
+            self.deleteRepeatingTask(for: repeatingTask)
+        }
+    }
+    
+    private func deleteRepeatingTask(for repeatingTask: RepeatingTask) {
+        AlertManager.showDeleteRepeatingTaskAlert(on: self) { [weak self] selectionOption in
+            guard let self = self else { return }
+            switch selectionOption {
+            case .allFuture:
+                self.viewModel.deleteRepeatingTaskForThisAndFutureDays(for: repeatingTask, selectedDate: self.viewModel.selectedDate)
+                break
+                
+            case .allTasks:
+                AlertManager.showCompletelyDeleteRepeatingTaskWarning(on: self) { [weak self] willContinue in
+                    if willContinue {
+                        self?.viewModel.completelyDeleteRepeatingTask(for: repeatingTask)
+                    } else {
+                        self?.viewModel.onUpdate?()
+                    }
+                }
+            case .cancel:
+                return
+            }
+        }
     }
 }
 
@@ -248,4 +309,7 @@ extension TasksController: TasksTableViewHeaderDelegate {
 // MARK: - Show Task Completed Popup
 extension TasksController {
     
+    private func showTaskCompletedPopup() {
+        self.delegate?.showTaskCompletedPopup()
+    }
 }

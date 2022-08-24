@@ -193,7 +193,7 @@ extension RepeatingTaskManagerTests {
         XCTAssertFalse(isDayAfterCompleted)
     }
     
-    func testNonRepeatingTaskManager_DeleteCompletedRepeatingTask_DeletesCompletedTask() {
+    func testNonRepeatingTaskManager_SetTaskNotCompleted_DeletesCompletedTask() {
         // Arrange
         let rTask = self.rTask
         self.sut.saveNewRepeatingTask(with: rTask)
@@ -208,7 +208,7 @@ extension RepeatingTaskManagerTests {
         XCTAssertTrue(isNowCompleted)
         
         // Act
-        self.sut.deleteCompletedRepeatingTask(with: rTask, for: completedDate)
+        self.sut.setTaskNotCompleted(with: rTask, for: completedDate)
         
         // Assert
         let isDeleted = !self.sut.isTaskMarkedCompleted(with: rTask, for: completedDate)

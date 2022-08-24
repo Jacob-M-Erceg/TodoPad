@@ -73,6 +73,34 @@ extension AlertManager {
         )
     }
     
+    /// A warning against permanently deleting a NonRepeating or Persistent task.
+    /// - Parameters:
+    ///   - completion: Boolean True to delete task. Boolean False to cancel.
+    public static func showDeleteTaskWarning(on vc: UIViewController, completion: @escaping (Bool)->()) {
+        self.showDestructiveAlert(
+            on: vc,
+            title: "Are you sure you want to delete this task?",
+            message: nil,
+            completion: completion
+        )
+    }
+    
+    /// A warning against completely deleting a Repeating task including all past completed days.
+    /// - Parameters:
+    ///   - completion: Boolean True to delete task. Boolean False to cancel.
+    public static func showCompletelyDeleteRepeatingTaskWarning(on vc: UIViewController, completion: @escaping (Bool)->()) {
+        self.showDestructiveAlert(
+            on: vc,
+            title: "Are you sure?",
+            message: "All previously completed days will be deleted for this task. You will be unable to recover the task.",
+            completion: completion
+        )
+    }
+    
+    
+    /// A warning against permanently deleting ALL tasks from core data
+    /// - Parameters:
+    ///   - completion: Boolean True to delete all tasks. Boolean False to cancel.
     public static func showDeleteAllTaskskWarning(on vc: UIViewController, completion: @escaping (Bool)->()) {
         self.showDestructiveAlert(
             on: vc,
@@ -80,6 +108,54 @@ extension AlertManager {
             message: "This will delete all completed and non completed tasks. It will completely wipe all stats history. You will not be able to recover once deleted.",
             completion: completion
         )
+    }
+}
+
+
+// MARK: - Options Alerts
+extension AlertManager {
+    
+    /// A helper funtion to show an alert with different action buttons.
+    /// - Parameters:
+    ///   - vc: The UIViewController that you wish to display the alert on.
+    ///   - title: The title for the alert.
+    ///   - message: A optional additional message for the alert.
+    ///   - actions: An array of UIAlertAction's to add to the alert.
+    private static func showActionAlert(on vc: UIViewController, title: String, message: String? = nil, actions: [UIAlertAction]) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        for action in actions {
+            alert.addAction(action)
+        }
+        
+        DispatchQueue.main.async {
+            vc.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    /// An alert to choose how the user wants to delete a task.
+    /// - Parameters:
+    ///   - completion: AlertManager.DeleteTaskOption Enum
+    static func showDeleteRepeatingTaskAlert(on vc: UIViewController, completion: @escaping (AlertManager.DeleteRepeatingTaskOption)->Void) {
+        let actions = [
+            UIAlertAction(title: DeleteRepeatingTaskOption.allFuture.rawValue, style: .default, handler: { alertAction in
+                completion(DeleteRepeatingTaskOption.allFuture)
+            }),
+            UIAlertAction(title: DeleteRepeatingTaskOption.allTasks.rawValue, style: .destructive, handler: { alertAction in
+                completion(DeleteRepeatingTaskOption.allTasks)
+            }),
+            UIAlertAction(title: DeleteRepeatingTaskOption.cancel.rawValue, style: .cancel, handler: { alertAction in
+                completion(DeleteRepeatingTaskOption.cancel)
+            })
+        ]
+        self.showActionAlert(on: vc, title: "Delete repeating tasks", message: nil, actions: actions)
+    }
+    
+    enum DeleteRepeatingTaskOption: String {
+        case allFuture = "This and all future tasks"
+        case allTasks = "All tasks"
+        case cancel = "Cancel"
     }
     
 }

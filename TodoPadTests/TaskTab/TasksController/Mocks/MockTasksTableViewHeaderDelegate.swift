@@ -19,7 +19,7 @@ class MockTasksTableViewHeaderDelegate: TasksTableViewHeaderDelegate {
     }
     
     func expect() {
-        expectation = testCase.expectation(description: "Expect didTapAddNewTask")
+        expectation = testCase.expectation(description: "Expected didTapAddNewTask")
     }
     
     func didTapAddNewTask() {

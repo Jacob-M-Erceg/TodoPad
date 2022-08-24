@@ -156,7 +156,7 @@ extension TasksControllerViewModel {
             
             // TODO - Do check and invert in one function
             if alreadyCompleted {
-                self.repeatingTaskManager.deleteCompletedRepeatingTask(with: repeatingTask, for: selectedDate)
+                self.repeatingTaskManager.setTaskNotCompleted(with: repeatingTask, for: selectedDate)
             } else {
                 self.repeatingTaskManager.setTaskCompleted(with: repeatingTask, for: selectedDate)
             }
@@ -165,6 +165,42 @@ extension TasksControllerViewModel {
             self.nonRepeatingTaskManager.invertTaskCompleted(nonRepeatingTask)
         }
         
+        self.fetchTasks(for: self.selectedDate)
+    }
+}
+
+
+// MARK: - DeleteTask Functions
+extension TasksControllerViewModel {
+    
+    public func deleteTask(for task: Task) {
+        NotificationManager.removeNotifications(for: task)
+        
+        switch task {
+        case .persistent(let persistentTask):
+            self.persistentTaskManager.deletePersistentTask(with: persistentTask)
+            
+        case .repeating(_):
+            assertionFailure()
+            break
+            
+        case .nonRepeating(let nonRepeatingTask):
+            self.nonRepeatingTaskManager.deleteNonRepeatingTask(for: nonRepeatingTask)
+        }
+        
+        self.fetchTasks(for: self.selectedDate)
+    }
+    
+    public func deleteRepeatingTaskForThisAndFutureDays(for repeatingTask: RepeatingTask, selectedDate: Date) {
+        // TODO - Make this only delete notifications for days after self.selectedDate
+        NotificationManager.removeNotifications(for: Task.repeating(repeatingTask))
+        self.repeatingTaskManager.deleteThisAndFutureRepeatingTask(with: repeatingTask, deleteDate: selectedDate)
+        self.fetchTasks(for: selectedDate)
+    }
+    
+    public func completelyDeleteRepeatingTask(for repeatingTask: RepeatingTask) {
+        NotificationManager.removeNotifications(for: Task.repeating(repeatingTask))
+        self.repeatingTaskManager.completelyDeleteRepeatingTask(with: repeatingTask)
         self.fetchTasks(for: self.selectedDate)
     }
 }

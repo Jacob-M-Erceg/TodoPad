@@ -220,6 +220,22 @@ extension TasksControllerTests {
 }
 
 // MARK: - Show Task Completed Popup
-extension TaskFormControllerTests {
-    // TODO - 
+extension TasksControllerTests {
+    
+    func testDidSelectRowAt_OnTappedCompleteTaskCallbackCalled_showTaskCompletedPopupDelegateFunctionCalled() {
+        // Arrange
+        let mockDelegate = MockTasksControllerDelegate(testCase: self)
+        self.sut.delegate = mockDelegate
+        
+        self.sut.tableView(self.sut.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        let viewTaskController = ((self.sut)?.spyPresentedViewController as? UINavigationController)?.topViewController as? ViewTaskController
+        
+        // Act
+        mockDelegate.expect()
+        viewTaskController?.didTapCompleteTask()
+        
+        // Assert
+        waitForExpectations(timeout: 3)
+        XCTAssertTrue(mockDelegate.wasCalled)
+    }
 }

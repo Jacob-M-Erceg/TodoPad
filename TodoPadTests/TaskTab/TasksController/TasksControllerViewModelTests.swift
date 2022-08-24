@@ -291,3 +291,109 @@ extension TasksControllerViewModelTests {
         XCTAssertFalse(self.sut.isTaskCompleted(with: Task.persistent(pTask)))
     }
 }
+
+
+// MARK: - Delete Task Functions
+extension TasksControllerViewModelTests {
+    
+    func testDeleteTaskFunction_WhenNonRepeatingTask_DeletesRepeatingTaskFromCoreData() {
+        // Arrange
+        let nonRepTask = NonRepeatingTask.getMockNonRepeatingTask
+        self.nonRepTaskManager.saveNewNonRepeatingTask(with: nonRepTask)
+        
+        var nonRepTaskCount = self.nonRepTaskManager.fetchNonRepeatingTasks(for: nonRepTask.date).count
+        XCTAssertEqual(nonRepTaskCount, 1)
+        
+        // Act
+        self.sut.deleteTask(for: Task.nonRepeating(nonRepTask))
+        
+        // Assert
+        nonRepTaskCount = self.nonRepTaskManager.fetchNonRepeatingTasks(for: nonRepTask.date).count
+        XCTAssertEqual(nonRepTaskCount, 0)
+    }
+    
+    func testDeleteTaskFunction_WhenPersistentTask_DeletesPersistentTaskFromCoreData() {
+        // Arrange
+        let pTask = PersistentTask.getMockPersistentTask
+        self.pTaskManager.saveNewPersistentTask(with: pTask)
+        
+        var pTaskCount = self.pTaskManager.fetchAllPersistentTasks().count
+        XCTAssertEqual(pTaskCount, 1)
+        
+        // Act
+        self.sut.deleteTask(for: Task.persistent(pTask))
+        
+        // Assert
+        pTaskCount = self.pTaskManager.fetchAllPersistentTasks().count
+        XCTAssertEqual(pTaskCount, 0)
+    }
+    
+    func testDeleteRepeatingTaskForThisAndFutureDays_DeletesThisAndFutureDays() {
+        // Arrange
+        let rTask = RepeatingTask(
+            title: "rTask",
+            desc: nil,
+            taskUUID: UUID(),
+            isCompleted: false,
+            startDate: Date().addingTimeInterval(-14*60*60*24),
+            time: nil,
+            repeatSettings: .daily,
+            endDate: nil,
+            notificationsEnabled: false
+        )
+        self.rTaskManager.saveNewRepeatingTask(with: rTask)
+        
+        for x in -14...14 {
+            let tasks = self.rTaskManager.fetchRepeatingTasks(on: Date().addingTimeInterval(TimeInterval(x*60*60*24)))
+            XCTAssertEqual(tasks.count, 1)
+            XCTAssertNotNil(tasks.first, "Task should not have been nil \(x) from now. (Iteration \(x))")
+        }
+        
+        // Act
+        self.sut.deleteRepeatingTaskForThisAndFutureDays(for: rTask, selectedDate: Date().addingTimeInterval(7*60*60*24))
+        
+        // Assert
+        for x in -14...6 {
+            let tasks = self.rTaskManager.fetchRepeatingTasks(on: Date().addingTimeInterval(TimeInterval(x*60*60*24)))
+            XCTAssertEqual(tasks.count, 1)
+            XCTAssertNotNil(tasks.first, "Task should not have been nil \(x) from now. (Iteration \(x))")
+        }
+        for x in 7...14 {
+            let tasks = self.rTaskManager.fetchRepeatingTasks(on: Date().addingTimeInterval(TimeInterval(x*60*60*24)))
+            XCTAssertEqual(tasks.count, 0)
+            XCTAssertNil(tasks.first, "Task should have been nil \(x) from now. (Iteration \(x))")
+        }
+    }
+    
+    func testCompletelyDeleteRepeatingTask_CompletelyDeletesRepeatingTasksFromCoreData() {
+        // Arrange
+        let rTask = RepeatingTask(
+            title: "rTask",
+            desc: nil,
+            taskUUID: UUID(),
+            isCompleted: false,
+            startDate: Date().addingTimeInterval(-14*60*60*24),
+            time: nil,
+            repeatSettings: .daily,
+            endDate: nil,
+            notificationsEnabled: false
+        )
+        self.rTaskManager.saveNewRepeatingTask(with: rTask)
+        
+        for x in -14...14 {
+            let tasks = self.rTaskManager.fetchRepeatingTasks(on: Date().addingTimeInterval(TimeInterval(x*60*60*24)))
+            XCTAssertEqual(tasks.count, 1)
+            XCTAssertNotNil(tasks.first, "Task should not have been nil \(x) from now. (Iteration \(x))")
+        }
+        
+        // Act
+        self.sut.completelyDeleteRepeatingTask(for: rTask)
+        
+        // Assert
+        for x in -14...14 {
+            let tasks = self.rTaskManager.fetchRepeatingTasks(on: Date().addingTimeInterval(TimeInterval(x*60*60*24)))
+            XCTAssertEqual(tasks.count, 0)
+            XCTAssertNil(tasks.first, "Task should have been nil \(x) from now. (Iteration \(x))")
+        }
+    }
+}

@@ -163,7 +163,12 @@ extension RepeatingTaskManager {
         self.saveContext()
     }
     
-    public func deleteCompletedRepeatingTask(with task: RepeatingTask, for date: Date) {
+    
+    /// Deleted the CompletedTask for the given day, for the given RepeatingTask, making it not completed.
+    /// - Parameters:
+    ///   - task: The RepeatingTask
+    ///   - date: The date to delete the CompletedTask for the RepeatingTask
+    public func setTaskNotCompleted(with task: RepeatingTask, for date: Date) {
         if let completedTask = self.loadCompletedRepeatingTasks(with: task, for: date) {
             self.context.delete(completedTask)
             self.saveContext()
