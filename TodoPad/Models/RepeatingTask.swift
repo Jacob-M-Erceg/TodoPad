@@ -74,7 +74,7 @@ extension RepeatingTask {
                     isCompleted: (x%2)==0,
                     startDate: Date().addingTimeInterval(60*60*24*(-14)),
                     time: time,
-                    repeatSettings: .weekly([1, 2, 3]),
+                    repeatSettings: .daily,
                     endDate: nil,
                     notificationsEnabled: true
                 )

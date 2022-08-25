@@ -25,6 +25,8 @@ extension UIColor {
 
 extension UIColor {
     
+    static let customGray: UIColor = rgb(red: 217, green: 217, blue: 217, alpha: 1)
+    
     static let dynamicColorOne: UIColor = dynamicColor(
         light: .rgb(red: 242, green: 242, blue: 247, alpha: 1),
         dark: .rgb(red: 33, green: 33, blue: 33, alpha: 1)
@@ -38,5 +40,16 @@ extension UIColor {
     static let dynamicColorThree: UIColor = dynamicColor(
         light: .rgb(red: 255, green: 255, blue: 255, alpha: 1),
         dark: .rgb(red: 16, green: 16, blue: 16, alpha: 1)
+    )
+    
+    static let dynamicColorOneGray: UIColor = dynamicColor(
+        light: .secondaryLabel,
+        dark: .customGray
+    )
+    
+    // MARK: - StatsTableViewHeader - Circular Progress Bar
+    static let circularProgressBarDynamicColor: UIColor = dynamicColor(
+        light: .systemGray3,
+        dark: .customGray
     )
 }

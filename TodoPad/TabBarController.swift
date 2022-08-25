@@ -14,6 +14,8 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
         super.viewDidLoad()
         self.tabBar.backgroundColor = .dynamicColorTwo
         self.setupViewControllers()
+        
+        self.selectedIndex = 1 // TODO - delete
     }
     
     // MARK: - Helpers

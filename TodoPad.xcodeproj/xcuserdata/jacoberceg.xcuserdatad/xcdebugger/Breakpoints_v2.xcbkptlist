@@ -100,5 +100,68 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EAC456E-9BF8-4D87-B98F-075CDD8FC873"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPadTests/Stats Tab/StatsController/RepeatingTaskStatsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "testDaysSinceStarted_WhenYearlyAnd2YearsAgo_Returns3()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0EAC456E-9BF8-4D87-B98F-075CDD8FC873 - b532d126b42fa2c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoPadTests.RepeatingTaskStatsTests.testDaysSinceStarted_WhenYearlyAnd5YearsAgo_Returns2() -&gt; ()"
+                  moduleName = "TodoPadTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPadTests/Stats%20Tab/StatsController/RepeatingTaskStatsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "272"
+                  endingLineNumber = "272"
+                  offsetFromSymbolStart = "858">
+               </Location>
+               <Location
+                  uuid = "0EAC456E-9BF8-4D87-B98F-075CDD8FC873 - b532d126b42fa2c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoPadTests.RepeatingTaskStatsTests.testDaysSinceStarted_WhenYearlyAnd5YearsAgo_Returns2() -&gt; ()"
+                  moduleName = "TodoPadTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPadTests/Stats%20Tab/StatsController/RepeatingTaskStatsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "272"
+                  endingLineNumber = "272"
+                  offsetFromSymbolStart = "782">
+               </Location>
+               <Location
+                  uuid = "0EAC456E-9BF8-4D87-B98F-075CDD8FC873 - b532d126b42fa2c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodoPadTests.RepeatingTaskStatsTests.testDaysSinceStarted_WhenYearlyAnd5YearsAgo_Returns2() -&gt; ()"
+                  moduleName = "TodoPadTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPadTests/Stats%20Tab/StatsController/RepeatingTaskStatsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "272"
+                  endingLineNumber = "272"
+                  offsetFromSymbolStart = "707">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
