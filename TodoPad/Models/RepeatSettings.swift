@@ -8,9 +8,7 @@
 import Foundation
 
 /// Repeat settings for RepeatingTask's. Eg: Daily, Weekly, Monthly, etc.
-/// - weekly, biweekly [Int]: Sun = 0, Mon = 1, Tues = 2, etc.
-
-// TODO - make sure Sun = 0, Mon = 1, Tues = 2 still.... might be Sun = 1, etc
+/// - weekly [Int]: Sun = 1, Mon = 2, Tues = 3, etc.
 enum RepeatSettings: Equatable {
     case daily
     case weekly([Int])

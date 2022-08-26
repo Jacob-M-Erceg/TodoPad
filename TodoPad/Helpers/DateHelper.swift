@@ -44,6 +44,12 @@ class DateHelper {
     }
     
     
+    public static func getMonthAndDayString(for date: Date) -> String {
+        let df = DateFormatter()
+        df.dateFormat = "MMMM d, yyyy"
+        return df.string(from: date)
+    }
+    
     /// Checks if a given date is today
     public static func isToday(_ date: Date) -> Bool {
         let df = DateFormatter()
@@ -65,13 +71,6 @@ class DateHelper {
             return true
         }
         return false
-    }
-    
-    
-    public static func getMonthAndDayString(for date: Date) -> String {
-        let df = DateFormatter()
-        df.dateFormat = "MMMM d, yyyy"
-        return df.string(from: date)
     }
     
     

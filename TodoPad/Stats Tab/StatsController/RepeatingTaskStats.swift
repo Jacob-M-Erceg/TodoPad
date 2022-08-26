@@ -77,7 +77,6 @@ struct RepeatingTaskStats {
         var curDate = startDate
         
         while curDate <= endDate {
-            devPrint(curDate)
             curDate = Calendar.current.date(byAdding: .year, value: increment, to: startDate)!
             increment += 1
             count += 1

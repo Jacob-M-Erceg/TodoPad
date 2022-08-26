@@ -650,7 +650,7 @@
 		8E7FAFAE289A122B00E0CF58 /* Task Tab */ = {
 			isa = PBXGroup;
 			children = (
-				8E7FAFB2289A12CD00E0CF58 /* TaskController */,
+				8E7FAFB2289A12CD00E0CF58 /* TasksController */,
 				8E2B2BB0289C551E00DC1D4D /* TaskFormController */,
 				8E40F6D728AC86E4000E5A50 /* ViewTaskController */,
 				8E36705C28B3EA3A0056D92F /* SettingsController */,
@@ -661,12 +661,12 @@
 		8E7FAFAF289A123700E0CF58 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
+				8E7FAFC2289A1BF300E0CF58 /* Constants.swift */,
 				8E7FAFBD289A183100E0CF58 /* Extensions */,
 				8E2AA0B4289A09A6009F2C53 /* AppDelegate.swift */,
 				8E2AA0B6289A09A6009F2C53 /* SceneDelegate.swift */,
 				8E2AA0C0289A09A7009F2C53 /* Assets.xcassets */,
 				8E2AA0C2289A09A7009F2C53 /* LaunchScreen.storyboard */,
-				8E7FAFC2289A1BF300E0CF58 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -694,7 +694,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8E7FAFB2289A12CD00E0CF58 /* TaskController */ = {
+		8E7FAFB2289A12CD00E0CF58 /* TasksController */ = {
 			isa = PBXGroup;
 			children = (
 				8E7FAFB3289A12EB00E0CF58 /* TasksController.swift */,
@@ -704,7 +704,7 @@
 				8E40F6D328AC20C8000E5A50 /* TaskCell.swift */,
 				8E2DE5D828B5AA2C00EBC24A /* TaskCompletedPopup.swift */,
 			);
-			path = TaskController;
+			path = TasksController;
 			sourceTree = "<group>";
 		};
 		8E7FAFB5289A130500E0CF58 /* StatsController */ = {
@@ -761,8 +761,8 @@
 			children = (
 				8E7FAFCF289A356900E0CF58 /* DateHelper.swift */,
 				8E3FCDF628B1458800034FF0 /* AlertManager.swift */,
-				8E3FCDF828B15A8B00034FF0 /* NotificationManager.swift */,
 				8E1F874728B942980024FE4A /* UserDefaultsManager.swift */,
+				8E3FCDF828B15A8B00034FF0 /* NotificationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
