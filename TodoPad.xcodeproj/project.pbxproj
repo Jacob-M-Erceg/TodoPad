@@ -21,6 +21,10 @@
 		8E15C27628A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27428A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift */; };
 		8E15C27928A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27728A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift */; };
 		8E15C27A28A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15C27828A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift */; };
+		8E1F874028B8F8010024FE4A /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F873F28B8F8010024FE4A /* StatsCell.swift */; };
+		8E1F874228B8F80A0024FE4A /* StatsCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F874128B8F80A0024FE4A /* StatsCellTests.swift */; };
+		8E1F874428B8F8F60024FE4A /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F874328B8F8F60024FE4A /* Double+Extensions.swift */; };
+		8E1F874828B942980024FE4A /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F874728B942980024FE4A /* UserDefaultsManager.swift */; };
 		8E2AA0B5289A09A6009F2C53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0B4289A09A6009F2C53 /* AppDelegate.swift */; };
 		8E2AA0B7289A09A6009F2C53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0B6289A09A6009F2C53 /* SceneDelegate.swift */; };
 		8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0BD289A09A6009F2C53 /* TodoPad.xcdatamodeld */; };
@@ -163,6 +167,10 @@
 		8E15C27428A852C200380B64 /* RepeatingTaskCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatingTaskCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8E15C27728A853BE00380B64 /* RepeatSettingsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatSettingsCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8E15C27828A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatSettingsCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8E1F873F28B8F8010024FE4A /* StatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
+		8E1F874128B8F80A0024FE4A /* StatsCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCellTests.swift; sourceTree = "<group>"; };
+		8E1F874328B8F8F60024FE4A /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		8E1F874728B942980024FE4A /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		8E2AA0B1289A09A6009F2C53 /* TodoPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E2AA0B4289A09A6009F2C53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E2AA0B6289A09A6009F2C53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -474,6 +482,7 @@
 				8E8D108D28B6425800FAF1C0 /* StatsControllerTests.swift */,
 				8E30A68D28B79C4900F2AC5D /* StatsControllerViewModelTests.swift */,
 				8E30A68728B7868100F2AC5D /* StatsTableViewHeaderTests.swift */,
+				8E1F874128B8F80A0024FE4A /* StatsCellTests.swift */,
 			);
 			path = StatsController;
 			sourceTree = "<group>";
@@ -706,6 +715,7 @@
 				8E7FAFB6289A131500E0CF58 /* StatsController.swift */,
 				8E30A68B28B79BF900F2AC5D /* StatsControllerViewModel.swift */,
 				8E30A68528B7867300F2AC5D /* StatsTableViewHeader.swift */,
+				8E1F873F28B8F8010024FE4A /* StatsCell.swift */,
 			);
 			path = StatsController;
 			sourceTree = "<group>";
@@ -720,6 +730,7 @@
 				8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */,
 				8E4A9F5B28A1CDC60092B6AB /* Date+Extensions.swift */,
 				8E30A68928B7885100F2AC5D /* CAShapeLayer+Extension.swift */,
+				8E1F874328B8F8F60024FE4A /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -751,6 +762,7 @@
 				8E7FAFCF289A356900E0CF58 /* DateHelper.swift */,
 				8E3FCDF628B1458800034FF0 /* AlertManager.swift */,
 				8E3FCDF828B15A8B00034FF0 /* NotificationManager.swift */,
+				8E1F874728B942980024FE4A /* UserDefaultsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -930,6 +942,7 @@
 				8E73F1A428A655FD0085ED91 /* PersistentTaskManager.swift in Sources */,
 				8E0CEC2028A39E2300EFE295 /* TaskFormRepeatSettingsCellViewModel.swift in Sources */,
 				8E75D72328AE446000B7988B /* ViewTaskCellModel.swift in Sources */,
+				8E1F874828B942980024FE4A /* UserDefaultsManager.swift in Sources */,
 				8E73F1A128A64E6E0085ED91 /* CoreDataStack.swift in Sources */,
 				8E37475528A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift in Sources */,
 				8EF8610128A4FC3500FC6674 /* TaskGroupCell.swift in Sources */,
@@ -955,6 +968,7 @@
 				8E75D72528AE565400B7988B /* ViewTaskTableViewHeader.swift in Sources */,
 				8E15C27128A84FAC00380B64 /* RepeatingTaskManager.swift in Sources */,
 				8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */,
+				8E1F874428B8F8F60024FE4A /* Double+Extensions.swift in Sources */,
 				8E2B2BC7289D8E1F00DC1D4D /* TaskGroup.swift in Sources */,
 				8E7FAFCB289A334700E0CF58 /* DateScroller.swift in Sources */,
 				8E36705E28B3EA5F0056D92F /* SettingsController.swift in Sources */,
@@ -975,6 +989,7 @@
 				8E30A68A28B7885100F2AC5D /* CAShapeLayer+Extension.swift in Sources */,
 				8E0CEC1E28A39DC100EFE295 /* RepeatingDayCell.swift in Sources */,
 				8E7FAFCD289A34D700E0CF58 /* DateScrollerViewModel.swift in Sources */,
+				8E1F874028B8F8010024FE4A /* StatsCell.swift in Sources */,
 				8E73F1B728A65B050085ED91 /* PersistentTaskCD+CoreDataProperties.swift in Sources */,
 				8E37475428A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift in Sources */,
 				8E15C27A28A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift in Sources */,
@@ -994,6 +1009,7 @@
 			files = (
 				8E2B2BBB289CCE5100DC1D4D /* TaskFormControllerTests.swift in Sources */,
 				8E4A9F6428A21AA20092B6AB /* MockTaskFormTextFieldCellDelegate.swift in Sources */,
+				8E1F874228B8F80A0024FE4A /* StatsCellTests.swift in Sources */,
 				8EB9605F289B7F4B00D63477 /* TasksControllerViewModelTests.swift in Sources */,
 				8E75D72F28AE6BF700B7988B /* RepeatSettingsViewTaskCellTests.swift in Sources */,
 				8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */,

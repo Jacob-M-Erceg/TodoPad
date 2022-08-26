@@ -27,6 +27,14 @@ class Constants {
         "Yearly"
     ]
     
+    // MARK: - User Defaults Keys
+    static let statsSortingOptionsIsAscendingKey = "stats_sorting_options_is_ascending"
+    static let statsSortingOptionsSortByKey = "stats_sorting_options_sort_by"
+    
+    static let statsSortingOptionsIsAscendingKeyTesting = statsSortingOptionsIsAscendingKey + "_testing"
+    static let statsSortingOptionsSortByKeyTesting = statsSortingOptionsSortByKey + "_testing"
+    
+    
     // MARK: - Links
     static let privacyPolicy = "https://todopad.app/privacy-policy"
     static let termsAndConditions = "https://todopad.app/terms-and-conditions"

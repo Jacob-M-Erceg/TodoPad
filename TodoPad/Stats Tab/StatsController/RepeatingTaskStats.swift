@@ -37,14 +37,14 @@ struct RepeatingTaskStats {
         }
     }
     
-    func dailyDaysSinceStarted(startDate: Date, endDate: Date) -> Int {
+    private func dailyDaysSinceStarted(startDate: Date, endDate: Date) -> Int {
         let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
         guard let days = components.day.map({ $0 + 1}) else { return -404 }
         guard days > 0 else { return 0 }
         return days
     }
     
-    func weeklyDaysSinceStarted(startDate: Date, endDate: Date, days: [Int]) -> Int {
+    private func weeklyDaysSinceStarted(startDate: Date, endDate: Date, days: [Int]) -> Int {
         var count = 0
         var curDate = startDate
         
@@ -58,7 +58,7 @@ struct RepeatingTaskStats {
         return count
     }
     
-    func monthlyDaysSinceStarted(startDate: Date, endDate: Date) -> Int {
+    private func monthlyDaysSinceStarted(startDate: Date, endDate: Date) -> Int {
         var count = 0
         var increment: Int = 1
         var curDate = startDate
@@ -71,7 +71,7 @@ struct RepeatingTaskStats {
         return count
     }
     
-    func yearlyDaysSinceStarted(startDate: Date, endDate: Date) -> Int {
+    private func yearlyDaysSinceStarted(startDate: Date, endDate: Date) -> Int {
         var count = 0
         var increment: Int = 1
         var curDate = startDate

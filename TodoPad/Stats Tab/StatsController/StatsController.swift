@@ -15,9 +15,9 @@ class StatsController: UIViewController {
     
     
     // MARK: - UI Components
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView()
-//        tableView.register(StatsCell.self, forCellReuseIdentifier: StatsCell.identifier)
+        tableView.register(StatsCell.self, forCellReuseIdentifier: StatsCell.identifier)
         tableView.backgroundColor = .dynamicColorOne
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 66, right: 0)
         tableView.separatorStyle = .none
@@ -42,20 +42,30 @@ class StatsController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.viewModel.onUpdate = { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        let tasksCompletedCount = self.viewModel.fetchTotalTasksCompletedCount()
-//        let tasksCompletedCount = 0
-//        let level = Level(tasksCompleted: tasksCompletedCount)
-//        self.header?.configure(level: level)
+        self.viewModel.fetchData()
+        
+        let tasksCompletedCount = self.viewModel.fetchTotalTasksCompletedCount()
+        let level = Level(tasksCompleted: tasksCompletedCount)
+        devPrint(tasksCompletedCount)
+        self.header?.configure(level: level)
     }
 
     
     // MARK: - UI Setup
     private func setupUI() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(didTapSortButton))
+        
         self.view.backgroundColor = .dynamicColorOne
         
         self.header = StatsTableViewHeader(frame: CGRect(x: 0, y: 0, width: view.width, height: 393))
@@ -74,7 +84,29 @@ class StatsController: UIViewController {
     
     
     // MARK: - Selectors
-    
+    @objc private func didTapSortButton() {
+        let alert = UIAlertController(title: "Sort by...", message: nil, preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Name", style: .default) { [weak self] _ in
+            self?.viewModel.setSortingOptions(with: .name)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Time of Day", style: .default) { [weak self] _ in
+            self?.viewModel.setSortingOptions(with: .timeOfDay)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Ratio", style: .default) { [weak self] _ in
+            self?.viewModel.setSortingOptions(with: .ratio)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Days Completed", style: .default) { [weak self] _ in
+            self?.viewModel.setSortingOptions(with: .daysCompleted)
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 
@@ -82,11 +114,20 @@ class StatsController: UIViewController {
 extension StatsController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        return self.viewModel.repeatingTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StatsCell.identifier, for: indexPath) as? StatsCell else {
+            return UITableViewCell()
+        }
+        let repeatingTaskStats = self.viewModel.repeatingTasks[indexPath.row]
+        cell.configure(repeatingTaskStats: repeatingTaskStats)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 119
     }
 }
 
