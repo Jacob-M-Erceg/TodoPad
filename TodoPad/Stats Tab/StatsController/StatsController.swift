@@ -37,7 +37,7 @@ class StatsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = .dynamicColorOne
         self.setupUI()
         
         self.tableView.delegate = self
@@ -52,12 +52,10 @@ class StatsController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.viewModel.fetchData()
         
         let tasksCompletedCount = self.viewModel.fetchTotalTasksCompletedCount()
         let level = Level(tasksCompleted: tasksCompletedCount)
-        devPrint(tasksCompletedCount)
         self.header?.configure(level: level)
     }
 

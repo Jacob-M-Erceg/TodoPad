@@ -21,8 +21,6 @@ enum Level {
 // MARK: - Initalizers
 extension Level {
     
-    private init() { self = .error(-404) }
-    
     init(tasksCompleted: Int) {
         if tasksCompleted < 50 { self = .level1(tasksCompleted) }
         else if tasksCompleted < 250 { self = .level2(tasksCompleted) }
