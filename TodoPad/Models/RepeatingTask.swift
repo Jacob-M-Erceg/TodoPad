@@ -48,7 +48,7 @@ extension RepeatingTask {
     
     static var getMockRepeatingTask: RepeatingTask {
         return RepeatingTask(
-            title: "Eat brekfast",
+            title: "Eat Breakfast",
             desc: nil,
             taskUUID: UUID(),
             isCompleted: false,
