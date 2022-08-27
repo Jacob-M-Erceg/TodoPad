@@ -111,18 +111,17 @@ extension TasksControllerTests {
         XCTAssertEqual(headerHeight, 44)
     }
     
-    // TODO - Uncomment this
-    //    func testTableViewHeader_didTapTaskGroupCellCalled_OpensOrClosesTaskGroup() {
-    //        // Arrange
-    //        let taskGroup = self.sut.viewModel.taskGroups[0]
-    //
-    //        // Act
-    //        self.sut.didTapTaskGroupCell(for: taskGroup)
-    //        XCTAssertNotEqual(taskGroup.isOpened, self.sut.viewModel.taskGroups[0].isOpened)
-    //
-    //        self.sut.didTapTaskGroupCell(for: taskGroup)
-    //        XCTAssertEqual(taskGroup.isOpened, self.sut.viewModel.taskGroups[0].isOpened)
-    //    }
+    func testTableViewHeader_didTapTaskGroupCellCalled_OpensOrClosesTaskGroup() {
+        // Arrange
+        let taskGroup = self.sut.viewModel.taskGroups[0]
+        
+        // Act
+        self.sut.didTapTaskGroupCell(for: taskGroup)
+        XCTAssertNotEqual(taskGroup.isOpened, self.sut.viewModel.taskGroups[0].isOpened)
+        
+        self.sut.didTapTaskGroupCell(for: taskGroup)
+        XCTAssertEqual(taskGroup.isOpened, self.sut.viewModel.taskGroups[0].isOpened)
+    }
 }
 
 
@@ -152,18 +151,14 @@ extension TasksControllerTests {
         XCTAssertEqual(completedCount, 0)
     }
     
-    // TODO - Couldnt get this working
-    //    func testTableViewCell_CellForRowAt_CellNotNil() {
-    //        // Arrange
-    //
-    //        devPrint(self.sut.viewModel.taskGroups[0].tasks.count)
-    //        devPrint(self.sut.viewModel.taskGroups[1].tasks.count)
-    //
-    //        let cell = self.sut.tableView.dataSource?.tableView(self.sut.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-    //
-    //        // Assert
-    //        XCTAssertNotNil(cell)
-    //    }
+        func testTableViewCell_CellForRowAt_CellNotNil() {
+            // Arrange
+            self.sut.tableView.reloadData()
+            let cell = self.sut.tableView.dataSource?.tableView(self.sut.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+    
+            // Assert
+            XCTAssertNotNil(cell)
+        }
     
     func testTableViewCell_HeightForRowAt_Returns66() {
         // Arrange

@@ -38,7 +38,7 @@ class SettingsController: UIViewController {
                 AlertManager.showDeleteAllTaskskWarning(on: self) { deleted in
                     if deleted {
                         PersistentTaskManager().deleteAllPersistentTasks()
-                        RepeatingTaskManager().deleteAllRepeatingTasks() // TODO - Make sure CompletedRepeatingTaskCD is deleted
+                        RepeatingTaskManager().deleteAllRepeatingTasks()
                         NonRepeatingTaskManager().deleteAllNonRepeatingTasks()
                         self.refreshTasks?()
                         self.navigationController?.popViewController(animated: true)
@@ -51,9 +51,6 @@ class SettingsController: UIViewController {
     // MARK: - UI Components
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        //        tableView.register(LeaderboardControllerHeader.self, forHeaderFooterViewReuseIdentifier: LeaderboardControllerHeader.identifier)
-        //        tableView.register(LeaderboardCell.self, forCellReuseIdentifier: LeaderboardCell.identifier)
-//        tableView.separatorColor = .black
         tableView.backgroundColor = .dynamicColorOne
         return tableView
     }()

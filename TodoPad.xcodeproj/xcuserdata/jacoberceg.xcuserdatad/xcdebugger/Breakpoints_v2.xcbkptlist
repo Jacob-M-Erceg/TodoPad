@@ -32,8 +32,72 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "RepeatSettings"
-            landmarkType = "13">
+            landmarkName = "init(number:days:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D843F110-9650-4443-B0C1-7465CE15B425"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPad/Helpers/NotificationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "addNotificationRequest(with:and:task:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D843F110-9650-4443-B0C1-7465CE15B425 - a8933e59c4cd4f0a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static TodoPad.NotificationManager.addNotificationRequest(with: __C.UNUserNotificationCenter, and: Swift.Array&lt;__C.UNNotificationRequest&gt;, task: TodoPad.Task) -&gt; ()"
+                  moduleName = "TodoPad"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPad/Helpers/NotificationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "249"
+                  endingLineNumber = "249"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "D843F110-9650-4443-B0C1-7465CE15B425 - 868d1484b29b7217"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;__C.UNNotificationRequest&gt;) -&gt; () in static TodoPad.NotificationManager.addNotificationRequest(with: __C.UNUserNotificationCenter, and: Swift.Array&lt;__C.UNNotificationRequest&gt;, task: TodoPad.Task) -&gt; ()"
+                  moduleName = "TodoPad"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jacoberceg/Desktop/TodoPad/TodoPad/TodoPad/Helpers/NotificationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "249"
+                  endingLineNumber = "249"
+                  offsetFromSymbolStart = "396">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F2C9252-DE2D-4973-9F9F-14823C570F31"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodoPad/Helpers/NotificationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "addNotificationRequest(with:and:task:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

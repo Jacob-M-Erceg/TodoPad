@@ -20,7 +20,7 @@ enum RepeatSettings: Equatable {
         else if number == 1 { self = .weekly([]) }
         else if number == 2 { self = .monthly }
         else if number == 3 { self = .yearly }
-        else { fatalError("RepeatSettings init error.") }
+        else { self = .daily }
     }
     
     init(number: Int16, days: [NSInteger]) {
@@ -28,7 +28,7 @@ enum RepeatSettings: Equatable {
         else if number == 1 { self = .weekly(days) }
         else if number == 2 { self = .monthly }
         else if number == 3 { self = .yearly }
-        else { fatalError("RepeatSettings init error.") }
+        else { self = .daily }
     }
     
     var number: Int {

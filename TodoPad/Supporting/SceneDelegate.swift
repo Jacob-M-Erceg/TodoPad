@@ -25,8 +25,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // TODO - 
-//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        self.saveContext()
+    }
+    
+    func saveContext() {
+        let context = CoreDataStack.shared.context
+        
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
 }
 

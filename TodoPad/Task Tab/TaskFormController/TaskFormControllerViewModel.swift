@@ -229,7 +229,6 @@ extension TaskFormControllerViewModel {
 extension TaskFormControllerViewModel {
     
     // TODO - IsExpanded Tests
-    
     public func invertIsExpanded(_ indexPath: IndexPath) {
         let taskCell = self.taskFormCellModels[indexPath.section][indexPath.row]
         let taskCellState = taskCell.isExpanded

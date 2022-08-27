@@ -32,6 +32,10 @@ class AlertManager {
         self.showBasicAlert(on: vc, title: "Notification Permissions Error", message: "Please enable notifications for this app in your phones settings. ERROR: \(errorMessage)")
     }
     
+    static func showNotificationsNotGrantedError(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Please Allow Notifications", message: "Please allow notifications for TodoPad in your settings to enable notifications.")
+    }
+    
     static func showMaximumNotificationsError(on vc: UIViewController) {
         self.showBasicAlert(on: vc, title: "Maximum Notifications", message: "You can only set 64 notifications currently. For weekly tasks, each weekday counts as its own seperate notification. Please turn off notifications for some of your current events to enable this notification.")
     }

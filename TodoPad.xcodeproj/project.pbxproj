@@ -30,7 +30,6 @@
 		8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0BD289A09A6009F2C53 /* TodoPad.xcdatamodeld */; };
 		8E2AA0C1289A09A7009F2C53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E2AA0C0289A09A7009F2C53 /* Assets.xcassets */; };
 		8E2AA0C4289A09A7009F2C53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E2AA0C2289A09A7009F2C53 /* LaunchScreen.storyboard */; };
-		8E2AA0D9289A09A8009F2C53 /* TodoPadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2AA0D8289A09A8009F2C53 /* TodoPadUITests.swift */; };
 		8E2B2BB2289C554D00DC1D4D /* TaskFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BB1289C554D00DC1D4D /* TaskFormController.swift */; };
 		8E2B2BB4289CB02F00DC1D4D /* SpyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BB3289CB02F00DC1D4D /* SpyNavigationController.swift */; };
 		8E2B2BB7289CCA7700DC1D4D /* TaskFormControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B2BB6289CCA7700DC1D4D /* TaskFormControllerViewModel.swift */; };
@@ -143,13 +142,6 @@
 			remoteGlobalIDString = 8E2AA0B0289A09A6009F2C53;
 			remoteInfo = TodoPad;
 		};
-		8E2AA0D5289A09A8009F2C53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8E2AA0A9289A09A6009F2C53 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8E2AA0B0289A09A6009F2C53;
-			remoteInfo = TodoPad;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -179,8 +171,6 @@
 		8E2AA0C3289A09A7009F2C53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E2AA0C5289A09A7009F2C53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E2AA0CA289A09A8009F2C53 /* TodoPadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoPadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E2AA0D4289A09A8009F2C53 /* TodoPadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoPadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E2AA0D8289A09A8009F2C53 /* TodoPadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoPadUITests.swift; sourceTree = "<group>"; };
 		8E2B2BB1289C554D00DC1D4D /* TaskFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormController.swift; sourceTree = "<group>"; };
 		8E2B2BB3289CB02F00DC1D4D /* SpyNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyNavigationController.swift; sourceTree = "<group>"; };
 		8E2B2BB6289CCA7700DC1D4D /* TaskFormControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormControllerViewModel.swift; sourceTree = "<group>"; };
@@ -300,13 +290,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E2AA0D1289A09A8009F2C53 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -346,7 +329,6 @@
 			children = (
 				8E2AA0B3289A09A6009F2C53 /* TodoPad */,
 				8E2AA0CD289A09A8009F2C53 /* TodoPadTests */,
-				8E2AA0D7289A09A8009F2C53 /* TodoPadUITests */,
 				8E2AA0B2289A09A6009F2C53 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -356,7 +338,6 @@
 			children = (
 				8E2AA0B1289A09A6009F2C53 /* TodoPad.app */,
 				8E2AA0CA289A09A8009F2C53 /* TodoPadTests.xctest */,
-				8E2AA0D4289A09A8009F2C53 /* TodoPadUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -391,14 +372,6 @@
 				8E73DB0528A5398900928F1F /* CoreData */,
 			);
 			path = TodoPadTests;
-			sourceTree = "<group>";
-		};
-		8E2AA0D7289A09A8009F2C53 /* TodoPadUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8E2AA0D8289A09A8009F2C53 /* TodoPadUITests.swift */,
-			);
-			path = TodoPadUITests;
 			sourceTree = "<group>";
 		};
 		8E2B2BB0289C551E00DC1D4D /* TaskFormController */ = {
@@ -836,24 +809,6 @@
 			productReference = 8E2AA0CA289A09A8009F2C53 /* TodoPadTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8E2AA0D3289A09A8009F2C53 /* TodoPadUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8E2AA0E4289A09A8009F2C53 /* Build configuration list for PBXNativeTarget "TodoPadUITests" */;
-			buildPhases = (
-				8E2AA0D0289A09A8009F2C53 /* Sources */,
-				8E2AA0D1289A09A8009F2C53 /* Frameworks */,
-				8E2AA0D2289A09A8009F2C53 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8E2AA0D6289A09A8009F2C53 /* PBXTargetDependency */,
-			);
-			name = TodoPadUITests;
-			productName = TodoPadUITests;
-			productReference = 8E2AA0D4289A09A8009F2C53 /* TodoPadUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -868,10 +823,6 @@
 						CreatedOnToolsVersion = 13.2.1;
 					};
 					8E2AA0C9289A09A8009F2C53 = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 8E2AA0B0289A09A6009F2C53;
-					};
-					8E2AA0D3289A09A8009F2C53 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 8E2AA0B0289A09A6009F2C53;
 					};
@@ -892,7 +843,6 @@
 			targets = (
 				8E2AA0B0289A09A6009F2C53 /* TodoPad */,
 				8E2AA0C9289A09A8009F2C53 /* TodoPadTests */,
-				8E2AA0D3289A09A8009F2C53 /* TodoPadUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -908,13 +858,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8E2AA0C8289A09A8009F2C53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8E2AA0D2289A09A8009F2C53 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1061,14 +1004,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8E2AA0D0289A09A8009F2C53 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8E2AA0D9289A09A8009F2C53 /* TodoPadUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1076,11 +1011,6 @@
 			isa = PBXTargetDependency;
 			target = 8E2AA0B0289A09A6009F2C53 /* TodoPad */;
 			targetProxy = 8E2AA0CB289A09A8009F2C53 /* PBXContainerItemProxy */;
-		};
-		8E2AA0D6289A09A8009F2C53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8E2AA0B0289A09A6009F2C53 /* TodoPad */;
-			targetProxy = 8E2AA0D5289A09A8009F2C53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1308,42 +1238,6 @@
 			};
 			name = Release;
 		};
-		8E2AA0E5289A09A8009F2C53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3MPMZY465Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.todopad.TodoPadUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TodoPad;
-			};
-			name = Debug;
-		};
-		8E2AA0E6289A09A8009F2C53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3MPMZY465Z;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.todopad.TodoPadUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = TodoPad;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1370,15 +1264,6 @@
 			buildConfigurations = (
 				8E2AA0E2289A09A8009F2C53 /* Debug */,
 				8E2AA0E3289A09A8009F2C53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8E2AA0E4289A09A8009F2C53 /* Build configuration list for PBXNativeTarget "TodoPadUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8E2AA0E5289A09A8009F2C53 /* Debug */,
-				8E2AA0E6289A09A8009F2C53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
