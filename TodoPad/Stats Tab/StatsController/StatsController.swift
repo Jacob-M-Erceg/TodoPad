@@ -83,7 +83,13 @@ class StatsController: UIViewController {
     
     // MARK: - Selectors
     @objc private func didTapSortButton() {
-        let alert = UIAlertController(title: "Sort by...", message: nil, preferredStyle: .actionSheet)
+         var alertStyle = UIAlertController.Style.actionSheet
+        
+         if (UIDevice.current.userInterfaceIdiom == .pad) {
+           alertStyle = UIAlertController.Style.alert
+         }
+        
+        let alert = UIAlertController(title: "Sort by...", message: nil, preferredStyle: alertStyle)
         
         alert.addAction(UIAlertAction(title: "Name", style: .default) { [weak self] _ in
             self?.viewModel.setSortingOptions(with: .name)
@@ -102,6 +108,10 @@ class StatsController: UIViewController {
         })
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+          alertStyle = UIAlertController.Style.alert
+        }
         
         self.present(alert, animated: true, completion: nil)
     }
