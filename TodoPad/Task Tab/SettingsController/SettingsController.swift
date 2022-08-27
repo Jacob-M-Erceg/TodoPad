@@ -29,7 +29,11 @@ class SettingsController: UIViewController {
                 guard let self = self else { return }
                 AlertManager.showDeleteAllNotificationskWarning(on: self) { deleted in
                     if deleted {
+                        HapticsManager.shared.vibrateForActionCompleted()
+                        
                         NotificationManager.removeAllNotifications()
+                    } else {
+                        HapticsManager.shared.vibrateForSelection()
                     }
                 }
             }),
@@ -37,11 +41,15 @@ class SettingsController: UIViewController {
                 guard let self = self else { return }
                 AlertManager.showDeleteAllTaskskWarning(on: self) { deleted in
                     if deleted {
+                        HapticsManager.shared.vibrateForActionCompleted()
+                        
                         PersistentTaskManager().deleteAllPersistentTasks()
                         RepeatingTaskManager().deleteAllRepeatingTasks()
                         NonRepeatingTaskManager().deleteAllNonRepeatingTasks()
                         self.refreshTasks?()
                         self.navigationController?.popViewController(animated: true)
+                    } else {
+                        HapticsManager.shared.vibrateForSelection()
                     }
                 }
             }),
@@ -99,7 +107,7 @@ extension SettingsController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        HapticsManager.shared.vibrateForSelection()
         self.cells[indexPath.section][indexPath.row].handler()
     }
 }

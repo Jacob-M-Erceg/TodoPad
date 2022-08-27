@@ -105,6 +105,8 @@ class TasksController: UIViewController {
     }
     
     @objc private func didTapSettings() {
+        HapticsManager.shared.vibrateForSelection()
+        
         let vc = SettingsController()
         vc.refreshTasks = { [weak self] in
             self?.viewModel.fetchTasks(for: self?.viewModel.selectedDate ?? Date())
@@ -121,6 +123,7 @@ extension TasksController: DateScrollerDelegate {
     func didChangeDate(with date: Date) {
         self.navigationItem.title = DateHelper.getMonthAndDayString(for: date)
         self.viewModel.changeSelectedDate(with: date)
+        HapticsManager.shared.vibrateForSelection()
     }
 }
 
@@ -147,6 +150,7 @@ extension TasksController: UITableViewDelegate, UITableViewDataSource, TaskGroup
     }
     
     func didTapTaskGroupCell(for taskGroup: TaskGroup) {
+        HapticsManager.shared.vibrateForSelection()
         self.viewModel.openOrCloseTaskGroupSection(for: taskGroup)
     }
 }
@@ -177,6 +181,8 @@ extension TasksController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        HapticsManager.shared.vibrateForSelection()
+        
         let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
         let viewModel = ViewTaskControllerViewModel(task: task)
         let vc = ViewTaskController(viewModel: viewModel)
@@ -198,6 +204,8 @@ extension TasksController {
         let actionButtonTitle: String = isCompleted ? "Undo" : "Complete"
         
         let action = UIContextualAction(style: .normal, title: actionButtonTitle) { _, _, completion in
+            HapticsManager.shared.vibrateForActionCompleted()
+            
             self.viewModel.invertTaskCompleted(with: task)
             if !isCompleted {
                 self.showTaskCompletedPopup()
@@ -211,12 +219,14 @@ extension TasksController {
 
         let edit = UIContextualAction(style: .normal, title: "Edit") { [weak self] _, _, _ in
             guard let self = self else { return }
+            HapticsManager.shared.vibrateForSelection()
             let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
             self.didTapEditTask(for: task)
         }
 
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, _ in
             guard let self = self else { return }
+            HapticsManager.shared.vibrateForSelection()
             let task = self.viewModel.taskGroups[indexPath.section].tasks[indexPath.row]
             self.deleteTask(with: task)
         }
@@ -229,6 +239,8 @@ extension TasksController {
 extension TasksController: TasksTableViewHeaderDelegate {
     
     func didTapAddNewTask() {
+        HapticsManager.shared.vibrateForSelection()
+        
         let taskFormModel = TaskFormModel()
         let viewModel = TaskFormControllerViewModel(selectedDate: self.viewModel.selectedDate, taskFormModel: taskFormModel, originalTask: nil)
         let vc = TaskFormController(viewModel)
@@ -271,9 +283,10 @@ extension TasksController {
     private func deleteTask(with task: Task) {
         switch task {
         case .persistent(_), .nonRepeating(_):
-            AlertManager.showDeleteTaskWarning(on: self) { [weak self] willContinue in
+            AlertManager.showDeleteTaskWarning(on: sgself) { [weak self] willContinue in
                 guard willContinue else { self?.viewModel.onUpdate?(); return }
                 self?.viewModel.deleteTask(for: task)
+                HapticsManager.shared.vibrateForActionCompleted()
             }
             
             return
@@ -287,14 +300,20 @@ extension TasksController {
             guard let self = self else { return }
             switch selectionOption {
             case .allFuture:
+                HapticsManager.shared.vibrateForActionCompleted()
+                
                 self.viewModel.deleteRepeatingTaskForThisAndFutureDays(for: repeatingTask, selectedDate: self.viewModel.selectedDate)
                 break
                 
             case .allTasks:
+                HapticsManager.shared.vibrateForSelection()
+                
                 AlertManager.showCompletelyDeleteRepeatingTaskWarning(on: self) { [weak self] willContinue in
                     if willContinue {
+                        HapticsManager.shared.vibrateForActionCompleted()
                         self?.viewModel.completelyDeleteRepeatingTask(for: repeatingTask)
                     } else {
+                        HapticsManager.shared.vibrateForSelection()
                         self?.viewModel.onUpdate?()
                     }
                 }

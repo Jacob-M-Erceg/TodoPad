@@ -83,6 +83,8 @@ class StatsController: UIViewController {
     
     // MARK: - Selectors
     @objc private func didTapSortButton() {
+        HapticsManager.shared.vibrateForSelection()
+        
          var alertStyle = UIAlertController.Style.actionSheet
         
          if (UIDevice.current.userInterfaceIdiom == .pad) {
@@ -108,10 +110,6 @@ class StatsController: UIViewController {
         })
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        if (UIDevice.current.userInterfaceIdiom == .pad) {
-          alertStyle = UIAlertController.Style.alert
-        }
         
         self.present(alert, animated: true, completion: nil)
     }

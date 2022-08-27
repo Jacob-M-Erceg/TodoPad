@@ -72,6 +72,8 @@ class TaskFormController: UIViewController {
     
     // MARK: - Selectors
     @objc private func didClickSave() {
+        HapticsManager.shared.vibrateForActionCompleted()
+        
         if let task = self.viewModel.validateTaskFormModel(with: self.viewModel.taskFormModel) {
             switch self.viewModel.taskFormMode {
             case .newTask:
@@ -81,7 +83,7 @@ class TaskFormController: UIViewController {
                 self.editExistingTask(task: task)
             }
             
-            if let originalTask = self.viewModel.originalTask, originalTask.notificationsEnabled == true {
+            if let originalTask = self.viewModel.originalTask, originalTask.notificationsEnabled {
                 NotificationManager.removeNotifications(for: task)
             }
             
@@ -91,6 +93,8 @@ class TaskFormController: UIViewController {
             
             self.navigationController?.popViewController(animated: true)
             self.onCompleted?()
+        } else {
+            HapticsManager.shared.vibrate(for: .error)
         }
     }
     
@@ -200,6 +204,8 @@ extension TaskFormController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
         let taskFormCellModel = self.viewModel.taskFormCellModels[indexPath.section][indexPath.row]
         guard taskFormCellModel.isEnabled, taskFormCellModel.cellType.isExpandable else { return }
+        
+        HapticsManager.shared.vibrateForSelection()
         
         DispatchQueue.main.async { [weak self] in
             self?.viewModel.invertIsExpanded(indexPath)

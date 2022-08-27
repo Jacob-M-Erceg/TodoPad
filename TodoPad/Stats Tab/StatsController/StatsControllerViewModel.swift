@@ -111,6 +111,8 @@ class StatsControllerViewModel {
 extension StatsControllerViewModel {
     
     public func setSortingOptions(with sortBy: StatsControllerSortingOptions.SortBy) {
+        HapticsManager.shared.vibrateForActionCompleted()
+        
         if self.sortingOptions.sortBy == sortBy {
             // Invert Ascending/Descending
             self.sortingOptions.setIsAscending(with: !self.sortingOptions.isAscending)

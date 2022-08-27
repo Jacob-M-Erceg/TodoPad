@@ -16,6 +16,11 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
         self.setupViewControllers()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+//        super.tabBar(tabBar, didSelect: item)
+        HapticsManager.shared.vibrateForSelection()
+    }
+    
     // MARK: - Helpers
     private func setupViewControllers() {
         let tasksController = TasksController()
