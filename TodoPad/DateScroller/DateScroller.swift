@@ -11,7 +11,7 @@ protocol DateScrollerDelegate: AnyObject {
     func didChangeDate(with date: Date)
 }
 
-class DateScroller: UIView {
+class DateScroller: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Variables
     let viewModel: DateScrollerViewModel
@@ -48,12 +48,16 @@ class DateScroller: UIView {
         
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(didLeftSwipe))
         leftSwipeGesture.direction = .left
+        leftSwipeGesture.delegate = self
         
         let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(didRightSwipe))
         rightSwipeGesture.direction = .right
+        rightSwipeGesture.delegate = self
         
         self.addGestureRecognizer(leftSwipeGesture)
         self.addGestureRecognizer(rightSwipeGesture)
+        
+        self.backgroundColor = .red
         
         self.viewModel.onUpdate = { [weak self] in
             DispatchQueue.main.async { [weak self] in
@@ -106,6 +110,12 @@ class DateScroller: UIView {
     
     @objc func didRightSwipe() {
         self.viewModel.updateSunday(direction: .right)
+    }
+    
+    // iPad Gesture Recognizer is not called properly on iPad without this.
+    // It won't swipe over CollectionView without this.
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 
