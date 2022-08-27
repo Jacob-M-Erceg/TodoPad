@@ -174,7 +174,9 @@ extension TasksControllerViewModel {
 extension TasksControllerViewModel {
     
     public func deleteTask(for task: Task) {
-        NotificationManager.removeNotifications(for: task)
+        if task.notificationsEnabled {
+            NotificationManager.removeNotifications(for: task)
+        }
         
         switch task {
         case .persistent(let persistentTask):
@@ -193,13 +195,15 @@ extension TasksControllerViewModel {
     
     public func deleteRepeatingTaskForThisAndFutureDays(for repeatingTask: RepeatingTask, selectedDate: Date) {
         // TODO - Make this only delete notifications for days after self.selectedDate
-        NotificationManager.removeNotifications(for: Task.repeating(repeatingTask))
+//        NotificationManager.removeNotifications(for: Task.repeating(repeatingTask))
         self.repeatingTaskManager.deleteThisAndFutureRepeatingTask(with: repeatingTask, deleteDate: selectedDate)
         self.fetchTasks(for: selectedDate)
     }
     
     public func completelyDeleteRepeatingTask(for repeatingTask: RepeatingTask) {
-        NotificationManager.removeNotifications(for: Task.repeating(repeatingTask))
+        if repeatingTask.notificationsEnabled {
+            NotificationManager.removeNotifications(for: Task.repeating(repeatingTask))
+        }
         self.repeatingTaskManager.completelyDeleteRepeatingTask(with: repeatingTask)
         self.fetchTasks(for: self.selectedDate)
     }

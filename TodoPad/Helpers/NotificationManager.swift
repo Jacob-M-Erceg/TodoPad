@@ -57,68 +57,68 @@ class NotificationManager {
     // MARK: - Daily
     private static func createRequestForDaily(_ content: UNMutableNotificationContent, _ repeatingTask: RepeatingTask) -> UNNotificationRequest {
         
-            var notifComponents = DateComponents()
-            notifComponents.timeZone = .current
-            
-            if let time = repeatingTask.time {
-                let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
-                notifComponents.hour = timeComponents.hour
-                notifComponents.minute = timeComponents.minute
-            } else {
-                notifComponents.hour = 00
-                notifComponents.minute = 00
-            }
-            
-            let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
-            let request = UNNotificationRequest(identifier: repeatingTask.taskUUID.uuidString, content: content, trigger: trigger)
+        var notifComponents = DateComponents()
+        notifComponents.timeZone = .current
         
-            return request
+        if let time = repeatingTask.time {
+            let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
+            notifComponents.hour = timeComponents.hour
+            notifComponents.minute = timeComponents.minute
+        } else {
+            notifComponents.hour = 00
+            notifComponents.minute = 00
+        }
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: repeatingTask.taskUUID.uuidString, content: content, trigger: trigger)
+        
+        return request
     }
     
     // MARK: - Weekly
     private static func createRequestsForWeekly(_ content: UNMutableNotificationContent, _ repeatingTask: RepeatingTask, _ weekday: Int) -> UNNotificationRequest  {
         
-            var notifComponents = DateComponents()
-            notifComponents.timeZone = .current
-            
-            if let time = repeatingTask.time {
-                let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
-                notifComponents.hour = timeComponents.hour
-                notifComponents.minute = timeComponents.minute
-            } else {
-                notifComponents.hour = 00
-                notifComponents.minute = 00
-            }
-            
-            notifComponents.weekday = weekday
-            
-            let identifier = repeatingTask.taskUUID.uuidString + "_" + weekday.description
-            
-            let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
-            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-            return request
+        var notifComponents = DateComponents()
+        notifComponents.timeZone = .current
+        
+        if let time = repeatingTask.time {
+            let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
+            notifComponents.hour = timeComponents.hour
+            notifComponents.minute = timeComponents.minute
+        } else {
+            notifComponents.hour = 00
+            notifComponents.minute = 00
+        }
+        
+        notifComponents.weekday = weekday
+        
+        let identifier = repeatingTask.taskUUID.uuidString + "_" + weekday.description
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        return request
     }
     
     // MARK: - Monthly
     private static func createRequestsForMonthly(_ content: UNMutableNotificationContent, _ repeatingTask: RepeatingTask) -> UNNotificationRequest  {
         
-            var notifComponents = DateComponents()
-            notifComponents.timeZone = .current
-            
-            let day = Calendar.current.dateComponents([.day], from: repeatingTask.startDate).day
-            notifComponents.day = day
-            
-            if let time = repeatingTask.time {
-                let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
-                notifComponents.hour = timeComponents.hour
-                notifComponents.minute = timeComponents.minute
-            } else {
-                notifComponents.hour = 00
-                notifComponents.minute = 00
-            }
-            
-            let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
-            let request = UNNotificationRequest(identifier: repeatingTask.taskUUID.uuidString, content: content, trigger: trigger)
+        var notifComponents = DateComponents()
+        notifComponents.timeZone = .current
+        
+        let day = Calendar.current.dateComponents([.day], from: repeatingTask.startDate).day
+        notifComponents.day = day
+        
+        if let time = repeatingTask.time {
+            let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
+            notifComponents.hour = timeComponents.hour
+            notifComponents.minute = timeComponents.minute
+        } else {
+            notifComponents.hour = 00
+            notifComponents.minute = 00
+        }
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: repeatingTask.taskUUID.uuidString, content: content, trigger: trigger)
         return request
     }
     
@@ -126,24 +126,24 @@ class NotificationManager {
     // MARK: - Yearly
     private static func createRequestsForYearly(_ content: UNMutableNotificationContent, _ repeatingTask: RepeatingTask) -> UNNotificationRequest  {
         
-            var notifComponents = DateComponents()
-            notifComponents.timeZone = .current
-            
-            let dateComponents = Calendar.current.dateComponents([.month, .day], from: repeatingTask.startDate)
-            notifComponents.month = dateComponents.month
-            notifComponents.day = dateComponents.day
-            
-            if let time = repeatingTask.time {
-                let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
-                notifComponents.hour = timeComponents.hour
-                notifComponents.minute = timeComponents.minute
-            } else {
-                notifComponents.hour = 00
-                notifComponents.minute = 00
-            }
-            
-            let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
-            let request = UNNotificationRequest(identifier: repeatingTask.taskUUID.uuidString, content: content, trigger: trigger)
+        var notifComponents = DateComponents()
+        notifComponents.timeZone = .current
+        
+        let dateComponents = Calendar.current.dateComponents([.month, .day], from: repeatingTask.startDate)
+        notifComponents.month = dateComponents.month
+        notifComponents.day = dateComponents.day
+        
+        if let time = repeatingTask.time {
+            let timeComponents = Calendar.current.dateComponents([.hour, .minute], from: time)
+            notifComponents.hour = timeComponents.hour
+            notifComponents.minute = timeComponents.minute
+        } else {
+            notifComponents.hour = 00
+            notifComponents.minute = 00
+        }
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: notifComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: repeatingTask.taskUUID.uuidString, content: content, trigger: trigger)
         return request
     }
     
@@ -222,6 +222,14 @@ extension NotificationManager {
                 DispatchQueue.main.async {
                     if let rootTabBarController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController {
                         AlertManager.showNotificationsPermissionsError(on: rootTabBarController, error?.localizedDescription ?? "Unknown")
+                    }
+                }
+            }
+            
+            if granted == false {
+                DispatchQueue.main.async {
+                    if let rootTabBarController = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController {
+                        AlertManager.showNotificationsNotGrantedError(on: rootTabBarController)
                     }
                 }
             }

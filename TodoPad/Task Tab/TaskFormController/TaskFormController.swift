@@ -81,7 +81,10 @@ class TaskFormController: UIViewController {
                 self.editExistingTask(task: task)
             }
             
-            NotificationManager.removeNotifications(for: task)
+            if let originalTask = self.viewModel.originalTask, originalTask.notificationsEnabled == true {
+                NotificationManager.removeNotifications(for: task)
+            }
+            
             if task.notificationsEnabled {
                 NotificationManager.setNotification(for: task)
             }
