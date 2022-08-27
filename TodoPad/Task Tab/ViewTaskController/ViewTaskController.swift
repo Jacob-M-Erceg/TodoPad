@@ -91,6 +91,7 @@ class ViewTaskController: UIViewController, ViewTaskTableViewHeaderDelegate {
     }
     
     func didTapCompleteTask() {
+        HapticsManager.shared.vibrateForActionCompleted()
         self.onTappedCompleteTask?()
         self.dismiss(animated: true, completion: nil)
     }

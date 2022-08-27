@@ -69,7 +69,12 @@ class TaskFormTextFieldCell: UITableViewCell {
 // MARK: - TextField Fucntions
 extension TaskFormTextFieldCell: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        HapticsManager.shared.vibrateForLightSelection()
+    }
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        HapticsManager.shared.vibrateForLightSelection()
         self.delegate?.didEditTextField(self.taskFormCellModel, textField.text)
     }
 }

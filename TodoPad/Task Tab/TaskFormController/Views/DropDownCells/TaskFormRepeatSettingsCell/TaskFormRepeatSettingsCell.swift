@@ -177,6 +177,8 @@ extension TaskFormRepeatSettingsCell: UICollectionViewDelegate, UICollectionView
     
     // TODO - tests
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        HapticsManager.shared.vibrateForLightSelection()
+        
         collectionView.deselectItem(at: indexPath, animated: true)
 
         self.viewModel.didSelectItemAt(indexPath)

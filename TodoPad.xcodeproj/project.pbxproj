@@ -75,6 +75,7 @@
 		8E40F6D628AC2101000E5A50 /* TaskCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40F6D528AC2101000E5A50 /* TaskCellTests.swift */; };
 		8E40F6D928AC8704000E5A50 /* ViewTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40F6D828AC8704000E5A50 /* ViewTaskController.swift */; };
 		8E40F6DB28AC948A000E5A50 /* MockTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E40F6DA28AC948A000E5A50 /* MockTasksController.swift */; };
+		8E43FCAD28B99CAD001E3694 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E43FCAC28B99CAD001E3694 /* HapticsManager.swift */; };
 		8E4A9F5428A0A0440092B6AB /* TaskFormCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5328A0A0440092B6AB /* TaskFormCellModel.swift */; };
 		8E4A9F5728A0A2430092B6AB /* TaskFormCellModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */; };
 		8E4A9F5A28A12D4F0092B6AB /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */; };
@@ -216,6 +217,7 @@
 		8E40F6D528AC2101000E5A50 /* TaskCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellTests.swift; sourceTree = "<group>"; };
 		8E40F6D828AC8704000E5A50 /* ViewTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTaskController.swift; sourceTree = "<group>"; };
 		8E40F6DA28AC948A000E5A50 /* MockTasksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTasksController.swift; sourceTree = "<group>"; };
+		8E43FCAC28B99CAD001E3694 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		8E4A9F5328A0A0440092B6AB /* TaskFormCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormCellModel.swift; sourceTree = "<group>"; };
 		8E4A9F5628A0A2430092B6AB /* TaskFormCellModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormCellModelTests.swift; sourceTree = "<group>"; };
 		8E4A9F5928A12D4F0092B6AB /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
@@ -736,6 +738,7 @@
 				8E3FCDF628B1458800034FF0 /* AlertManager.swift */,
 				8E1F874728B942980024FE4A /* UserDefaultsManager.swift */,
 				8E3FCDF828B15A8B00034FF0 /* NotificationManager.swift */,
+				8E43FCAC28B99CAD001E3694 /* HapticsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				8E73F1B728A65B050085ED91 /* PersistentTaskCD+CoreDataProperties.swift in Sources */,
 				8E37475428A8150B001A114C /* NonRepeatingTaskCD+CoreDataClass.swift in Sources */,
 				8E15C27A28A853BE00380B64 /* RepeatSettingsCD+CoreDataProperties.swift in Sources */,
+				8E43FCAD28B99CAD001E3694 /* HapticsManager.swift in Sources */,
 				8E3FCDF928B15A8B00034FF0 /* NotificationManager.swift in Sources */,
 				8E2B2BD6289DC34600DC1D4D /* RepeatSettings.swift in Sources */,
 				8E40F6D928AC8704000E5A50 /* ViewTaskController.swift in Sources */,
