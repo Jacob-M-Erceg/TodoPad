@@ -16,7 +16,7 @@ class NormalViewTaskCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.tintColor = .white
-        iv.image = UIImage(systemName: "questionmark.square")?.withTintColor(.label, renderingMode: .automatic)
+        iv.image = UIImage(systemName: "questionmark.square")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         return iv
     }()
     
@@ -40,7 +40,7 @@ class NormalViewTaskCell: UITableViewCell {
     }
     
     public func configure(image: UIImage?, title: String) {
-        self.iconImageView.image = image
+        self.iconImageView.image = image?.withTintColor(.label, renderingMode: .alwaysOriginal)
         self.titleLabel.text = title
     }
     

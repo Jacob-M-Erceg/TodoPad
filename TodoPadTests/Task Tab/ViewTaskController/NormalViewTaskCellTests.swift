@@ -22,7 +22,7 @@ class NormalViewTaskCellTests: XCTestCase {
     
     func testNormalViewTaskCell_WhenConfigured_UIImageIsSet() {
         // Arrange
-        let image = UIImage(systemName: "plus")
+        let image = UIImage(systemName: "plus")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         
         // Act
         self.sut.configure(image: image, title: "")
