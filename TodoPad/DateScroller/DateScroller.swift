@@ -57,8 +57,6 @@ class DateScroller: UIView, UIGestureRecognizerDelegate {
         self.addGestureRecognizer(leftSwipeGesture)
         self.addGestureRecognizer(rightSwipeGesture)
         
-        self.backgroundColor = .red
-        
         self.viewModel.onUpdate = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
