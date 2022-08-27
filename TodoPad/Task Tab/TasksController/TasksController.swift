@@ -283,7 +283,7 @@ extension TasksController {
     private func deleteTask(with task: Task) {
         switch task {
         case .persistent(_), .nonRepeating(_):
-            AlertManager.showDeleteTaskWarning(on: sgself) { [weak self] willContinue in
+            AlertManager.showDeleteTaskWarning(on: self) { [weak self] willContinue in
                 guard willContinue else { self?.viewModel.onUpdate?(); return }
                 self?.viewModel.deleteTask(for: task)
                 HapticsManager.shared.vibrateForActionCompleted()
