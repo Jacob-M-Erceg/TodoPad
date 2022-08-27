@@ -1152,6 +1152,7 @@
 				DEVELOPMENT_TEAM = 3MPMZY465Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoPad/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TodoPad;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1180,6 +1181,7 @@
 				DEVELOPMENT_TEAM = 3MPMZY465Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoPad/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TodoPad;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
