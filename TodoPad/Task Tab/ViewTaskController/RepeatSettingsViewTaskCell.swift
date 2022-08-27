@@ -18,7 +18,7 @@ class RepeatSettingsViewTaskCell: UITableViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.tintColor = .white
-        iv.image = UIImage(systemName: "questionmark.square")?.withTintColor(.label, renderingMode: .automatic)
+        iv.image = UIImage(systemName: "questionmark.square")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         return iv
     }()
     
@@ -50,7 +50,7 @@ class RepeatSettingsViewTaskCell: UITableViewCell {
     }
     
     public func configure(image: UIImage?, title: String, weekdayArray: [Int]?) {
-        self.iconImageView.image = image
+        self.iconImageView.image = image?.withTintColor(.label, renderingMode: .alwaysOriginal)
         self.titleLabel.text = title
         self.weekdayArray = weekdayArray
         

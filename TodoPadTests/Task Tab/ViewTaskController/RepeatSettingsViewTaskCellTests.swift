@@ -22,7 +22,7 @@ class RepeatSettingsViewTaskCellTests: XCTestCase {
     
     func testRepeatSettingsViewTaskCell_WhenConfigured_PropertiesAreSet() {
         // Arrange
-        let image = UIImage(systemName: "plus")
+        let image = UIImage(systemName: "plus")?.withTintColor(.label, renderingMode: .alwaysOriginal)
         let title = "My Title"
         let array = [1, 2, 5]
         
