@@ -125,6 +125,7 @@
 		8E7FAFDA289A3EB500E0CF58 /* DateScrollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */; };
 		8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */; };
 		8E8D108E28B6425800FAF1C0 /* StatsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D108D28B6425800FAF1C0 /* StatsControllerTests.swift */; };
+		8E9343F728BB3A89004FC0EE /* AppReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9343F628BB3A89004FC0EE /* AppReviewRequest.swift */; };
 		8EB96058289B577100D63477 /* MockDateScrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */; };
 		8EB9605A289B79DF00D63477 /* TasksControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96059289B79DF00D63477 /* TasksControllerTests.swift */; };
 		8EB9605D289B7AC500D63477 /* TasksTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9605C289B7AC500D63477 /* TasksTableViewHeader.swift */; };
@@ -267,6 +268,7 @@
 		8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerTests.swift; sourceTree = "<group>"; };
 		8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		8E8D108D28B6425800FAF1C0 /* StatsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsControllerTests.swift; sourceTree = "<group>"; };
+		8E9343F628BB3A89004FC0EE /* AppReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewRequest.swift; sourceTree = "<group>"; };
 		8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateScrollerDelegate.swift; sourceTree = "<group>"; };
 		8EB96059289B79DF00D63477 /* TasksControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksControllerTests.swift; sourceTree = "<group>"; };
 		8EB9605C289B7AC500D63477 /* TasksTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewHeader.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				8E36705D28B3EA5F0056D92F /* SettingsController.swift */,
 				8E36706228B3EC9E0056D92F /* SettingsCellModel.swift */,
 				8E36706428B40A160056D92F /* WebViewerController.swift */,
+				8E9343F628BB3A89004FC0EE /* AppReviewRequest.swift */,
 			);
 			path = SettingsController;
 			sourceTree = "<group>";
@@ -913,6 +916,7 @@
 				8E30A69628B7A2D100F2AC5D /* RepeatingTaskStats.swift in Sources */,
 				8E75D72528AE565400B7988B /* ViewTaskTableViewHeader.swift in Sources */,
 				8E15C27128A84FAC00380B64 /* RepeatingTaskManager.swift in Sources */,
+				8E9343F728BB3A89004FC0EE /* AppReviewRequest.swift in Sources */,
 				8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */,
 				8E1F874428B8F8F60024FE4A /* Double+Extensions.swift in Sources */,
 				8E2B2BC7289D8E1F00DC1D4D /* TaskGroup.swift in Sources */,
