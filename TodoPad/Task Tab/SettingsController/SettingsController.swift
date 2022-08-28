@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 // TODO - Test This Class
 class SettingsController: UIViewController {
@@ -14,6 +15,50 @@ class SettingsController: UIViewController {
     
     // MARK: - Variables
     lazy private(set) var cells = [
+        [
+            SettingsCellModel(title: "Rate App", handler: { [weak self] in
+                guard let self = self else { return }
+                
+                AlertManager.showRateAppAlertPrompt(on: self) { [weak self] showRateApp in
+                    if showRateApp {
+                        guard let self = self else { return }
+                        AppReviewRequest.requestReviewIfNeeded(with: self)
+                    } else {
+                        let email = Constants.supportEmail
+                        let subject = "App Improvment Suggestion"
+                        let body = "Please leave some app improvement suggestions below: \n\n"
+                        self?.showMailComposer(with: email, and: subject, and: body)
+                        return
+                    }
+                }
+            }),
+            SettingsCellModel(title: "Share App", handler: { [weak self] in
+                self?.presentShareSheet()
+            })
+        ],
+        [
+            SettingsCellModel(title: "Report Bug", handler: { [weak self] in
+                guard let self = self else { return }
+                
+                AlertManager.showDetailedReportAlert(on: self) { [weak self] in
+                    let email = Constants.supportEmail
+                    let subject = "Bug Report"
+                    let body = "Please fill out as many details as possible.... \n\n"
+                    + "iPhone Model:  \n"
+                    + "iOS Version: \n"
+                    + "Desription of Bug: \n"
+                    + "Anything else: "
+                    self?.showMailComposer(with: email, and: subject, and: body)
+                }
+            }),
+            SettingsCellModel(title: "Feature Suggestion", handler: { [weak self] in
+                
+                let email = Constants.adminEmail
+                let subject = "Feature Suggestion"
+                let body = "Please leave a detailed feature suggestion below: \n\n"
+                self?.showMailComposer(with: email, and: subject, and: body)
+            })
+        ],
         [
             SettingsCellModel(title: "Terms & Conditions", handler: { [weak self] in
                 let vc = WebViewerController(with: Constants.termsAndConditions)
@@ -86,9 +131,9 @@ class SettingsController: UIViewController {
             self.tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
-    
 }
 
+// MARK: - TableView
 extension SettingsController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,5 +154,45 @@ extension SettingsController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         HapticsManager.shared.vibrateForSelection()
         self.cells[indexPath.section][indexPath.row].handler()
+    }
+}
+
+// MARK: - Mail
+extension SettingsController: MFMailComposeViewControllerDelegate {
+
+    private func showMailComposer(with email: String, and subject: String, and body: String) {
+        guard MFMailComposeViewController.canSendMail() else {
+            AlertManager.showEmailErrorAlert(on: self)
+            return
+        }
+
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setToRecipients([email])
+        composer.setSubject(subject)
+        composer.setMessageBody(body, isHTML: false)
+
+        present(composer, animated: true)
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let _ = error {
+            AlertManager.showEmailErrorAlert(on: self)
+            controller.dismiss(animated: true, completion: nil)
+            return
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - ShareSheet
+extension SettingsController {
+    
+    private func presentShareSheet() {
+        guard let url = URL(string: Constants.appStore) else { return }
+        let shareSheetVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        shareSheetVC.popoverPresentationController?.sourceView = self.view
+        shareSheetVC.popoverPresentationController?.sourceRect = self.view.frame
+        present(shareSheetVC, animated: true)
     }
 }

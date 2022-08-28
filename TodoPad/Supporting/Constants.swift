@@ -38,4 +38,12 @@ class Constants {
     // MARK: - Links
     static let privacyPolicy = "https://todopad.app/privacy-policy"
     static let termsAndConditions = "https://todopad.app/terms-and-conditions"
+    
+    // MARK: - App Store Link
+    static let appStore = "https://apps.apple.com/us/app/todopad/id1642068489"
+    static let appStoreReview = "https://apps.apple.com/us/app/todopad/id1642068489?action=write-review"
+    
+    // MARK: - Support Emails
+    static let adminEmail = "TodoPadApp@gmail.com"
+    static let supportEmail = "TodoPadApp@gmail.com"
 }
