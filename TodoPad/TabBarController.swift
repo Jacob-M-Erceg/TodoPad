@@ -17,7 +17,6 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-//        super.tabBar(tabBar, didSelect: item)
         HapticsManager.shared.vibrateForSelection()
     }
     
@@ -78,7 +77,7 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
                     DispatchQueue.main.asyncAfter(deadline: .now()+2) { [weak self] in
                         UIView.animate(withDuration: 1) {
                             tCompView.transform = .identity
-                        } completion: { done in
+                        } completion: { [weak self] done in
                             if done {
                                 tCompView.removeFromSuperview()
                                 // Remove current taskCount from queue and stop blocking animation

@@ -54,7 +54,8 @@ class StatsControllerViewModel {
     }
     
     private func sortRepeatingTasks() {
-        self.repeatingTasks.sort(by: { task1, task2 in
+        self.repeatingTasks.sort(by: { [weak self] task1, task2 in
+            guard let self = self else { return true }
             
             if self.sortingOptions.isAscending {
                 
