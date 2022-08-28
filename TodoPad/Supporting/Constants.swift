@@ -34,6 +34,11 @@ class Constants {
     static let statsSortingOptionsIsAscendingKeyTesting = statsSortingOptionsIsAscendingKey + "_testing"
     static let statsSortingOptionsSortByKeyTesting = statsSortingOptionsSortByKey + "_testing"
     
+    // MARK: - Website
+    static let scheme = "https"
+    static let baseURL = "todopad.app"
+    static let port: Int? = nil
+    static let fullURL = "https://todopad.app/"
     
     // MARK: - Links
     static let privacyPolicy = "https://todopad.app/privacy-policy"
