@@ -15,10 +15,10 @@ class TaskFormRepeatSettingsCell: BaseTaskFormDropDownCell {
 
     static let identifier = "TaskFormRepeatSettingsCell"
     
-    weak var delegate: TaskFormRepeatSettingsCellDelegate?
     
+    // MARK: - Variables
     let viewModel = TaskFormRepeatSettingsCellViewModel()
-    
+    weak var delegate: TaskFormRepeatSettingsCellDelegate?
     
     // MARK: - UI Components
     let pickerView: UIPickerView = {
@@ -65,6 +65,14 @@ class TaskFormRepeatSettingsCell: BaseTaskFormDropDownCell {
         }
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
     // MARK: - UI Setup
     private func setupUI() {
         self.selectionStyle = .none
@@ -87,14 +95,6 @@ class TaskFormRepeatSettingsCell: BaseTaskFormDropDownCell {
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
-        }
     }
 }
 

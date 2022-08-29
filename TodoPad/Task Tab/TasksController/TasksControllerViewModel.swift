@@ -30,6 +30,7 @@ class TasksControllerViewModel {
         TaskGroup(title: "Completed", isOpened: true, tasks: []),
     ]
     
+    // MARK: - Initializer
     init(
         persistentTaskManager: PersistentTaskManager = PersistentTaskManager(),
         repeatingTaskManager: RepeatingTaskManager = RepeatingTaskManager(),

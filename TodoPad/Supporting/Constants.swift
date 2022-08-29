@@ -34,8 +34,25 @@ class Constants {
     static let statsSortingOptionsIsAscendingKeyTesting = statsSortingOptionsIsAscendingKey + "_testing"
     static let statsSortingOptionsSortByKeyTesting = statsSortingOptionsSortByKey + "_testing"
     
+    static let lastAskedForAppReviewKey = "last_asked_for_app_review"
+    static let ratedAppAlreadyKey = "rated_app_already"
+    
+    // MARK: - Website
+    static let scheme = "https"
+    static let baseURL = "todopad.app"
+    static let port: Int? = nil
+    static let fullURL = "https://todopad.app/"
     
     // MARK: - Links
     static let privacyPolicy = "https://todopad.app/privacy-policy"
     static let termsAndConditions = "https://todopad.app/terms-and-conditions"
+    
+    // MARK: - App Store Link
+    static let appStore = "https://apps.apple.com/us/app/todopad/id1642068489"
+    static let appStoreReview = "https://apps.apple.com/us/app/todopad/id1642068489?action=write-review"
+
+    
+    // MARK: - Support Emails
+    static let adminEmail = "TodoPadApp@gmail.com"
+    static let supportEmail = "TodoPadApp@gmail.com"
 }

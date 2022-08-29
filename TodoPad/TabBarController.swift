@@ -17,7 +17,6 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-//        super.tabBar(tabBar, didSelect: item)
         HapticsManager.shared.vibrateForSelection()
     }
     
@@ -57,6 +56,8 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
         if animationInProg != true {
             self.doAnimation()
         }
+        
+        self.askToRateAppOnAppStore(taskCompletedCount: taskCount)
     }
     
     private func doAnimation()  {
@@ -78,7 +79,7 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
                     DispatchQueue.main.asyncAfter(deadline: .now()+2) { [weak self] in
                         UIView.animate(withDuration: 1) {
                             tCompView.transform = .identity
-                        } completion: { done in
+                        } completion: { [weak self] done in
                             if done {
                                 tCompView.removeFromSuperview()
                                 // Remove current taskCount from queue and stop blocking animation
@@ -94,6 +95,26 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
                     }
                 }
             }
+        }
+    }
+    
+    private func askToRateAppOnAppStore(taskCompletedCount: Int) {
+        let alreadyRated = UserDefaultsManager.getRatedAppAlreadyValue()
+        let lastAskedForRatingDate = UserDefaultsManager.getLastAskedForReviewDate()
+        
+        guard alreadyRated == false && taskCompletedCount > 12 else { return }
+        
+        // If never asked for rating OR Asked over a month ago but wasn't rated
+        if lastAskedForRatingDate == nil || lastAskedForRatingDate!.addingTimeInterval(60*60*24*31) < Date() {
+            
+             AlertManager.showRateAppAlertPrompt(on: self) { [weak self] showRateApp in
+                 guard let self = self else { return }
+                 UserDefaultsManager.setLastAskedForReviewDate()
+                 
+                 if showRateApp { // User says they like the app
+                     AppReviewRequest.requestReviewIfNeeded(on: self)
+                 }
+             }
         }
     }
 }

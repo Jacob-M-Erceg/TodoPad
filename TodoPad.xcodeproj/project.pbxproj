@@ -124,7 +124,12 @@
 		8E7FAFD6289A3D9700E0CF58 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD5289A3D9700E0CF58 /* UIView+Extensions.swift */; };
 		8E7FAFDA289A3EB500E0CF58 /* DateScrollerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */; };
 		8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */; };
+		8E8647BF28BBE2E60005B691 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8647BE28BBE2E60005B691 /* Endpoints.swift */; };
+		8E8647C128BBE5870005B691 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8647C028BBE5870005B691 /* HTTP.swift */; };
+		8E8647C428BBEBBE0005B691 /* AppConfService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8647C328BBEBBE0005B691 /* AppConfService.swift */; };
+		8E8647C628BBEFD60005B691 /* UpdateNeededController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8647C528BBEFD60005B691 /* UpdateNeededController.swift */; };
 		8E8D108E28B6425800FAF1C0 /* StatsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D108D28B6425800FAF1C0 /* StatsControllerTests.swift */; };
+		8E9343F728BB3A89004FC0EE /* AppReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9343F628BB3A89004FC0EE /* AppReviewRequest.swift */; };
 		8EB96058289B577100D63477 /* MockDateScrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */; };
 		8EB9605A289B79DF00D63477 /* TasksControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB96059289B79DF00D63477 /* TasksControllerTests.swift */; };
 		8EB9605D289B7AC500D63477 /* TasksTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9605C289B7AC500D63477 /* TasksTableViewHeader.swift */; };
@@ -266,7 +271,12 @@
 		8E7FAFD5289A3D9700E0CF58 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		8E7FAFD9289A3EB500E0CF58 /* DateScrollerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateScrollerTests.swift; sourceTree = "<group>"; };
 		8E7FAFDB289A445C00E0CF58 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		8E8647BE28BBE2E60005B691 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		8E8647C028BBE5870005B691 /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		8E8647C328BBEBBE0005B691 /* AppConfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfService.swift; sourceTree = "<group>"; };
+		8E8647C528BBEFD60005B691 /* UpdateNeededController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNeededController.swift; sourceTree = "<group>"; };
 		8E8D108D28B6425800FAF1C0 /* StatsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsControllerTests.swift; sourceTree = "<group>"; };
+		8E9343F628BB3A89004FC0EE /* AppReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewRequest.swift; sourceTree = "<group>"; };
 		8EB96057289B577100D63477 /* MockDateScrollerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateScrollerDelegate.swift; sourceTree = "<group>"; };
 		8EB96059289B79DF00D63477 /* TasksControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksControllerTests.swift; sourceTree = "<group>"; };
 		8EB9605C289B7AC500D63477 /* TasksTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewHeader.swift; sourceTree = "<group>"; };
@@ -348,6 +358,8 @@
 			isa = PBXGroup;
 			children = (
 				8E7FAFBB289A176700E0CF58 /* TabBarController.swift */,
+				8E8647C528BBEFD60005B691 /* UpdateNeededController.swift */,
+				8E8647C228BBEB9D0005B691 /* API */,
 				8E7FAFB1289A128F00E0CF58 /* Models */,
 				8E7FAFAE289A122B00E0CF58 /* Task Tab */,
 				8E7FAFB0289A128600E0CF58 /* Stats Tab */,
@@ -468,6 +480,7 @@
 				8E36705D28B3EA5F0056D92F /* SettingsController.swift */,
 				8E36706228B3EC9E0056D92F /* SettingsCellModel.swift */,
 				8E36706428B40A160056D92F /* WebViewerController.swift */,
+				8E9343F628BB3A89004FC0EE /* AppReviewRequest.swift */,
 			);
 			path = SettingsController;
 			sourceTree = "<group>";
@@ -743,6 +756,16 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8E8647C228BBEB9D0005B691 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8E8647C028BBE5870005B691 /* HTTP.swift */,
+				8E8647BE28BBE2E60005B691 /* Endpoints.swift */,
+				8E8647C328BBEBBE0005B691 /* AppConfService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		8EB96056289B56CE00D63477 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,6 +912,7 @@
 				8E0CEC2028A39E2300EFE295 /* TaskFormRepeatSettingsCellViewModel.swift in Sources */,
 				8E75D72328AE446000B7988B /* ViewTaskCellModel.swift in Sources */,
 				8E1F874828B942980024FE4A /* UserDefaultsManager.swift in Sources */,
+				8E8647C628BBEFD60005B691 /* UpdateNeededController.swift in Sources */,
 				8E73F1A128A64E6E0085ED91 /* CoreDataStack.swift in Sources */,
 				8E37475528A8150B001A114C /* NonRepeatingTaskCD+CoreDataProperties.swift in Sources */,
 				8EF8610128A4FC3500FC6674 /* TaskGroupCell.swift in Sources */,
@@ -908,11 +932,13 @@
 				8E7FAFBC289A176700E0CF58 /* TabBarController.swift in Sources */,
 				8EB9605D289B7AC500D63477 /* TasksTableViewHeader.swift in Sources */,
 				8E0CEC2728A3C7DE00EFE295 /* TaskFormNotificationCell.swift in Sources */,
+				8E8647BF28BBE2E60005B691 /* Endpoints.swift in Sources */,
 				8E2DE5DE28B5B5AF00EBC24A /* Level.swift in Sources */,
 				8E2AA0B7289A09A6009F2C53 /* SceneDelegate.swift in Sources */,
 				8E30A69628B7A2D100F2AC5D /* RepeatingTaskStats.swift in Sources */,
 				8E75D72528AE565400B7988B /* ViewTaskTableViewHeader.swift in Sources */,
 				8E15C27128A84FAC00380B64 /* RepeatingTaskManager.swift in Sources */,
+				8E9343F728BB3A89004FC0EE /* AppReviewRequest.swift in Sources */,
 				8E2AA0BF289A09A6009F2C53 /* TodoPad.xcdatamodeld in Sources */,
 				8E1F874428B8F8F60024FE4A /* Double+Extensions.swift in Sources */,
 				8E2B2BC7289D8E1F00DC1D4D /* TaskGroup.swift in Sources */,
@@ -926,6 +952,7 @@
 				8E37475728A819F6001A114C /* NonRepeatingTaskManager.swift in Sources */,
 				8E2B2BCB289D8E2E00DC1D4D /* TaskVariant.swift in Sources */,
 				8E4A9F5F28A210AE0092B6AB /* TaskFormTextFieldCell.swift in Sources */,
+				8E8647C428BBEBBE0005B691 /* AppConfService.swift in Sources */,
 				8E4A9F5C28A1CDC60092B6AB /* Date+Extensions.swift in Sources */,
 				8E7FAFDC289A445C00E0CF58 /* UILabel+Extensions.swift in Sources */,
 				8E36706328B3EC9E0056D92F /* SettingsCellModel.swift in Sources */,
@@ -945,6 +972,7 @@
 				8E40F6D928AC8704000E5A50 /* ViewTaskController.swift in Sources */,
 				8E0CEC1728A33FC000EFE295 /* TaskFormRepeatSettingsCell.swift in Sources */,
 				8E2DE5D928B5AA2C00EBC24A /* TaskCompletedPopup.swift in Sources */,
+				8E8647C128BBE5870005B691 /* HTTP.swift in Sources */,
 				8E36706528B40A160056D92F /* WebViewerController.swift in Sources */,
 				8E7FAFC3289A1BF300E0CF58 /* Constants.swift in Sources */,
 			);
@@ -1152,7 +1180,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3MPMZY465Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoPad/Info.plist;
@@ -1181,7 +1209,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 3MPMZY465Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodoPad/Info.plist;

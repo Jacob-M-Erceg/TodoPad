@@ -30,7 +30,6 @@ class TasksController: UIViewController {
         return tableView
     }()
     
-    
     // MARK: - Lifecycle
     init(_ dateScroller: DateScroller = DateScroller(), viewModel: TasksControllerViewModel = TasksControllerViewModel()) {
         self.dateScroller = dateScroller
@@ -66,7 +65,7 @@ class TasksController: UIViewController {
                     } else {
                         self?.tableView.deleteRows(at: indexPaths, with: .fade)
                     }
-                }, completion: { _ in
+                }, completion: { [weak self] _ in
                     self?.tableView.reloadData()
                 })
             }
@@ -203,7 +202,8 @@ extension TasksController {
         
         let actionButtonTitle: String = isCompleted ? "Undo" : "Complete"
         
-        let action = UIContextualAction(style: .normal, title: actionButtonTitle) { _, _, completion in
+        let action = UIContextualAction(style: .normal, title: actionButtonTitle) { [weak self] _, _, completion in
+            guard let self = self else { return }
             HapticsManager.shared.vibrateForActionCompleted()
             
             self.viewModel.invertTaskCompleted(with: task)

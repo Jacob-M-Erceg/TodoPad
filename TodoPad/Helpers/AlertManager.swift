@@ -43,6 +43,34 @@ class AlertManager {
     static func showSetNotificationError(on vc: UIViewController, taskTitle: String, error: Error?) {
         self.showBasicAlert(on: vc, title: "Could not create notification for \(taskTitle)", message: error?.localizedDescription)
     }
+    
+    static func showEmailErrorAlert(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "E-Mail Issue", message: "Cannot send email at this time.")
+    }
+    
+    
+    public static func showCannotRateAppAlert(on vc: UIViewController) {
+        self.showBasicAlert(on: vc, title: "Something went wrong...", message: "Cannot rate app at this time... Thanks for trying anyways!")
+    }
+}
+
+// MARK: - Continue Alert
+extension AlertManager {
+    
+    private static func showContinueAlert(on vc: UIViewController, with title: String, message: String, completion: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { _ in
+            completion()
+        }))
+        
+        DispatchQueue.main.async {
+            vc.present(alert, animated: true)
+        }
+    }
+    
+    static func showDetailedReportAlert(on vc: UIViewController, completion: @escaping () -> Void) {
+        self.showContinueAlert(on: vc, with: "Bug Report", message: "Please be as detailed as possible to ensure we can diagnosed and fix the problem!", completion: completion)
+    }
 }
 
 // MARK: - Destructive Alerts
@@ -162,4 +190,22 @@ extension AlertManager {
         case cancel = "Cancel"
     }
     
+}
+
+extension AlertManager {
+    
+    // TODO - Maybe put this in option alerts
+    public static func showRateAppAlertPrompt(on vc: UIViewController, completion: @escaping (Bool) -> Void) {
+        let alert = UIAlertController(title: "Feedback", message: "Are you enjoying the app?", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes, I like it!", style: .default, handler: { _ in
+            completion(true)
+        }))
+        alert.addAction(UIAlertAction(title: "No, this sucks!", style: .default, handler: { _ in
+            completion(false)
+        }))
+        DispatchQueue.main.async {
+            vc.present(alert, animated: true)
+        }
+    }
 }
