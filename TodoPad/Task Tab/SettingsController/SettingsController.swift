@@ -22,7 +22,7 @@ class SettingsController: UIViewController {
                 AlertManager.showRateAppAlertPrompt(on: self) { [weak self] showRateApp in
                     if showRateApp {
                         guard let self = self else { return }
-                        AppReviewRequest.requestReviewIfNeeded(with: self)
+                        AppReviewRequest.manuallyRequestReviewIfNeeded(on: self)
                     } else {
                         let email = Constants.supportEmail
                         let subject = "App Improvment Suggestion"

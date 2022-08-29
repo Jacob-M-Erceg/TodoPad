@@ -27,6 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         cdLocation?.removeLast()
         cdLocation = cdLocation?.appending(" Support/")
         devPrint(cdLocation ?? "")
+        
+//        UserDefaults.standard.set(nil, forKey: Constants.ratedAppAlreadyKey)
+//        UserDefaults.standard.set(nil, forKey: Constants.lastAskedForAppReviewKey)
+//        devPrint(UserDefaultsManager.getRatedAppAlreadyValue())
+//        devPrint(UserDefaultsManager.getLastAskedForReviewDate())
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

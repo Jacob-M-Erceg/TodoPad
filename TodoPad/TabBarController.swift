@@ -56,6 +56,8 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
         if animationInProg != true {
             self.doAnimation()
         }
+        
+        self.askToRateAppOnAppStore(taskCompletedCount: taskCount)
     }
     
     private func doAnimation()  {
@@ -93,6 +95,26 @@ class TabBarController: UITabBarController, TasksControllerDelegate {
                     }
                 }
             }
+        }
+    }
+    
+    private func askToRateAppOnAppStore(taskCompletedCount: Int) {
+        let alreadyRated = UserDefaultsManager.getRatedAppAlreadyValue()
+        let lastAskedForRatingDate = UserDefaultsManager.getLastAskedForReviewDate()
+        
+        guard alreadyRated == false && taskCompletedCount > 12 else { return }
+        
+        // If never asked for rating OR Asked over a month ago but wasn't rated
+        if lastAskedForRatingDate == nil || lastAskedForRatingDate!.addingTimeInterval(60*60*24*31) < Date() {
+            
+             AlertManager.showRateAppAlertPrompt(on: self) { [weak self] showRateApp in
+                 guard let self = self else { return }
+                 UserDefaultsManager.setLastAskedForReviewDate()
+                 
+                 if showRateApp { // User says they like the app
+                     AppReviewRequest.requestReviewIfNeeded(on: self)
+                 }
+             }
         }
     }
 }

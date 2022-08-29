@@ -358,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				8E7FAFBB289A176700E0CF58 /* TabBarController.swift */,
+				8E8647C528BBEFD60005B691 /* UpdateNeededController.swift */,
 				8E8647C228BBEB9D0005B691 /* API */,
 				8E7FAFB1289A128F00E0CF58 /* Models */,
 				8E7FAFAE289A122B00E0CF58 /* Task Tab */,
@@ -367,7 +368,6 @@
 				8E2B2BC0289CCF3E00DC1D4D /* CoreData */,
 				8E7FAFAF289A123700E0CF58 /* Supporting */,
 				8E2AA0C5289A09A7009F2C53 /* Info.plist */,
-				8E8647C528BBEFD60005B691 /* UpdateNeededController.swift */,
 			);
 			path = TodoPad;
 			sourceTree = "<group>";
