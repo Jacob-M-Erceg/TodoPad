@@ -33,7 +33,7 @@ TodoPad is a task/todo tracker app built with Swift for iOS. It helps users mana
 
 1. Clone the repository.
 ```
-git clone git@github.com:iamCodeBrah/README-Test.git
+git clone git@github.com:Jacob-M-Erceg/TodoPad.git
 ```
 
 2. Open the project in Xcode.
